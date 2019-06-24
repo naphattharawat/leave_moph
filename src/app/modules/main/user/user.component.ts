@@ -8,10 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user.component.scss']
 })
 export class UserComponent implements OnInit {
-  users: any[] = [];
-  rowSelected: any = {};
-  loading = false;
-  modalEdit = false;
+  userList: any[] = [];
 
   constructor(
     private mainService: MainService
@@ -22,17 +19,11 @@ export class UserComponent implements OnInit {
   }
 
   async getUser() {
-    this.loading = true;
-    const result = await this.mainService.getUserTest();
-    if (result.results) {
-      this.users = result.results;
+    const result: any = await this.mainService.getUser();
+    if (result.statusCode === 200 && result.rows.length) {
+      this.userList = result.rows;
+      console.log('user', this.userList);
     }
-    this.loading = false;
-  }
-
-  onEdit(row) {
-    this.rowSelected = row;
-    this.modalEdit = true;
   }
 
 }
