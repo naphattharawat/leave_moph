@@ -1,6 +1,6 @@
 import { MainService } from './../../../services/main.service';
 import { Component, OnInit } from '@angular/core';
-import { AlertService } from 'src/app/services/alert.service';
+
 
 @Component({
   selector: 'app-user',
@@ -14,8 +14,7 @@ export class UserComponent implements OnInit {
   modalEdit = false;
 
   constructor(
-    private mainService: MainService,
-    private alertService: AlertService
+    private mainService: MainService
   ) { }
 
   ngOnInit() {
@@ -36,19 +35,5 @@ export class UserComponent implements OnInit {
     this.modalEdit = true;
   }
 
-  async onDelete(row) {
-    const confirmed: any = await this.alertService.confirm('', 'Delete confirm?');
-    if (confirmed.value) {
-      // ....
-    }
-  }
-
-  async onSave() {
-    const confirmed: any = await this.alertService.confirm('', 'Save confirm?');
-    if (confirmed.value) {
-      // ....
-      this.modalEdit = false;
-    }
-  }
 }
 

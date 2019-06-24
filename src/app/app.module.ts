@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
 import { environment } from './../environments/environment';
-import { AlertService } from './services/alert.service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ClarityModule } from '@clr/angular';
@@ -31,7 +30,6 @@ import { HelperModule } from './pipes/helpers.module';
   ],
   providers: [
     MainService,
-    AlertService,
     HelperModule,
     { provide: 'API_URL', useValue: environment.apiUrl },
     { provide: 'APPNAME', useValue: environment.appName },
