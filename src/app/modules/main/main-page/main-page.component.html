@@ -1,3 +1,96 @@
 <ol class="breadcrumb breadcrumb-arrow font-trirong">
   <li><a href="javascript://">Home</a></li>
 </ol>
+<div class="clr-row">
+    <div class="clr-col-lg-3 clr-col-md-8 clr-col-12">
+        <div class="card" style="background-color: #b9d6f8">
+            <div class="card-header">
+                <clr-icon shape="happy-face"></clr-icon> วันลาคงเหลือ
+            </div>
+            <div class="card-block">
+                <div class="card-title">
+                    ประจำปี 2562
+                </div>
+                <div class="card-text">
+                    คงเหลือ ... วัน
+                </div>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-sm btn-link">Footer Action 1</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="clr-col-lg-3 clr-col-md-8 clr-col-12">
+        <div class="card" style="background-color: #b9dd9b">
+            <div class="card-header">
+                <clr-icon shape="check"></clr-icon> วันลาที่อนุมัติ
+            </div>
+            <div class="card-block">
+                <div class="card-title">
+                    ประจำปี 2562
+                </div>
+                <div class="card-text">
+                    ทั้งหมด ... 
+                </div>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-sm btn-link">Footer Action 1</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="clr-col-lg-3 clr-col-md-8 clr-col-12">
+        <div class="card" style="background-color: #dddc8f">
+            <div class="card-header">
+                <clr-icon shape="clock"></clr-icon> วันลาที่รออนุมัติ
+            </div>
+            <div class="card-block">
+                <div class="card-title">
+                    ประจำปี 2562
+                </div>
+                <div class="card-text">
+                    ทั้งหมด ...
+                </div>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-sm btn-link">Footer Action 1</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="clr-col-lg-3 clr-col-md-8 clr-col-12">
+        <div class="card" style="background-color: #da9393">
+            <div class="card-header">
+                <clr-icon shape="times"></clr-icon> วันที่ไม่อนุมัติ
+            </div>
+            <div class="card-block">
+                <div class="card-title">
+                    ประจำปี 2562
+                </div>
+                <div class="card-text">
+                    ทั้งหมด ...
+                </div>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-sm btn-link">Footer Action 1</button>
+            </div>
+        </div>
+    </div>
+    
+</div>
+<br>
+<clr-datagrid>
+    <clr-dg-column>username</clr-dg-column>
+    <clr-dg-column>pwd</clr-dg-column>
+    <clr-dg-column>type</clr-dg-column>
+    <clr-dg-column>tel</clr-dg-column>
+  
+    <clr-dg-row *ngFor="let user of userList">
+        <clr-dg-cell>{{user.username}}</clr-dg-cell>
+        <clr-dg-cell>{{user.password}}</clr-dg-cell>
+        <clr-dg-cell>{{user.type}}</clr-dg-cell>
+        <clr-dg-cell>{{user.tel}}</clr-dg-cell>
+    </clr-dg-row>
+    <clr-dg-footer>{{userList.length}} users</clr-dg-footer>
+  </clr-datagrid>
