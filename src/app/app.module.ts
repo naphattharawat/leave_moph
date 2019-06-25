@@ -1,3 +1,5 @@
+import { CallbackModule } from './modules/callback/callback.module';
+import { CallbackComponent } from './modules/callback/callback.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
@@ -8,6 +10,7 @@ import { AppComponent } from './app.component';
 import { ClarityModule } from '@clr/angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+
 
 // my module and my service
 import { MainModule } from './modules/main/main.module';
@@ -26,6 +29,7 @@ import { HelperModule } from './pipes/helpers.module';
     ClarityModule,
     MainModule,
     LoginModule,
+    CallbackModule,
     BrowserAnimationsModule
   ],
   providers: [

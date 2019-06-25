@@ -10,7 +10,7 @@
           <div class="error active" *ngIf="isError">
               Invalid user name or password
           </div>
-          <a href="https://ictportal.moph.go.th/login">
+          <a href="https://ictportal.moph.go.th/oauth/authorize?client_id=29&response_type=code&scope=">
             login by ICT portal</a>
           <button [disabled]="!username || !password" type="submit" class="btn btn-success" (click)="onLogin()">Login</button>
       </div>

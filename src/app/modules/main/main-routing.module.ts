@@ -1,3 +1,4 @@
+import { CallbackComponent } from './../callback/callback.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -19,6 +20,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'main', pathMatch: 'full' },
       { path: 'main', component: MainPageComponent },
       { path: 'user', component: UserComponent },
+      { path: 'callback', component: CallbackComponent },
       { path: 'preference', component: PreferenceComponent },
       { path: 'about', component: AboutComponent },
       { path: '**', component: PageNotFoundComponent },

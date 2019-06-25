@@ -13,7 +13,6 @@ export class MainPageComponent implements OnInit {
     private mainService: MainService
   ) { }
 
- 
   ngOnInit() {
     this.getUser();
   }
