@@ -1,8 +1,8 @@
 <div class="login-wrapper">
   <form class="login">
       <section class="title">
-          <h3 class="welcome">ยินดีต้อนรับ</h3>
-          ระบบการลา
+          <h3 class="welcome">welcome</h3>
+          Leave Management System
       </section>
       <div class="login-group">
          email <input class="username" name="username" type="email" id="login_username" [(ngModel)]="username" placeholder="Username">
@@ -10,6 +10,8 @@
           <div class="error active" *ngIf="isError">
               Invalid user name or password
           </div>
+          <a href="https://ictportal.moph.go.th/login">
+            login by ICT portal</a>
           <button [disabled]="!username || !password" type="submit" class="btn btn-success" (click)="onLogin()">Login</button>
       </div>
   </form>
