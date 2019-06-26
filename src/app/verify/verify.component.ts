@@ -15,16 +15,17 @@ export class VerifyComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router
   ) {
-    this.route.queryParams.subscribe(params => {
+    this.route.queryParams.subscribe(async params => {
       this.code = params['code'];
       console.log(this.code);
-      this.verifyService.sendCode(this.code);
+      await this.verifyService.sendCode(this.code);
   });
   }
 
   ngOnInit() {
   }
-  async sendCode() {
-    const result: any = this.verifyService.sendCode(this.code);
+  async sendCode(code) {
+    const result: any = await this.verifyService.sendCode(code);
+    // window.location.href = 'http://localhost:3001/verify/code=' , this.code;
   }
 }

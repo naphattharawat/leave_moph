@@ -12,6 +12,10 @@ export class VerifyService {
   ) { }
 
   sendCode(code) {
-    return this.http.get(`http://localhost:3001/verify/getCode?code=${code}`);
+    console.log('services : ', code);
+    return this.http.get(`http://localhost:3001/verify/getCode?code=${code}`)
+      .toPromise()
+      .then(result => result)
+      .catch(error => error);
   }
 }
