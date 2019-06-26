@@ -1,5 +1,4 @@
-import { CallbackModule } from './modules/callback/callback.module';
-import { CallbackComponent } from './modules/callback/callback.component';
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
@@ -17,10 +16,12 @@ import { MainModule } from './modules/main/main.module';
 import { LoginModule } from './modules/login/login.module';
 import { MainService } from './services/main.service';
 import { HelperModule } from './pipes/helpers.module';
+import { VerifyComponent } from './verify/verify.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    VerifyComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +30,6 @@ import { HelperModule } from './pipes/helpers.module';
     ClarityModule,
     MainModule,
     LoginModule,
-    CallbackModule,
     BrowserAnimationsModule
   ],
   providers: [
@@ -38,8 +38,8 @@ import { HelperModule } from './pipes/helpers.module';
     { provide: 'API_URL', useValue: environment.apiUrl },
     { provide: 'APPNAME', useValue: environment.appName },
     { provide: 'VERSION', useValue: environment.version },
-    { provide: 'SUBVERSION', useValue: environment.subVersion },
-    { provide: LocationStrategy, useClass: HashLocationStrategy }
+    { provide: 'SUBVERSION', useValue: environment.subVersion }
+    // { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   bootstrap: [AppComponent]
 })
