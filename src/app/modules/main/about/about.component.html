@@ -3,36 +3,39 @@
 <!-- Or load a specific version -->
 <link rel="stylesheet" href="https://unpkg.com/@clr/ui@0.12.5/clr-ui.min.css" />
 
+<div style="position:relative; padding-top:5%;padding-left:10%;padding-right:10%; background-color: WhiteSmoke;">
+    <div class="jumbotron">
+    <h2>ข้อมูลส่วนตัว</h2><br>
+    <hr class="my-4">
+    <form action="../Models/CreateClass2DB.php" >
+      <div class="form-group">
+        <label for="exampleFormControlInput1">รหัสบัตรประชาชน</label>
+        14099xxxxxxxx
+        </div>
+      <div class="form-group">
+        <label for="exampleFormControlInput1">ตำแหน่ง</label>
+        หัวหน้าฝ่ายบริหาร 
+    </div>
+      <div class="form-group">
+        <label for="exampleFormControlTextarea1">ชื่อ</label>
+        ภควัต
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlInput1">นามสกุล</label>
+         หาดสมบัติ
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlInput1">เบอร์โทรศัพท์</label>
+        0846851659
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlTextarea1">email</label>
+        <label>tiger@hotmail.com</label>
+      </div>
 
-<h1 style="text-align:center;">
-    ประวัติ
-</h1><br>
-<div style="margin-left: 20% ;">
-<form clrForm>
-    <clr-input-container>
-        <label>รหัสบัตรประชาชน *</label>
-        
-    </clr-input-container>
-    <clr-input-container>
-        <label>ตำแหน่ง *</label>
-        
-    </clr-input-container>
-    <clr-input-container>
-        <label>ชื่อ</label>
-        
-    </clr-input-container>
-    <clr-input-container>
-        <label>สกุล</label>
-        
-    </clr-input-container>
-    <clr-input-container>
-        <label>เบอร์โทร</label>
-        
-    </clr-input-container>
-    <clr-textarea-container>
-        <label>email</label>
-        
-    </clr-textarea-container>
-    
-</form>
+    <div style="text-align:center;">
+      <button type="submit" name="submit" class="btn btn-primary mb-2">ยืนยัน</button> 
+    </div>
+    </form>
+</div>
 </div>
