@@ -19,8 +19,8 @@ export class VerifyService {
       .toPromise();
   }
 
-  getUser() {
-    return this.http.get('http://localhost:3001/verify/sendUser', {
+  getUser(token) {
+    return this.http.get(`http://localhost:3001/verify/getUser?token=${token}`, {
     })
     .toPromise();
   }

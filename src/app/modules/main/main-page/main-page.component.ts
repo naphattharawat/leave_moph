@@ -1,6 +1,7 @@
 import { VerifyService } from './../../../services/verify.service';
 import { Component, OnInit } from '@angular/core';
 import { MainService } from './../../../services/main.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main-page',
@@ -8,22 +9,19 @@ import { MainService } from './../../../services/main.service';
   styleUrls: ['./main-page.component.scss']
 })
 export class MainPageComponent implements OnInit {
-  userList: any[] = [];
+  userList: any;
 
   constructor(
     private mainService: MainService,
-    private verifyService: VerifyService
-  ) { }
+    private verifyService: VerifyService,
+    private router: Router
+  ) {
+    this.userList = JSON.parse(sessionStorage.getItem('user'));
+  }
 
   ngOnInit() {
-    this.getUser();
+    // this.getUser();
   }
 
-  async getUser() {
-    const result: any = await this.verifyService.getUser();
-    if (result.statusCode === 200 && result.users.length) {
-      this.userList = result.users;
-      console.log('user', this.userList);
-    }
-  }
+
 }

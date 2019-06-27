@@ -31,19 +31,17 @@ export class VerifyComponent implements OnInit {
     const result: any = await this.verifyService.sendCode(code);
     if (result.ok) {
       this.token = result.rows;
-      sessionStorage.setItem('token', this.token);
-      // this.router.navigate(['main']);
-    }
-    console.log(sessionStorage.getItem('token'));
-  }
 
-  async getUser() {
-    const result: any = await this.verifyService.getUser();
-    if (result.statusCode === 200 && result.users.length) {
-      this.userList = result.users;
-      console.log(result.users);
-
-     // console.log('user', this.userList);
+      if (this.token) {
+        sessionStorage.setItem('token', this.token);
+        const rs: any = await this.verifyService.getUser(this.token);
+        if (rs.users) {
+          sessionStorage.setItem('user', JSON.stringify(rs.users));
+          this.router.navigate(['main']);
+        }
+      } else {
+        this.router.navigate(['login']);
+      }
     }
   }
 }
