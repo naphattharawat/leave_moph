@@ -39,9 +39,11 @@ export class VerifyComponent implements OnInit {
 
   async getUser() {
     const result: any = await this.verifyService.getUser();
-    if (result.statusCode === 200 && result.rows.length) {
-      this.userList = result.rows;
-      console.log('user', this.userList);
+    if (result.statusCode === 200 && result.users.length) {
+      this.userList = result.users;
+      console.log(result.users);
+
+     // console.log('user', this.userList);
     }
   }
 }

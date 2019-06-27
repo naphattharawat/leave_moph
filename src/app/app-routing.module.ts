@@ -6,8 +6,8 @@ import { PageNotFoundComponent } from './modules/main/page-not-found/page-not-fo
 import { MainPageComponent } from './modules/main/main-page/main-page.component';
 
 export const routes: Routes = [
-  // {path: '', redirectTo: 'login', pathMatch: 'full'},
-  // {path: 'login' , component: LoginPageComponent },
+  {path: '', redirectTo: 'login', pathMatch: 'full'},
+  {path: 'login' , component: LoginPageComponent },
   // {path: 'main', component: MainPageComponent },
   // {path: 'verify' , component: VerifyComponent },
   // {path: '**', component: PageNotFoundComponent },

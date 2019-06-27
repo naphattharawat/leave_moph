@@ -80,17 +80,7 @@
     
 </div>
 <br>
-<clr-datagrid>
-    <clr-dg-column>id</clr-dg-column>
-    <clr-dg-column>pwd</clr-dg-column>
-    <clr-dg-column>type</clr-dg-column>
-    <clr-dg-column>tel</clr-dg-column>
-  
-    <clr-dg-row >
-        <clr-dg-cell>{{user.cid}}</clr-dg-cell>
-        <clr-dg-cell>{{user.name}}</clr-dg-cell>
-        <clr-dg-cell>{{user.lastname}}</clr-dg-cell>
-        <clr-dg-cell>{{user.email}}</clr-dg-cell>
-    </clr-dg-row>
-    <clr-dg-footer>{{userList.length}} users</clr-dg-footer>
-  </clr-datagrid>
+{{userList.cid}} <br>
+{{userList.name}} <br>
+{{userList.lastname}} <br>
+{{userList.email}} <br>

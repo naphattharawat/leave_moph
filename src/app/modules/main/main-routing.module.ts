@@ -21,7 +21,7 @@ const routes: Routes = [
     children: [
       // { path: '', redirectTo: 'main', pathMatch: 'full' },
       { path: 'main', component: MainPageComponent },
-      { path: 'login' , component: LoginPageComponent },
+      // { path: 'login' , component: LoginPageComponent },
       { path: 'verify' , component: VerifyComponent },
       { path: 'user', component: UserComponent },
       { path: 'preference', component: PreferenceComponent },
