@@ -18,10 +18,12 @@ import { MainService } from './services/main.service';
 import { HelperModule } from './pipes/helpers.module';
 import { VerifyComponent } from './verify/verify.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
-    VerifyComponent
+    VerifyComponent,
+   
   ],
   imports: [
     BrowserModule,
