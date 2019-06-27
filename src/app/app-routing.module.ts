@@ -3,12 +3,14 @@ import { LoginPageComponent } from './modules/login/login-page/login-page.compon
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PageNotFoundComponent } from './modules/main/page-not-found/page-not-found.component';
+import { MainPageComponent } from './modules/main/main-page/main-page.component';
 
 export const routes: Routes = [
-  {path: '', redirectTo: 'login', pathMatch: 'full'},
-  {path: 'login' , component: LoginPageComponent },
-  {path: 'verify' , component: VerifyComponent },
-  {path: '**', component: PageNotFoundComponent },
+  // {path: '', redirectTo: 'login', pathMatch: 'full'},
+  // {path: 'login' , component: LoginPageComponent },
+  // {path: 'main', component: MainPageComponent },
+  // {path: 'verify' , component: VerifyComponent },
+  // {path: '**', component: PageNotFoundComponent },
 ];
 
 @NgModule({

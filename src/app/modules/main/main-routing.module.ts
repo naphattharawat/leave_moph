@@ -10,15 +10,19 @@ import { AboutComponent } from './about/about.component';
 import { LayoutComponent } from './layout/layout.component';
 import { UserComponent } from './user/user.component';
 import { PreferenceComponent } from './preference/preference.component';
+import { LoginPageComponent } from '../login/login-page/login-page.component';
+import { VerifyComponent } from 'src/app/verify/verify.component';
 
 const routes: Routes = [
   {
-    path: 'main',
+    path: '',
     component: LayoutComponent,
     // canActivate: [AuthGuardService],
     children: [
-      { path: '', redirectTo: 'main', pathMatch: 'full' },
+      // { path: '', redirectTo: 'main', pathMatch: 'full' },
       { path: 'main', component: MainPageComponent },
+      { path: 'login' , component: LoginPageComponent },
+      { path: 'verify' , component: VerifyComponent },
       { path: 'user', component: UserComponent },
       { path: 'preference', component: PreferenceComponent },
       { path: 'about', component: AboutComponent },

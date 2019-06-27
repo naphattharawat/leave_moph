@@ -9,7 +9,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class VerifyComponent implements OnInit {
   code: any;
-
+  accessToken: any;
+  token: any;
+  userList: any[];
   constructor(
     private verifyService: VerifyService,
     private route: ActivatedRoute,
@@ -17,15 +19,29 @@ export class VerifyComponent implements OnInit {
   ) {
     this.route.queryParams.subscribe(async params => {
       this.code = params['code'];
-      console.log(this.code);
-      await this.verifyService.sendCode(this.code);
-  });
+    });
+
   }
 
   ngOnInit() {
+    this.sendCode(this.code);
   }
+
   async sendCode(code) {
     const result: any = await this.verifyService.sendCode(code);
-    // window.location.href = 'http://localhost:3001/verify/code=' , this.code;
+    if (result.ok) {
+      this.token = result.rows;
+      sessionStorage.setItem('token', this.token);
+      // this.router.navigate(['main']);
+    }
+    console.log(sessionStorage.getItem('token'));
+  }
+
+  async getUser() {
+    const result: any = await this.verifyService.getUser();
+    if (result.statusCode === 200 && result.rows.length) {
+      this.userList = result.rows;
+      console.log('user', this.userList);
+    }
   }
 }

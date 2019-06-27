@@ -81,16 +81,16 @@
 </div>
 <br>
 <clr-datagrid>
-    <clr-dg-column>username</clr-dg-column>
+    <clr-dg-column>id</clr-dg-column>
     <clr-dg-column>pwd</clr-dg-column>
     <clr-dg-column>type</clr-dg-column>
     <clr-dg-column>tel</clr-dg-column>
   
-    <clr-dg-row *ngFor="let user of userList">
-        <clr-dg-cell>{{user.username}}</clr-dg-cell>
-        <clr-dg-cell>{{user.password}}</clr-dg-cell>
-        <clr-dg-cell>{{user.type}}</clr-dg-cell>
-        <clr-dg-cell>{{user.tel}}</clr-dg-cell>
+    <clr-dg-row >
+        <clr-dg-cell>{{user.cid}}</clr-dg-cell>
+        <clr-dg-cell>{{user.name}}</clr-dg-cell>
+        <clr-dg-cell>{{user.lastname}}</clr-dg-cell>
+        <clr-dg-cell>{{user.email}}</clr-dg-cell>
     </clr-dg-row>
     <clr-dg-footer>{{userList.length}} users</clr-dg-footer>
   </clr-datagrid>

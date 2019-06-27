@@ -1,3 +1,4 @@
+import { VerifyService } from './../../../services/verify.service';
 import { Component, OnInit } from '@angular/core';
 import { MainService } from './../../../services/main.service';
 
@@ -10,7 +11,8 @@ export class MainPageComponent implements OnInit {
   userList: any[] = [];
 
   constructor(
-    private mainService: MainService
+    private mainService: MainService,
+    private verifyService: VerifyService
   ) { }
 
   ngOnInit() {
@@ -18,9 +20,9 @@ export class MainPageComponent implements OnInit {
   }
 
   async getUser() {
-    const result: any = await this.mainService.getUser();
-    if (result.statusCode === 200 && result.rows.length) {
-      this.userList = result.rows;
+    const result: any = await this.verifyService.getUser();
+    if (result.statusCode === 200 && result.users.length) {
+      this.userList = result.users;
       console.log('user', this.userList);
     }
   }
