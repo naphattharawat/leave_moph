@@ -1,36 +1,36 @@
-<!-- Load the latest version -->
+<!-- Load the latest version
 <link rel="stylesheet" href="https://unpkg.com/@clr/ui/clr-ui.min.css" />
-<!-- Or load a specific version -->
-<link rel="stylesheet" href="https://unpkg.com/@clr/ui@0.12.5/clr-ui.min.css" />
-
+Or load a specific version -->
+<!-- <link rel="stylesheet" href="https://unpkg.com/@clr/ui@0.12.5/clr-ui.min.css" /> --> 
 <div style="position:relative; padding-top:5%;padding-left:10%;padding-right:10%; background-color: WhiteSmoke;">
-    <div class="jumbotron">
+  <div class="jumbotron">
     <h2>ข้อมูลส่วนตัว</h2><br>
     <hr class="my-4">
-    <form action="../Models/CreateClass2DB.php" >
+    <form action="#" >
       <div class="form-group">
         <label for="exampleFormControlInput1">รหัสบัตรประชาชน</label>
-        {{aboutuser.depId}}
+        {{personId}}
         </div>
       <div class="form-group">
         <label for="exampleFormControlInput1">ตำแหน่ง</label>
-        {{aboutuser.name}} 
-    </div>
+      </div>
       <div class="form-group">
         <label for="exampleFormControlTextarea1">ชื่อ</label>
-        ภควัต
+        {{aboutuser.name}} 
       </div>
       <div class="form-group">
         <label for="exampleFormControlInput1">นามสกุล</label>
-         หาดสมบัติ
+        {{aboutuser.surname}}          
       </div>
       <div class="form-group">
         <label for="exampleFormControlInput1">เบอร์โทรศัพท์</label>
-        0846851659
+        {{aboutuser.tel}}         
       </div>
       <div class="form-group">
         <label for="exampleFormControlTextarea1">email</label>
-        <label>tiger@hotmail.com</label>
+        <label>
+            {{aboutuser.email}} 
+        </label>
       </div>
 
     <div style="text-align:center;">
