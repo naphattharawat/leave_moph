@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class MainPageComponent implements OnInit {
   userList: any;
-
+  date = new Date();
   constructor(
     private mainService: MainService,
     private verifyService: VerifyService,

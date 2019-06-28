@@ -12,6 +12,7 @@ import { UserComponent } from './user/user.component';
 import { PreferenceComponent } from './preference/preference.component';
 import { LoginPageComponent } from '../login/login-page/login-page.component';
 import { VerifyComponent } from 'src/app/verify/verify.component';
+import { RegisterComponent } from '../register/register.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,7 @@ const routes: Routes = [
       // { path: 'login' , component: LoginPageComponent },
       { path: 'verify' , component: VerifyComponent },
       { path: 'user', component: UserComponent },
+      { path: 'register', component: RegisterComponent },
       { path: 'preference', component: PreferenceComponent },
       { path: 'about', component: AboutComponent },
       { path: '**', component: PageNotFoundComponent },

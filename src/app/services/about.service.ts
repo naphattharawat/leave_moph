@@ -25,4 +25,13 @@ export class AboutService {
     .then(result => result)
     .catch(error => error);
   }
+
+  createUser(personId, hosId, email, name, surname, tel, depId, position) {
+    return this.http.post(`http://localhost:3001/user/`, {
+      personId, hosId, email, name, surname, tel, depId, position
+    })
+    .toPromise()
+    .then(result => result)
+    .catch(error => error);
+  }
 }
