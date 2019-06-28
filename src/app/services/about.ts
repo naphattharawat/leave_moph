@@ -1,4 +1,4 @@
-import { Injectable,Inject } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 
 @Injectable({
@@ -8,8 +8,8 @@ export class AboutService {
 
   constructor(
     private http: HttpClient,
-    @Inject("API_URL") private apiUrl
-   ) { 
+    @Inject('API_URL') private apiUrl
+   ) {
 
 }
 //   getEmployeeAll(){
@@ -19,10 +19,10 @@ export class AboutService {
 //     .catch(error=>error);
 //   }
 
-  getUserInfo(personId){
-    return this.http.post("http://localhost:3001/user/user-about",{personId})
+  getUserInfo(personId) {
+    return this.http.post('http://localhost:3001/user/user-about', {personId})
     .toPromise()
     .then(result => result)
-    .catch(error=>error);
+    .catch(error => error);
   }
 }
