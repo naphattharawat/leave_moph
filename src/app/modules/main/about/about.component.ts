@@ -19,9 +19,9 @@ export class AboutComponent implements OnInit {
 
     async getAbout() {
       const result: any = await this.aboutService.getUserInfo(this.personId);
-      if (result.statusCode === 200 && result.user.length) {
-        console.log(result.user);
-        this.aboutuser = result.user[0];
+      if (result.statusCode === 200 && result.rows.length) {
+        console.log(result.rows);
+        this.aboutuser = result.rows[0];
         console.log('g', this.aboutuser);
       }
     }
