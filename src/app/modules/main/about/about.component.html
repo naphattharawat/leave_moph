@@ -8,28 +8,29 @@ Or load a specific version -->
     <hr class="my-4">
     <form action="#" >
       <div class="form-group">
-        <label for="exampleFormControlInput1">รหัสบัตรประชาชน</label>
-        {{personId}}
+        <b><label for="exampleFormControlInput1">รหัสบัตรประชาชน</label></b>
+        {{userList.cid}}
         </div>
       <div class="form-group">
-        <label for="exampleFormControlInput1">ตำแหน่ง</label>
+        <b><label for="exampleFormControlInput1">ตำแหน่ง</label></b>
+        {{userList.job_position}} 
       </div>
       <div class="form-group">
-        <label for="exampleFormControlTextarea1">ชื่อ</label>
-        {{aboutuser.name}} 
+        <b><label for="exampleFormControlTextarea1">ชื่อ</label></b>
+        {{userList.name}} 
       </div>
       <div class="form-group">
-        <label for="exampleFormControlInput1">นามสกุล</label>
-        {{aboutuser.surname}}          
+        <b><label for="exampleFormControlInput1">นามสกุล</label></b>
+        {{userList.last_name}}          
       </div>
       <div class="form-group">
-        <label for="exampleFormControlInput1">เบอร์โทรศัพท์</label>
-        {{aboutuser.tel}}         
+        <b><label for="exampleFormControlInput1">เบอร์โทรศัพท์</label></b>
+        {{userList.telephone}}         
       </div>
       <div class="form-group">
-        <label for="exampleFormControlTextarea1">email</label>
+        <b><label for="exampleFormControlTextarea1">E-mail</label></b>
         <label>
-            {{aboutuser.email}} 
+            {{userList.email}} 
         </label>
       </div>
 

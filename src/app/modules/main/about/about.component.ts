@@ -7,23 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./about.component.scss']
 })
 export class AboutComponent implements OnInit {
-    personId = '1234565432123' ;
-    aboutuser: any[];
+    userList: any;
+
     constructor(
       private aboutService: AboutService
-      ) {}
+      ) {
+        this.userList = JSON.parse(sessionStorage.getItem('user'));
+      }
 
     ngOnInit() {
-      this.getAbout();
-    }
 
-    async getAbout() {
-      const result: any = await this.aboutService.getUserInfo(this.personId);
-      if (result.statusCode === 200 && result.rows.length) {
-        console.log(result.rows);
-        this.aboutuser = result.rows[0];
-        console.log('g', this.aboutuser);
-      }
     }
 
 }
