@@ -14,9 +14,12 @@ import { HelperModule } from 'src/app/pipes/helpers.module';
 
 @NgModule({
   declarations: [
-    MainPageComponent, PageNotFoundComponent,
-    AboutComponent, LayoutComponent,
-    UserComponent, PreferenceComponent
+    MainPageComponent,
+    PageNotFoundComponent,
+    AboutComponent,
+    LayoutComponent,
+    UserComponent,
+    PreferenceComponent
   ],
   imports: [
     CommonModule,
@@ -26,4 +29,4 @@ import { HelperModule } from 'src/app/pipes/helpers.module';
     MainRoutingModule
   ]
 })
-export class MainModule { }
+export class MainModule {}
