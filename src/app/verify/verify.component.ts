@@ -37,7 +37,7 @@ export class VerifyComponent implements OnInit {
         const rs: any = await this.verifyService.getUser(this.token);
         if (rs.users) {
           sessionStorage.setItem('user', JSON.stringify(rs.users));
-          this.router.navigate(['main']);
+          this.router.navigate(['register']);
         }
       } else {
         this.router.navigate(['login']);
