@@ -14,6 +14,7 @@ export class AboutComponent implements OnInit {
     userList: any;
     modalEdit = false;
     currentRow: any;
+    editRow: any;
 
     constructor(
       private aboutService: AboutService,
@@ -39,7 +40,8 @@ export class AboutComponent implements OnInit {
     }
 
     async onEdit(row) {
-      this.currentRow = Object.assign(this.aboutUser, row);
+      this.currentRow = Object.assign(this.aboutUser, this.currentRow);
+      this.editRow = Object.assign({}, this.currentRow);
       console.log('current', this.currentRow);
       this.currentRow.mode = 'edit';
       this.modalEdit = true;
@@ -48,9 +50,10 @@ export class AboutComponent implements OnInit {
     async onSave() {
       try {
         const result: any = await this.userService
-          .updateUser(this.currentRow.tel, this.currentRow.email, this.currentRow.personId);
+          .updateUser(this.editRow.tel, this.editRow.email, this.editRow.personId);
         if (result.ok) {
           await this.alertService.success();
+          this.getAbout();
           this.modalEdit = false;
           this.router.navigate(['about']);
         } else {

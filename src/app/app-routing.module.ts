@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { PageNotFoundComponent } from './modules/main/page-not-found/page-not-found.component';
 import { MainPageComponent } from './modules/main/main-page/main-page.component';
 
+
 export const routes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
   {path: 'login' , component: LoginPageComponent },
@@ -12,10 +13,11 @@ export const routes: Routes = [
   // {path: 'verify' , component: VerifyComponent },
   // {path: '**', component: PageNotFoundComponent },
 ];
-
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule { 
+userList: any;
+}
 
