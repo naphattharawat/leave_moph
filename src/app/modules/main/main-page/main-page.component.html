@@ -5,6 +5,24 @@
 <h1>สวัสดี {{ userList.name }} {{ userList.last_name }}</h1>
 
 <div class="clr-row">
+
+    <div class="clr-col-lg-3 clr-col-md-8 clr-col-12">
+        <div class="card" style="background-color: #b9d6f8">
+            <div class="card-header">
+                <clr-icon shape="happy-face"></clr-icon> วันลาคงเหลือ
+            </div>
+            <div class="card-block">
+                <div class="card-title">
+                    ประจำปี 2562
+                </div>
+                <div class="card-text">
+                    คงเหลือ ... วัน
+                    {{date | thaiDateFull}}
+                </div>
+            </div>
+    </div>
+  </div>
+
   <div class="clr-col-lg-3 clr-col-md-8 clr-col-12">
     <div class="card" style="background-color: #b9d6f8">
       <div class="card-header">
@@ -18,9 +36,6 @@
           คงเหลือ ... วัน
           {{date | thaiDateFull}}
         </div>
-      </div>
-      <div class="card-footer">
-        <button class="btn btn-sm btn-link">Footer Action 1</button>
       </div>
     </div>
     <div class="card-text">
@@ -42,9 +57,11 @@
       <div class="card-title">
         ประจำปี 2562
       </div>
+
       <div class="card-text">
         ทั้งหมด ...
       </div>
+
     </div>
     <div class="card-footer">
       <button class="btn btn-sm btn-link">Footer Action 1</button>
@@ -64,6 +81,7 @@
       <div class="card-text">
         ทั้งหมด ...
       </div>
+
     </div>
     <div class="card-footer">
       <button class="btn btn-sm btn-link">Footer Action 1</button>
@@ -86,6 +104,7 @@
     </div>
     <div class="card-footer">
       <button class="btn btn-sm btn-link">Footer Action 1</button>
+
     </div>
   </div>
 

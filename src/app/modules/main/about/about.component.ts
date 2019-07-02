@@ -1,3 +1,6 @@
+import { Router } from '@angular/router';
+import { AlertService } from './../../../services/alert.service';
+import { UserService } from './../../../services/user.service';
 import { AboutService } from './../../../services/about.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -7,22 +10,54 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./about.component.scss']
 })
 export class AboutComponent implements OnInit {
-    personId = '1234565432123' ;
-    aboutuser: any[];
+    aboutUser: any[];
+    userList: any;
+    modalEdit = false;
+    currentRow: any;
+
     constructor(
-      private aboutService: AboutService
-      ) {}
+      private aboutService: AboutService,
+      private alertService: AlertService,
+      private userService: UserService,
+      private router: Router
+      ) {
+        this.userList = JSON.parse(sessionStorage.getItem('user'));
+      }
 
     ngOnInit() {
       this.getAbout();
     }
 
     async getAbout() {
-      const result: any = await this.aboutService.getUserInfo(this.personId);
-      if (result.statusCode === 200 && result.rows.length) {
-        console.log(result.rows);
-        this.aboutuser = result.rows[0];
-        console.log('g', this.aboutuser);
+      const result: any = await this.aboutService.getUserInfo(this.userList.cid);
+      console.log('user', this.userList.cid);
+      if (result.statusCode === 200 && result.user.length) {
+        console.log(result.user);
+        this.aboutUser = result.user[0];
+        // console.log('g', this.aboutUser);
+      }
+    }
+
+    async onEdit(row) {
+      this.currentRow = Object.assign(this.aboutUser, row);
+      console.log('current', this.currentRow);
+      this.currentRow.mode = 'edit';
+      this.modalEdit = true;
+    }
+
+    async onSave() {
+      try {
+        const result: any = await this.userService
+          .updateUser(this.currentRow.tel, this.currentRow.email, this.currentRow.personId);
+        if (result.ok) {
+          await this.alertService.success();
+          this.modalEdit = false;
+          this.router.navigate(['about']);
+        } else {
+          this.alertService.error();
+        }
+      } catch (error) {
+        console.log(error);
       }
     }
 
