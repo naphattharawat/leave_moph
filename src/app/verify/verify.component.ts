@@ -26,7 +26,6 @@ export class VerifyComponent implements OnInit {
     this.route.queryParams.subscribe(async params => {
       this.code = params['code'];
     });
-
   }
 
   ngOnInit() {
@@ -44,7 +43,7 @@ export class VerifyComponent implements OnInit {
         if (rs.users) {
           sessionStorage.setItem('user', JSON.stringify(rs.users));
           this.userList = JSON.parse(sessionStorage.getItem('user'));
-          this.checkUser(this.userList.cid);
+          this.checkUser(this.userList['cid']);
           // this.checkId(this.userList.cid);
         }
       } else {
@@ -60,27 +59,26 @@ export class VerifyComponent implements OnInit {
     if (result.rows[0]) {
       // console.log('n', result.rows.personId);
       this.cid = result.rows[0].personId;
-        console.log('found : ', this.cid);
-        this.router.navigate(['main']);
+      console.log('found : ', this.cid);
+      this.router.navigate(['main']);
     } else {
       this.router.navigate(['register']);
-      }
     }
+  }
 
-    // checkId (id: string) {
-    //   return new Promise((resolve: any, reject: any)=> {
-    //     console.log('check', id);
-    //     const result: any = this.userService.getpersonId(id);
-    //     console.log(result);
-    //     this.cid = result.rows[0].personId;
-    //     console.log(this.cid);
-    //     if (result.statusCode === 200) {
-    //       console.log('found');
-    //       resolve(this.router.navigate(['main']));
-    //     } else {
-    //       reject(this.router.navigate(['register']));
-    //     }
-    //   });
-    // }
-
+  // checkId (id: string) {
+  //   return new Promise((resolve: any, reject: any)=> {
+  //     console.log('check', id);
+  //     const result: any = this.userService.getpersonId(id);
+  //     console.log(result);
+  //     this.cid = result.rows[0].personId;
+  //     console.log(this.cid);
+  //     if (result.statusCode === 200) {
+  //       console.log('found');
+  //       resolve(this.router.navigate(['main']));
+  //     } else {
+  //       reject(this.router.navigate(['register']));
+  //     }
+  //   });
+  // }
 }

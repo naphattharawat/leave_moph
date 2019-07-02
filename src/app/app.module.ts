@@ -12,7 +12,6 @@ import { ClarityModule } from '@clr/angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
-
 // my module and my service
 import { MainModule } from './modules/main/main.module';
 import { LoginModule } from './modules/login/login.module';
@@ -22,13 +21,12 @@ import { VerifyComponent } from './verify/verify.component';
 import { RegisterComponent } from './modules/register/register.component';
 import { ReqLeaveComponent } from './req-leave/req-leave.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
     VerifyComponent,
-   RegisterComponent,
-   ReqLeaveComponent
+    RegisterComponent,
+    ReqLeaveComponent
   ],
   imports: [
     BrowserModule,
@@ -52,4 +50,4 @@ import { ReqLeaveComponent } from './req-leave/req-leave.component';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
