@@ -5,7 +5,7 @@ Or load a specific version -->
 <div style="position:relative; padding-top:5%;padding-left:10%;padding-right:10%; background-color: WhiteSmoke;">
   <div class="jumbotron" >
     <h2>ข้อมูลส่วนตัว</h2><br>
-    <form clrForm>
+    <form clrForm *ngIf="aboutUser">
     <b><label >รหัสบัตรประชาชน</label></b>
         {{aboutUser.personId}}
         <br>
@@ -13,10 +13,10 @@ Or load a specific version -->
         {{aboutUser.position}} 
         <br>
         <b><label>ชื่อ</label></b>
-        {{aboutUser.name}} 
+        {{aboutUser.name}} {{aboutUser.surname}}          
         <br>
-        <b><label >นามสกุล</label></b>
-        {{aboutUser.surname}}          
+        <b><label >ตำแหน่ง</label></b>
+        {{userList.job_position}}
         <br>
         <b><label >เบอร์โทรศัพท์</label></b>
         {{aboutUser.tel}}         
@@ -44,17 +44,17 @@ Or load a specific version -->
             </clr-input-container>
         <clr-input-container>
           <label>เบอร์โทรศัพท์ </label>
-          <input clrInput type="text" maxlength="10" minlength="10" [(ngModel)]="currentRow.tel" name="tel" />
+          <input clrInput type="text" maxlength="10" minlength="10" [(ngModel)]="editRow.tel" name="tel" />
         </clr-input-container>
         
         <clr-input-container>
             <label>E-mail</label>
-            <input clrInput type="email" [(ngModel)]="currentRow.email" name="email" />
+            <input clrInput type="email"  class="form-control" [(ngModel)]="editRow.email" name="email" />
           </clr-input-container>
       </form>
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-outline" (click)="modalEdit = false">Cancel</button>
-      <button type="button" class="btn btn-success" (click)="onSave()" [disabled]="!currentRow.tel || !currentRow.email">Save</button>
+      <button type="button" class="btn btn-success" (click)="onSave()" [disabled]="!editRow.tel || !editRow.email || editRow.tel.length != 10">Save</button>
     </div>
   </clr-modal>

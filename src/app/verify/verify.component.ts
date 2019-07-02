@@ -44,7 +44,7 @@ export class VerifyComponent implements OnInit {
         if (rs.users) {
           sessionStorage.setItem('user', JSON.stringify(rs.users));
           this.userList = JSON.parse(sessionStorage.getItem('user'));
-          this.checkUser(this.userList.cid);
+          this.checkUser(this.userList['cid']);
           // this.checkId(this.userList.cid);
         }
       } else {
