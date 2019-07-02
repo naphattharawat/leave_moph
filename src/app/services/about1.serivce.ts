@@ -8,7 +8,7 @@ export class AboutService {
 
   constructor(
     private http: HttpClient,
-    @Inject("API_URL") private apiUrl
+    @Inject('API_URL') private apiUrl
    ) {
 
 }
