@@ -3,40 +3,58 @@
 Or load a specific version -->
 <!-- <link rel="stylesheet" href="https://unpkg.com/@clr/ui@0.12.5/clr-ui.min.css" /> --> 
 <div style="position:relative; padding-top:5%;padding-left:10%;padding-right:10%; background-color: WhiteSmoke;">
-  <div class="jumbotron">
+  <div class="jumbotron" >
     <h2>ข้อมูลส่วนตัว</h2><br>
-    <hr class="my-4">
-    <form action="#" >
-      <div class="form-group">
-        <b><label for="exampleFormControlInput1">รหัสบัตรประชาชน</label></b>
-        {{userList.cid}}
-        </div>
-      <div class="form-group">
-        <b><label for="exampleFormControlInput1">ตำแหน่ง</label></b>
-        {{userList.job_position}} 
-      </div>
-      <div class="form-group">
-        <b><label for="exampleFormControlTextarea1">ชื่อ</label></b>
-        {{userList.name}} 
-      </div>
-      <div class="form-group">
-        <b><label for="exampleFormControlInput1">นามสกุล</label></b>
-        {{userList.last_name}}          
-      </div>
-      <div class="form-group">
-        <b><label for="exampleFormControlInput1">เบอร์โทรศัพท์</label></b>
-        {{userList.telephone}}         
-      </div>
-      <div class="form-group">
-        <b><label for="exampleFormControlTextarea1">E-mail</label></b>
-        <label>
-            {{userList.email}} 
-        </label>
-      </div>
-
+    <form clrForm>
+    <b><label >รหัสบัตรประชาชน</label></b>
+        {{aboutUser.personId}}
+        <br>
+        <b><label >ตำแหน่ง</label></b>
+        {{aboutUser.position}} 
+        <br>
+        <b><label>ชื่อ</label></b>
+        {{aboutUser.name}} 
+        <br>
+        <b><label >นามสกุล</label></b>
+        {{aboutUser.surname}}          
+        <br>
+        <b><label >เบอร์โทรศัพท์</label></b>
+        {{aboutUser.tel}}         
+        <br>
+        <b><label>E-mail</label></b>
+        {{aboutUser.email}} 
+        <br>
+        <br>
     <div style="text-align:center;">
-      <button type="submit" name="submit" class="btn btn-primary mb-2">ยืนยัน</button> 
+      <button name="edit" (click)="onEdit()" class="btn btn-primary mb-2">
+        แก้ไขข้อมูล
+      </button>
+      <br>
     </div>
     </form>
 </div>
 </div>
+<clr-modal *ngIf="currentRow" [(clrModalOpen)]="modalEdit">
+    <h3 class="modal-title">แก้ไขข้อมูลส่วนตัว</h3>
+    <div class="modal-body">
+      <form clrForm>
+          <clr-input-container>
+              <label>เลขประจำตัวประชาชน</label>
+              <input clrInput type="text" [(ngModel)]="currentRow.personId" name="personId" [readonly]="currentRow.mode==='edit'"/>
+            </clr-input-container>
+        <clr-input-container>
+          <label>เบอร์โทรศัพท์ </label>
+          <input clrInput type="text" maxlength="10" minlength="10" [(ngModel)]="currentRow.tel" name="tel" />
+        </clr-input-container>
+        
+        <clr-input-container>
+            <label>E-mail</label>
+            <input clrInput type="email" [(ngModel)]="currentRow.email" name="email" />
+          </clr-input-container>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline" (click)="modalEdit = false">Cancel</button>
+      <button type="button" class="btn btn-success" (click)="onSave()" [disabled]="!currentRow.tel || !currentRow.email">Save</button>
+    </div>
+  </clr-modal>

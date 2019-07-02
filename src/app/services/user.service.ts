@@ -15,6 +15,13 @@ export class UserService {
     return this.http.get(`http://localhost:3001/user/personId?personId=${personId}`)
     .toPromise()
     .then(result => result)
+    .catch(err => err)
+  }
+
+  updateUser(tel: string, email: string, personId: string) {
+    return this.http.post(`http://localhost:3001/user/update`, {tel, email, personId})
+    .toPromise()
+    .then(result => result)
     .catch(error => error);
   }
 
