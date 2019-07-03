@@ -1,16 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { JwtModule } from '@auth0/angular-jwt';
- 
-export function tokenGetter(){
+import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
+
+
+export function tokenGetter() {
   return sessionStorage.getItem('token');
 }
-
 
 @NgModule({
   declarations: [],
   imports: [
+    CommonModule,
     HttpClientModule,
     JwtModule.forRoot({
       config: {
@@ -21,4 +22,6 @@ export function tokenGetter(){
     })
   ]
 })
-export class AuthModule { }
+export class AuthModule {}
+
+

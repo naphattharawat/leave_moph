@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { MainService } from './../../../services/main.service';
 import { LeaveService } from './../../../services/leave.service';
 import { Router } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Component({
   selector: 'app-main-page',
@@ -10,6 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./main-page.component.scss']
 })
 export class MainPageComponent implements OnInit {
+  jwtHelper = new JwtHelperService();
   userList: any;
   date = new Date();
   leaveTotal: any;
@@ -23,7 +25,9 @@ export class MainPageComponent implements OnInit {
     private leaveService: LeaveService,
     private router: Router
   ) {
-    this.userList = JSON.parse(sessionStorage.getItem('user'));
+    const token = sessionStorage.getItem('token');
+    const decoded = this.jwtHelper.decodeToken(token);
+    this.userList = decoded;
   }
 
   ngOnInit() {

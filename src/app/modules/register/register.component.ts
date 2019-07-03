@@ -1,9 +1,10 @@
+
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { AlertService } from './../../services/alert.service';
 import { DepService } from './../../services/dep.service';
 import { AboutService } from './../../services/about.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { JwtModule, JwtHelperService } from '@auth0/angular-jwt';
 
 @Component({
   selector: 'app-register',
@@ -11,7 +12,8 @@ import { JwtModule, JwtHelperService } from '@auth0/angular-jwt';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  jwtHelp = new JwtHelperService();
+
+  jwtHelper = new JwtHelperService();
   userList: any;
   depList: any[];
 
@@ -30,9 +32,10 @@ export class RegisterComponent implements OnInit {
     private router: Router,
     private alertService: AlertService
   ) {
-    //this.userList = JSON.parse(sessionStorage.getItem('user'));
+
+    // this.userList = JSON.parse(sessionStorage.getItem('user'));
     const token = sessionStorage.getItem('token');
-    const decoded = this.jwtHelp.decodeToken(token);
+    const decoded = this.jwtHelper.decodeToken(token);
     this.personId = decoded.cid;
     this.hosId = decoded.id;
     this.email = decoded.email;

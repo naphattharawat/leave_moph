@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PageNotFoundComponent } from './modules/main/page-not-found/page-not-found.component';
 import { MainPageComponent } from './modules/main/main-page/main-page.component';
-
+import { AuthGuardService } from './services/auth-guard.service';
 
 export const routes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -14,11 +14,12 @@ export const routes: Routes = [
   // {path: 'verify' , component: VerifyComponent },
   // {path: '**', component: PageNotFoundComponent },
 ];
+
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { 
-userList: any;
-}
+
+export class AppRoutingModule { }
+
 

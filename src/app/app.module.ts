@@ -1,3 +1,4 @@
+import { AuthModule } from './auth/auth.module';
 import { AlertService } from './services/alert.service';
 import { FormsModule } from '@angular/forms';
 
@@ -12,7 +13,6 @@ import { ClarityModule } from '@clr/angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
-
 // my module and my service
 import { MainModule } from './modules/main/main.module';
 import { LoginModule } from './modules/login/login.module';
@@ -21,13 +21,15 @@ import { HelperModule } from './pipes/helpers.module';
 import { VerifyComponent } from './verify/verify.component';
 import { RegisterComponent } from './modules/register/register.component';
 import { AuthModule } from './auth/auth.module';
+import { ReqLeaveComponent } from './req-leave/req-leave.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     VerifyComponent,
-   RegisterComponent
+    RegisterComponent,
+    ReqLeaveComponent
   ],
   imports: [
     BrowserModule,
@@ -53,4 +55,4 @@ import { AuthModule } from './auth/auth.module';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

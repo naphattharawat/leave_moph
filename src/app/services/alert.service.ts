@@ -25,4 +25,9 @@ export class AlertService {
       timer: 1500
     });
   }
+
+  notFoundUser(text = 'not found user', title = ':-(') {
+    return Swal.fire('Not found user!');
+  }
+
 }

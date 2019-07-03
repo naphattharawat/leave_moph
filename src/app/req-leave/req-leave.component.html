@@ -1,0 +1,97 @@
+<div
+  style="position:relative; padding-top:5%;padding-left:10%;padding-right:10%; background-color: WhiteSmoke;"
+>
+  <div class="jumbotron">
+    <h2>
+      ทำเรื่องลา
+    </h2>
+    <div class="clr-form-control" id="test">
+      <label for="select-full" class="clr-control-label">
+        กรุณาเลือกประเภทการลา :
+        <div class="clr-control-container">
+          <select
+            id="choose"
+            name="choose"
+            [(ngModel)]="choose"
+            class="clr-select"
+          >
+            <option value="1">ลาพักผ่อน</option>
+            <option value="2">ลากิจ</option>
+            <option value="3">ลาป่วย</option>
+            <!-- <option *ngFor="let leave_type of lTypeList" [value]="leave_type.lTypeId">
+              {{ leave_type.lTypeName }}
+            </option> -->
+          </select>
+        </div>
+      </label>
+      <div class="clr-form-control">
+        <label class="clr-control-label">กรุณาเลือกช่วงเวลาของการลา</label>
+        <div class="clr-control-container clr-control-inline">
+          <div class="clr-radio-wrapper">
+            <input
+              type="radio"
+              id="vertical-radio1"
+              name="radio-full"
+              value="option1"
+              class="clr-radio"
+            />
+            <label for="vertical-radio1" class="clr-control-label"
+              >ลาเต็มวัน</label
+            >
+            <input [(ngModel)]="fullday" name="fullday" />
+          </div>
+          <div class="clr-radio-wrapper">
+            <input
+              type="radio"
+              id="vertical-radio2"
+              name="radio-full"
+              value="option2"
+              class="clr-radio"
+            />
+            <label for="vertical-radio2" class="clr-control-label"
+              >ลาครึ่งวันช่วงเช้า</label
+            >
+            <input [(ngModel)]="moHalfday" name="moHalfday" />
+          </div>
+          <div class="clr-radio-wrapper">
+            <input
+              type="radio"
+              id="vertical-radio3"
+              name="radio-full"
+              value="option3"
+              class="clr-radio"
+            />
+            <label for="vertical-radio3" class="clr-control-label"
+              >ลาครึ่งวันช่วงบ่าย</label
+            >
+            <input [(ngModel)]="afHalfday" name="afHalfday" />
+          </div>
+          <div class="clr-subtext-wrapper"></div>
+        </div>
+      </div>
+      <form clrForm #simpleForm="ngForm">
+        <clr-date-container>
+          <label>วันที่ลา</label>
+          <input type="date" name="date" [(ngModel)]="date" clrDate />
+        </clr-date-container>
+        <clr-date-container>
+          <label>ถึงวันที่</label>
+          <input type="date" name="date" [(ngModel)]="date" clrDate />
+        </clr-date-container>
+        <br />
+        <!-- <div class="form-group">
+          <b><label for="file">ไฟล์แนบ</label></b>
+          <input
+            type="file"
+            id="file"
+            (change)="handleFileInput($event.target.files)"
+          />
+        </div> -->
+        <div style="text-align:center;">
+          <button (click)="onSave()" class="btn btn-success">บันทึก</button>
+          <br />
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
