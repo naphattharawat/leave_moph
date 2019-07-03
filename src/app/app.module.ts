@@ -23,6 +23,7 @@ import { AuthModule } from './auth/auth.module';
 import { ReqLeaveComponent } from './req-leave/req-leave.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,

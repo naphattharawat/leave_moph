@@ -1,0 +1,30 @@
+<div *ngIf="leaveShow">
+    <clr-datagrid>
+        <clr-dg-column>วันที่ลา</clr-dg-column>
+        <clr-dg-column>ถึงวันที่</clr-dg-column>
+        <clr-dg-column>จำนวนวัน</clr-dg-column>
+        <clr-dg-column [clrDgField]="'lTypeName'">ประเภทการลา</clr-dg-column>
+        <clr-dg-column>ครึ่งวัน/เต็มวัน</clr-dg-column>
+        <clr-dg-column>แก้ไข</clr-dg-column>
+        <clr-dg-column>ยกเลิก</clr-dg-column>
+        <clr-dg-row *ngFor="let item of leaveShow">
+            <clr-dg-cell>{{ item.dateStart }}</clr-dg-cell>
+            <clr-dg-cell>{{ item.dateEnd }}</clr-dg-cell>
+            <clr-dg-cell>{{ item.totalLeave }}</clr-dg-cell>
+            <clr-dg-cell>{{ item.lTypeName }}</clr-dg-cell>
+            <clr-dg-cell *ngIf=" item.lSelect==1 ">เช้า</clr-dg-cell>
+            <clr-dg-cell *ngIf=" item.lSelect==2 ">บ่าย</clr-dg-cell>
+            <clr-dg-cell *ngIf=" item.lSelect==3 ">เต็มวัน</clr-dg-cell>
+            <clr-dg-cell></clr-dg-cell>
+            <clr-dg-cell></clr-dg-cell>
+        </clr-dg-row>
+        <clr-dg-footer>
+            <b>ลาทั้งหมด {{leaveShow.length}} ครั้ง </b>&nbsp;&nbsp;
+            <clr-dg-pagination #pagination [clrDgPageSize]="10">
+                <clr-dg-page-size [clrPageSizeOptions]="[10,15,20,25]">leave per page</clr-dg-page-size>
+                {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+                of {{pagination.totalItems}} leave
+            </clr-dg-pagination>
+        </clr-dg-footer>
+    </clr-datagrid>
+</div>

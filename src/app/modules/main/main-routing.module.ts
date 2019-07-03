@@ -12,6 +12,7 @@ import { VerifyComponent } from 'src/app/verify/verify.component';
 import { RegisterComponent } from '../register/register.component';
 import { AuthGuardService } from 'src/app/services/auth-guard.service';
 import { ReqLeaveComponent } from 'src/app/req-leave/req-leave.component';
+import { HistoryComponent } from './history/history.component';
 
 const routes: Routes = [
   {
@@ -28,6 +29,7 @@ const routes: Routes = [
       { path: 'preference', component: PreferenceComponent },
       { path: 'about', component: AboutComponent },
       { path: 'reqLeave', component: ReqLeaveComponent },
+      { path: 'history', component: HistoryComponent },
       { path: '**', component: PageNotFoundComponent }
     ]
   }
