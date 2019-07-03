@@ -1,4 +1,3 @@
-
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -14,6 +13,7 @@ import { LoginPageComponent } from '../login/login-page/login-page.component';
 import { VerifyComponent } from 'src/app/verify/verify.component';
 import { RegisterComponent } from '../register/register.component';
 import { AuthGuardService } from 'src/app/services/auth-guard.service';
+import { ReqLeaveComponent } from 'src/app/req-leave/req-leave.component';
 
 const routes: Routes = [
   {
@@ -23,11 +23,14 @@ const routes: Routes = [
     children: [
        { path: '', redirectTo: 'main', pathMatch: 'full' },
       { path: 'main', component: MainPageComponent },
+      // { path: 'login' , component: LoginPageComponent },
+      { path: 'verify', component: VerifyComponent },
       { path: 'user', component: UserComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'preference', component: PreferenceComponent },
       { path: 'about', component: AboutComponent },
-      { path: '**', component: PageNotFoundComponent },
+      { path: 'reqLeave', component: ReqLeaveComponent },
+      { path: '**', component: PageNotFoundComponent }
     ]
   }
 ];
@@ -36,4 +39,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class MainRoutingModule { }
+export class MainRoutingModule {}

@@ -28,7 +28,6 @@ export class VerifyComponent implements OnInit {
     this.route.queryParams.subscribe(async params => {
       this.code = params['code'];
     });
-
   }
 
   ngOnInit() {
@@ -90,5 +89,4 @@ export class VerifyComponent implements OnInit {
   //     }
   //   });
   // }
-
 }
