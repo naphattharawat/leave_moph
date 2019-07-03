@@ -2,7 +2,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-// import { AuthGuardService } from './../../services/auth-guard.service';
+import { AuthGuardService } from './../../services/auth-guard.service';
 
 import { MainPageComponent } from './main-page/main-page.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
@@ -18,12 +18,11 @@ const routes: Routes = [
   {
     path: '',
     component: LayoutComponent,
-    // canActivate: [AuthGuardService],
+    canActivate: [AuthGuardService],
     children: [
       // { path: '', redirectTo: 'main', pathMatch: 'full' },
       { path: 'main', component: MainPageComponent },
       // { path: 'login' , component: LoginPageComponent },
-      { path: 'verify' , component: VerifyComponent },
       { path: 'user', component: UserComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'preference', component: PreferenceComponent },

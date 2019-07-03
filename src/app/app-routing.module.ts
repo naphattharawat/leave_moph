@@ -9,6 +9,7 @@ import { MainPageComponent } from './modules/main/main-page/main-page.component'
 export const routes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
   {path: 'login' , component: LoginPageComponent },
+  { path: 'verify' , component: VerifyComponent },
   // {path: 'main', component: MainPageComponent },
   // {path: 'verify' , component: VerifyComponent },
   // {path: '**', component: PageNotFoundComponent },
