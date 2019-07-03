@@ -5,7 +5,7 @@
 
 <h1>สวัสดี {{ userList.name }} {{ userList.last_name }}</h1>
 
-<div class="clr-row" *ngIf="leaveTotal && leaveApprove && leaveNotApprove && LeaveWaitApprove && leaveShow">
+<div class="clr-row" *ngIf="leaveTotal && leaveApprove && leaveNotApprove && LeaveWaitApprove ">
 
   <div class="clr-col-lg-3 clr-col-md-8 clr-col-12">
     <div class="card" style="background-color: #b9d6f8">
@@ -77,8 +77,8 @@
 
 </div>
 <br>
-
-<table class="table">
+<div *ngIf="LeaveShow">
+<table class="table" >
     <thead>
         <tr>
             <th class="center">วันที่ลา</th>
@@ -100,3 +100,4 @@
         </tr>
     </tbody>
 </table>
+</div>
