@@ -17,8 +17,8 @@ export class MainPageComponent implements OnInit {
   leaveTotal: any;
   leaveApprove: any;
   leaveNotApprove: any;
-  LeaveWaitApprove: any;
-  LeaveShow: any;
+  leaveWaitApprove: any;
+  leaveShow: any;
   constructor(
     private mainService: MainService,
     private verifyService: VerifyService,
@@ -72,7 +72,7 @@ export class MainPageComponent implements OnInit {
     console.log('getLeaveWaitApprove', this.userList['cid']);
     if (result.statusCode === 200 && result.rows.length) {
       console.log(result.rows);
-      this.LeaveWaitApprove = result.rows[0];
+      this.leaveWaitApprove = result.rows[0];
       // console.log('g', this.aboutUser);
     }
   }
@@ -82,7 +82,7 @@ export class MainPageComponent implements OnInit {
     console.log('getLeaveShow', this.userList['cid']);
     if (result.statusCode === 200 && result.rows.length) {
       console.log(result.rows);
-      this.LeaveShow = result.rows[0];
+      this.leaveShow = result.rows[0];
       // console.log('g', this.aboutUser);
     }
   }
