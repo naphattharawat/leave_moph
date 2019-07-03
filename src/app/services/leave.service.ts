@@ -13,4 +13,32 @@ export class LeaveService {
       .then(result => result)
       .catch(error => error);
   }
+  getLeaveApprove(personId: string) {
+    return this.http.post(`http://localhost:3001/leave/leave-approve`, {personId})
+      .toPromise()
+      .then(result => result)
+      .catch(error => error);
+  }
+
+  getLeaveNotApprove(personId: string) {
+    return this.http.post(`http://localhost:3001/leave/leave-not-approve`, {personId})
+      .toPromise()
+      .then(result => result)
+      .catch(error => error);
+  }
+
+  getLeaveWaitApprove(personId: string) {
+    return this.http.post(`http://localhost:3001/leave/leave-wait-approve`, {personId})
+      .toPromise()
+      .then(result => result)
+      .catch(error => error);
+  }
+
+  getLeaveShow(personId: string) {
+    return this.http.post(`http://localhost:3001/leave/leave-show`, {personId})
+      .toPromise()
+      .then(result => result)
+      .catch(error => error);
+  }
+
 }

@@ -5,7 +5,7 @@
 
 <h1>สวัสดี {{ userList.name }} {{ userList.last_name }}</h1>
 
-<div class="clr-row" *ngIf="leaveTotal">
+<div class="clr-row" *ngIf="leaveTotal && leaveApprove && leaveNotApprove && LeaveWaitApprove && leaveShow">
 
   <div class="clr-col-lg-3 clr-col-md-8 clr-col-12">
     <div class="card" style="background-color: #b9d6f8">
@@ -17,7 +17,7 @@
           ประจำปี 2562
         </div>
         <div class="card-text">
-          คงเหลือ {{ leaveTotal.sum }} วัน
+          คงเหลือ {{ LeaveTotal.sum }} วัน
           <!-- {{date | thaiDateFull}} -->
         </div>
       </div>
@@ -36,7 +36,7 @@
       </div>
 
       <div class="card-text">
-        ทั้งหมด ...
+        ทั้งหมด {{ LeaveApprove.countApprove }} ครั้ง
       </div>
 
     </div>
@@ -53,7 +53,7 @@
         ประจำปี 2562
       </div>
       <div class="card-text">
-        ทั้งหมด ...
+        ทั้งหมด {{ LeaveWaitApprove.countWaitApprove }}
       </div>
 
     </div>
@@ -70,7 +70,7 @@
         ประจำปี 2562
       </div>
       <div class="card-text">
-        ทั้งหมด ...
+        ทั้งหมด {{ LeaveNotApprove.countNotApprove }} ครั้ง
       </div>
     </div>
   </div>
@@ -93,10 +93,10 @@
     </thead>
     <tbody>
         <tr>
-            <td class="center">Harry</td>
-            <td>Gryffindor</td>
-            <td>Yes</td>
-            <td>No</td>
+            <td class="center">{{ LeaveShow.dateStart }}</td>
+            <td>{{ LeaveShow.dateEnd }}</td>
+            <td>{{ LeaveShow.totalLeave }}</td>
+            <td>{{ LeaveShow.LtypeId }}</td>
         </tr>
     </tbody>
 </table>

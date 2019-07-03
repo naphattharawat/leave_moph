@@ -15,6 +15,10 @@ export class MainPageComponent implements OnInit {
   userList: any;
   date = new Date();
   leaveTotal: any;
+  leaveApprove: any;
+  leaveNotApprove: any;
+  LeaveWaitApprove: any;
+  LeaveShow: any;
   constructor(
     private mainService: MainService,
     private verifyService: VerifyService,
@@ -28,6 +32,10 @@ export class MainPageComponent implements OnInit {
 
   ngOnInit() {
     this.getLeaveTotal();
+    this.getLeaveApprove();
+    this.getLeaveNotApprove();
+    this.getLeaveWaitApprove();
+    this.getLeaveShow();
 
   }
   async getLeaveTotal() {
@@ -39,6 +47,46 @@ export class MainPageComponent implements OnInit {
       // console.log('g', this.aboutUser);
     }
   }
+  async getLeaveApprove() {
+    const result: any = await this.leaveService.getLeaveApprove(this.userList['cid']);
+    console.log('leaveApprove', this.userList['cid']);
+    if (result.statusCode === 200 && result.rows.length) {
+      console.log(result.rows);
+      this.leaveApprove = result.rows[0];
+      // console.log('g', this.aboutUser);
+    }
+  }
+
+  async getLeaveNotApprove() {
+    const result: any = await this.leaveService.getLeaveNotApprove(this.userList['cid']);
+    console.log('leaveNotApprove', this.userList['cid']);
+    if (result.statusCode === 200 && result.rows.length) {
+      console.log(result.rows);
+      this.leaveNotApprove = result.rows[0];
+      // console.log('g', this.aboutUser);
+    }
+  }
+
+  async getLeaveWaitApprove() {
+    const result: any = await this.leaveService.getLeaveWaitApprove(this.userList['cid']);
+    console.log('getLeaveWaitApprove', this.userList['cid']);
+    if (result.statusCode === 200 && result.rows.length) {
+      console.log(result.rows);
+      this.LeaveWaitApprove = result.rows[0];
+      // console.log('g', this.aboutUser);
+    }
+  }
+
+  async getLeaveShow() {
+    const result: any = await this.leaveService.getLeaveShow(this.userList['cid']);
+    console.log('getLeaveShow', this.userList['cid']);
+    if (result.statusCode === 200 && result.rows.length) {
+      console.log(result.rows);
+      this.LeaveShow = result.rows[0];
+      // console.log('g', this.aboutUser);
+    }
+  }
+
 
 
 }
