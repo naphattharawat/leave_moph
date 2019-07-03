@@ -74,19 +74,4 @@ export class VerifyComponent implements OnInit {
     }
   }
 
-  // checkId (id: string) {
-  //   return new Promise((resolve: any, reject: any)=> {
-  //     console.log('check', id);
-  //     const result: any = this.userService.getpersonId(id);
-  //     console.log(result);
-  //     this.cid = result.rows[0].personId;
-  //     console.log(this.cid);
-  //     if (result.statusCode === 200) {
-  //       console.log('found');
-  //       resolve(this.router.navigate(['main']));
-  //     } else {
-  //       reject(this.router.navigate(['register']));
-  //     }
-  //   });
-  // }
 }
