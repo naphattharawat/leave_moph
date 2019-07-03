@@ -82,7 +82,7 @@ export class MainPageComponent implements OnInit {
     console.log('getLeaveShow', this.userList['cid']);
     if (result.statusCode === 200 && result.rows.length) {
       console.log(result.rows);
-      this.leaveShow = result.rows[0];
+      this.leaveShow = result.rows;
       // console.log('g', this.aboutUser);
     }
   }

@@ -5,9 +5,9 @@
 
 <h1>สวัสดี {{ userList.name }} {{ userList.last_name }}</h1>
 
-<div class="clr-row" *ngIf="leaveTotal && leaveApprove && leaveNotApprove && LeaveWaitApprove">
+<div class="clr-row">
 
-  <div class="clr-col-lg-3 clr-col-md-8 clr-col-12">
+  <!-- <div class="clr-col-lg-3 clr-col-md-8 clr-col-12" *ngIf="leaveTotal">
     <div class="card" style="background-color: #b9d6f8">
       <div class="card-header">
         <clr-icon shape="happy-face"></clr-icon> วันลาคงเหลือ
@@ -17,15 +17,15 @@
           ประจำปี 2562
         </div>
         <div class="card-text">
-          คงเหลือ {{ leaveTotal.sum }} วัน
-          <!-- {{date | thaiDateFull}} -->
+          คงเหลือ {{ leaveTotal.sumTotalLeave }} วัน
+          {{date | thaiDateFull}}
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
 
-<div class="clr-col-lg-3 clr-col-md-8 clr-col-12">
+<div class="clr-col-lg-3 clr-col-md-8 clr-col-12" *ngIf="leaveApprove">
   <div class="card" style="background-color: #b9dd9b">
     <div class="card-header">
       <clr-icon shape="check"></clr-icon> วันลาที่อนุมัติ
@@ -43,7 +43,7 @@
   </div>
 </div>
 
-<div class="clr-col-lg-3 clr-col-md-8 clr-col-12">
+<div class="clr-col-lg-3 clr-col-md-8 clr-col-12" *ngIf="leaveWaitApprove">
   <div class="card" style="background-color: #dddc8f">
     <div class="card-header">
       <clr-icon shape="clock"></clr-icon> วันลาที่รออนุมัติ
@@ -60,24 +60,42 @@
   </div>
 </div>
 
-<div class="clr-col-lg-3 clr-col-md-8 clr-col-12">
-  <div class="card" style="background-color: #da9393">
-    <div class="card-header">
-      <clr-icon shape="times"></clr-icon> วันที่ไม่อนุมัติ
-    </div>
-    <div class="card-block">
-      <div class="card-title">
-        ประจำปี 2562
+<div class="clr-col-lg-3 clr-col-md-8 clr-col-12" *ngIf="leaveNotApprove">
+    <div class="card" style="background-color: #da9393">
+      <div class="card-header">
+        <clr-icon shape="times"></clr-icon> วันที่ไม่อนุมัติ
       </div>
-      <div class="card-text">
-        ทั้งหมด {{ leaveNotApprove.countNotApprove }} ครั้ง
+      <div class="card-block">
+        <div class="card-title">
+          ประจำปี 2562
+        </div>
+        <div class="card-text">
+          ทั้งหมด {{ leaveNotApprove.countNotApprove }} ครั้ง
+        </div>
       </div>
     </div>
   </div>
-
 </div>
-<br>
-<div *ngIf="LeaveShow">
+<!-- <div class="clr-row">
+
+  <div class=" clr-col-md-4" *ngFor="let item of leaveShow">
+    <div class="card" style="background-color: #da9393">
+      <div class="card-header">
+        <clr-icon shape="times"></clr-icon> วันที่ไม่อนุมัติ
+      </div>
+      <div class="card-block">
+        <div class="card-title">
+          ประจำปี 2562
+        </div>
+        <div class="card-text">
+          ทั้งหมด {{ leaveNotApprove.countNotApprove }} ครั้ง
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br> -->
+<!-- <div *ngIf="leaveShow">
 <table class="table" >
     <thead>
         <tr>
@@ -92,12 +110,13 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td class="center">{{ leaveShow.dateStart }}</td>
-            <td>{{ leaveShow.dateEnd }}</td>
-            <td>{{ leaveShow.totalLeave }}</td>
-            <td>{{ leaveShow.LtypeId }}</td>
+        <tr *ngFor="let item of leaveShow">
+            <td class="center">{{ item.dateStart }}</td>
+            <td>{{ item.dateEnd }}</td>
+            <td>{{ item.totalLeave }}</td>
+            <td>{{ item.lTypeId }}</td>
+            <td>{{ item.lSelect }}</td>
         </tr>
     </tbody>
 </table>
-</div>
+</div> -->
