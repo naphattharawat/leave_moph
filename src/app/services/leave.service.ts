@@ -6,29 +6,9 @@ import { HttpClient } from '@angular/common/http';
 })
 export class LeaveService {
   constructor(private http: HttpClient, @Inject('API_URL') private apiUrl) {}
-  reqLeave(
-    dateStart,
-    dateEnd,
-    totalLeave,
-    statusHr,
-    statusBoss,
-    statusCeo,
-    personId,
-    lTypeId,
-    status
-  ) {
+  getLeaveTotal(personId: string) {
     return this.http
-      .post(`http://localhost:3001/reqLeave`, {
-        dateStart,
-        dateEnd,
-        totalLeave,
-        statusHr,
-        statusBoss,
-        statusCeo,
-        personId,
-        lTypeId,
-        status
-      })
+      .post(`http://localhost:3001/leave/leave-total`, { personId })
       .toPromise()
       .then(result => result)
       .catch(error => error);

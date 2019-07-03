@@ -1,73 +1,102 @@
+
 <ol class="breadcrumb breadcrumb-arrow font-trirong">
   <li><a href="javascript://">Home</a></li>
 </ol>
 
 <h1>สวัสดี {{ userList.name }} {{ userList.last_name }}</h1>
 
-<div class="clr-row">
-    <div class="clr-col-lg-3 clr-col-md-8 clr-col-12">
-        <div class="card" style="background-color: #b9d6f8">
-            <div class="card-header">
-                <clr-icon shape="happy-face"></clr-icon> วันลาคงเหลือ
-            </div>
-            <div class="card-block">
-                <div class="card-title">
-                    ประจำปี 2562
-                </div>
-                <div class="card-text">
-                    คงเหลือ ... วัน
-                    {{date | thaiDateFull}}
-                </div>
-            </div>
-    </div>
-  </div>
+<div class="clr-row" *ngIf="leaveTotal">
 
   <div class="clr-col-lg-3 clr-col-md-8 clr-col-12">
-    <div class="card" style="background-color: #b9dd9b">
+    <div class="card" style="background-color: #b9d6f8">
       <div class="card-header">
-        <clr-icon shape="check"></clr-icon> วันลาที่อนุมัติ
+        <clr-icon shape="happy-face"></clr-icon> วันลาคงเหลือ
       </div>
       <div class="card-block">
         <div class="card-title">
           ประจำปี 2562
         </div>
         <div class="card-text">
-          ทั้งหมด ...
+          คงเหลือ {{ leaveTotal.sum }} วัน
+          <!-- {{date | thaiDateFull}} -->
         </div>
       </div>
     </div>
   </div>
 
-  <div class="clr-col-lg-3 clr-col-md-8 clr-col-12">
-    <div class="card" style="background-color: #dddc8f">
-      <div class="card-header">
-        <clr-icon shape="clock"></clr-icon> วันลาที่รออนุมัติ
-      </div>
-      <div class="card-block">
-        <div class="card-title">
-          ประจำปี 2562
-        </div>
-        <div class="card-text">
-          ทั้งหมด ...
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <div class="clr-col-lg-3 clr-col-md-8 clr-col-12">
-    <div class="card" style="background-color: #da9393">
-      <div class="card-header">
-        <clr-icon shape="times"></clr-icon> วันที่ไม่อนุมัติ
+<div class="clr-col-lg-3 clr-col-md-8 clr-col-12">
+  <div class="card" style="background-color: #b9dd9b">
+    <div class="card-header">
+      <clr-icon shape="check"></clr-icon> วันลาที่อนุมัติ
+    </div>
+    <div class="card-block">
+      <div class="card-title">
+        ประจำปี 2562
       </div>
-      <div class="card-block">
-        <div class="card-title">
-          ประจำปี 2562
-        </div>
-        <div class="card-text">
-          ทั้งหมด ...
-        </div>
+
+      <div class="card-text">
+        ทั้งหมด ...
       </div>
+
     </div>
   </div>
 </div>
-<br />
+
+<div class="clr-col-lg-3 clr-col-md-8 clr-col-12">
+  <div class="card" style="background-color: #dddc8f">
+    <div class="card-header">
+      <clr-icon shape="clock"></clr-icon> วันลาที่รออนุมัติ
+    </div>
+    <div class="card-block">
+      <div class="card-title">
+        ประจำปี 2562
+      </div>
+      <div class="card-text">
+        ทั้งหมด ...
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="clr-col-lg-3 clr-col-md-8 clr-col-12">
+  <div class="card" style="background-color: #da9393">
+    <div class="card-header">
+      <clr-icon shape="times"></clr-icon> วันที่ไม่อนุมัติ
+    </div>
+    <div class="card-block">
+      <div class="card-title">
+        ประจำปี 2562
+      </div>
+      <div class="card-text">
+        ทั้งหมด ...
+      </div>
+    </div>
+  </div>
+
+</div>
+<br>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th class="center">วันที่ลา</th>
+            <th>ถึงวันที่</th>
+            <th>ประเภทการลา</th>
+            <th>จำนวนวัน<th>
+            <th>ประเภทการลา</th>
+            <th>แก้ไข<th>
+            <th>ยกเลิก</th>
+            <th>ออกหนังสือ</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="center">Harry</td>
+            <td>Gryffindor</td>
+            <td>Yes</td>
+            <td>No</td>
+        </tr>
+    </tbody>
+</table>
