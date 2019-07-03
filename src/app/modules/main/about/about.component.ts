@@ -3,6 +3,7 @@ import { AlertService } from './../../../services/alert.service';
 import { UserService } from './../../../services/user.service';
 import { AboutService } from './../../../services/about.service';
 import { Component, OnInit } from '@angular/core';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Component({
   selector: 'app-about',
@@ -10,11 +11,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./about.component.scss']
 })
 export class AboutComponent implements OnInit {
-    aboutUser: any[];
-    userList: any;
-    modalEdit = false;
-    currentRow: any;
-    editRow: any;
+  jwtHelper = new JwtHelperService();
+  aboutUser: any[];
+  userList: any;
+  modalEdit = false;
+  currentRow: any;
+  editRow: any;
 
     constructor(
       private aboutService: AboutService,
@@ -22,7 +24,9 @@ export class AboutComponent implements OnInit {
       private userService: UserService,
       private router: Router
       ) {
-        this.userList = JSON.parse(sessionStorage.getItem('user'));
+        const token = sessionStorage.getItem('token');
+        const decoded = this.jwtHelper.decodeToken(token);
+        this.userList = decoded;
       }
 
     ngOnInit() {

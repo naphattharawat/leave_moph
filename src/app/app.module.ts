@@ -1,3 +1,4 @@
+import { AuthModule } from './auth/auth.module';
 import { AlertService } from './services/alert.service';
 import { FormsModule } from '@angular/forms';
 
@@ -36,7 +37,8 @@ import { RegisterComponent } from './modules/register/register.component';
     MainModule,
     LoginModule,
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule,
+    AuthModule
   ],
   providers: [
     MainService,

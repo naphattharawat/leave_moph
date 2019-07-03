@@ -13,17 +13,16 @@ import { PreferenceComponent } from './preference/preference.component';
 import { LoginPageComponent } from '../login/login-page/login-page.component';
 import { VerifyComponent } from 'src/app/verify/verify.component';
 import { RegisterComponent } from '../register/register.component';
+import { AuthGuardService } from 'src/app/services/auth-guard.service';
 
 const routes: Routes = [
   {
     path: '',
     component: LayoutComponent,
-    // canActivate: [AuthGuardService],
+    canActivate: [AuthGuardService],
     children: [
-      // { path: '', redirectTo: 'main', pathMatch: 'full' },
+       { path: '', redirectTo: 'main', pathMatch: 'full' },
       { path: 'main', component: MainPageComponent },
-      // { path: 'login' , component: LoginPageComponent },
-      { path: 'verify' , component: VerifyComponent },
       { path: 'user', component: UserComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'preference', component: PreferenceComponent },

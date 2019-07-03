@@ -8,12 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LayoutComponent implements OnInit {
   collapsed = true;
+  user: any;
 
   constructor(
     private router: Router
   ) { }
 
   ngOnInit() {
+
   }
 
   onLogout() {

@@ -1,9 +1,10 @@
+
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { AlertService } from './../../services/alert.service';
 import { DepService } from './../../services/dep.service';
 import { AboutService } from './../../services/about.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
 
 @Component({
   selector: 'app-register',
@@ -11,6 +12,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
+  jwtHelper = new JwtHelperService();
   userList: any;
   depList: any[];
 
@@ -29,14 +31,16 @@ export class RegisterComponent implements OnInit {
     private router: Router,
     private alertService: AlertService
   ) {
-    this.userList = JSON.parse(sessionStorage.getItem('user'));
-    this.personId = this.userList.cid;
-    this.hosId = this.userList.id;
-    this.email = this.userList.email;
-    this.name = this.userList.name;
-    this.surname = this.userList.last_name;
-    this.tel = this.userList.telephone;
-    this.position = this.userList.job_position;
+    // this.userList = JSON.parse(sessionStorage.getItem('user'));
+    const token = sessionStorage.getItem('token');
+    const decoded = this.jwtHelper.decodeToken(token);
+    this.personId = decoded.cid;
+    this.hosId = decoded.id;
+    this.email = decoded.email;
+    this.name = decoded.name;
+    this.surname = decoded.last_name;
+    this.tel = decoded.telephone;
+    this.position = decoded.job_position;
     // console.log(this.personId);
 
   }
