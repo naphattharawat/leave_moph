@@ -5,8 +5,9 @@
         <clr-dg-column>จำนวนวัน</clr-dg-column>
         <clr-dg-column [clrDgField]="'lTypeName'">ประเภทการลา</clr-dg-column>
         <clr-dg-column>ครึ่งวัน/เต็มวัน</clr-dg-column>
-        <clr-dg-column>แก้ไข</clr-dg-column>
-        <clr-dg-column>ยกเลิก</clr-dg-column>
+        <clr-dg-column>การทำเรื่องลา</clr-dg-column>
+        <clr-dg-column>#</clr-dg-column>
+
         <clr-dg-row *ngFor="let item of leaveShow">
             <clr-dg-cell>{{ item.dateStart }}</clr-dg-cell>
             <clr-dg-cell>{{ item.dateEnd }}</clr-dg-cell>
@@ -15,7 +16,13 @@
             <clr-dg-cell *ngIf=" item.lSelect==1 ">เช้า</clr-dg-cell>
             <clr-dg-cell *ngIf=" item.lSelect==2 ">บ่าย</clr-dg-cell>
             <clr-dg-cell *ngIf=" item.lSelect==3 ">เต็มวัน</clr-dg-cell>
-            <clr-dg-cell></clr-dg-cell>
+            <clr-dg-cell *ngIf=" item.statusHr==2 && item.statusBoss==2 && item.statusCeo==2">ลาสำเร็จ</clr-dg-cell>
+            <clr-dg-cell *ngIf=" item.statusHr==1 && item.statusBoss==1 && item.statusCeo==1">รออนุมัติ</clr-dg-cell>
+            <clr-dg-cell *ngIf=" item.statusHr==2 && item.statusBoss==1 && item.statusCeo==1">รออนุมัติ</clr-dg-cell>
+            <clr-dg-cell *ngIf=" item.statusHr==2 && item.statusBoss==2 && item.statusCeo==1">รออนุมัติ</clr-dg-cell>
+            <clr-dg-cell *ngIf=" item.statusHr==3 && item.statusBoss==1 && item.statusCeo==1">ลาไม่สำเร็จ</clr-dg-cell>
+            <clr-dg-cell *ngIf=" item.statusHr==2 && item.statusBoss==3 && item.statusCeo==1">ลาไม่สำเร็จ</clr-dg-cell>
+            <clr-dg-cell *ngIf=" item.statusHr==2 && item.statusBoss==2 && item.statusCeo==3">ลาไม่สำเร็จ</clr-dg-cell>
             <clr-dg-cell></clr-dg-cell>
         </clr-dg-row>
         <clr-dg-footer>
