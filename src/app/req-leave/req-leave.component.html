@@ -9,10 +9,18 @@
       <label for="select-full" class="clr-control-label">
         กรุณาเลือกประเภทการลา :
         <div class="clr-control-container">
-          <select id="select-full" class="clr-select">
+          <select
+            id="choose"
+            name="choose"
+            [(ngModel)]="choose"
+            class="clr-select"
+          >
             <option value="1">ลาพักผ่อน</option>
             <option value="2">ลากิจ</option>
             <option value="3">ลาป่วย</option>
+            <!-- <option *ngFor="let leave_type of lTypeList" [value]="leave_type.lTypeId">
+              {{ leave_type.lTypeName }}
+            </option> -->
           </select>
         </div>
       </label>
@@ -30,6 +38,7 @@
             <label for="vertical-radio1" class="clr-control-label"
               >ลาเต็มวัน</label
             >
+            <input [(ngModel)]="fullday" name="fullday" />
           </div>
           <div class="clr-radio-wrapper">
             <input
@@ -42,6 +51,7 @@
             <label for="vertical-radio2" class="clr-control-label"
               >ลาครึ่งวันช่วงเช้า</label
             >
+            <input [(ngModel)]="moHalfday" name="moHalfday" />
           </div>
           <div class="clr-radio-wrapper">
             <input
@@ -54,6 +64,7 @@
             <label for="vertical-radio3" class="clr-control-label"
               >ลาครึ่งวันช่วงบ่าย</label
             >
+            <input [(ngModel)]="afHalfday" name="afHalfday" />
           </div>
           <div class="clr-subtext-wrapper"></div>
         </div>

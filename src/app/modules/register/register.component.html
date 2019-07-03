@@ -1,19 +1,19 @@
-<h1>
-  ยินดีต้อนรับ {{userList.name}} {{userList.last_name}}
-</h1>
+<h1>ยินดีต้อนรับ {{ userList.name }} {{ userList.last_name }}</h1>
 คุณเข้าใช้งานครั้งแรก กรุณาเลือกข้อมูลเพิ่มเติม
-<br>
-<br>
+<br />
+<br />
 <form clrForm>
   <clr-select-container>
     <label> แผนก : </label>
     <select clrSelect name="depId" [(ngModel)]="depId">
       <option *ngFor="let dep of depList" [value]="dep.depId">
-        {{dep.depName}}
+        {{ dep.depName }}
       </option>
     </select>
   </clr-select-container>
-  <br>
-  <br>
-  <button (click)="onSave()" class="btn btn-success" [disabled]="!depId">ยืนยัน</button>
+  <br />
+  <br />
+  <button (click)="onSave()" class="btn btn-success" [disabled]="!depId">
+    ยืนยัน
+  </button>
 </form>
