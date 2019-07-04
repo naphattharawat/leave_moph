@@ -7,25 +7,7 @@
 
 <div class="clr-row">
 
-  <!-- <div class="clr-col-lg-3 clr-col-md-8 clr-col-12" *ngIf="leaveTotal">
-    <div class="card" style="background-color: #b9d6f8">
-      <div class="card-header">
-        <clr-icon shape="happy-face"></clr-icon> วันลาคงเหลือ
-      </div>
-      <div class="card-block">
-        <div class="card-title">
-          ประจำปี 2562
-        </div>
-        <div class="card-text">
-          คงเหลือ {{ leaveTotal.sumTotalLeave }} วัน
-          {{date | thaiDateFull}}
-        </div>
-      </div>
-    </div>
-  </div> -->
-
-
-<div class="clr-col-lg-3 clr-col-md-8 clr-col-12" *ngIf="leaveApprove">
+<div class="clr-col-md-4" *ngIf="leaveApprove">
   <div class="card" style="background-color: #b9dd9b">
     <div class="card-header">
       <clr-icon shape="check"></clr-icon> วันลาที่อนุมัติ
@@ -43,7 +25,7 @@
   </div>
 </div>
 
-<div class="clr-col-lg-3 clr-col-md-8 clr-col-12" *ngIf="leaveWaitApprove">
+<div class="clr-col-md-4" *ngIf="leaveWaitApprove">
   <div class="card" style="background-color: #dddc8f">
     <div class="card-header">
       <clr-icon shape="clock"></clr-icon> วันลาที่รออนุมัติ
@@ -60,10 +42,10 @@
   </div>
 </div>
 
-<div class="clr-col-lg-3 clr-col-md-8 clr-col-12" *ngIf="leaveNotApprove">
+<div class="clr-col-md-4" *ngIf="leaveNotApprove">
     <div class="card" style="background-color: #da9393">
       <div class="card-header">
-        <clr-icon shape="times"></clr-icon> วันที่ไม่อนุมัติ
+        <clr-icon shape="times"></clr-icon> วันลาที่ไม่อนุมัติ
       </div>
       <div class="card-block">
         <div class="card-title">
@@ -76,25 +58,46 @@
     </div>
   </div>
 </div>
-<!-- <div class="clr-row">
 
-  <div class=" clr-col-md-4" *ngFor="let item of leaveShow">
-    <div class="card" style="background-color: #da9393">
+
+  <!-- <div class="clr-col-lg-3 clr-col-md-8 clr-col-12" *ngIf="leaveTotal">
+    <div class="card" style="background-color: #b9d6f8">
       <div class="card-header">
-        <clr-icon shape="times"></clr-icon> วันที่ไม่อนุมัติ
+        <clr-icon shape="happy-face"></clr-icon> วันลาคงเหลือ
       </div>
       <div class="card-block">
         <div class="card-title">
           ประจำปี 2562
         </div>
         <div class="card-text">
-          ทั้งหมด {{ leaveNotApprove.countNotApprove }} ครั้ง
+          คงเหลือ {{ leaveTotal.sumTotalLeave }} วัน
+          {{date | thaiDateFull}}
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+<div class="clr-row">
+  <div class=" clr-col-md-4" *ngFor="let item of leaveBoxShow" >
+    <div class="card">
+      <div class="card-header">
+        <clr-icon shape=""></clr-icon> วัน{{ item.lTypeName }}
+      </div>
+      <div class="card-block">
+        <div class="card-title">
+          ประจำปี 2562
+        </div>
+        <div class="card-text">
+          ทั้งหมด {{ item.totalLeave }} ครั้ง
         </div>
       </div>
     </div>
   </div>
 </div>
-<br> -->
+<br>
+
+
+
 <!-- <div *ngIf="leaveShow">
 <table class="table" >
     <thead>

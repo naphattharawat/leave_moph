@@ -18,7 +18,7 @@ export class MainPageComponent implements OnInit {
   leaveApprove: any;
   leaveNotApprove: any;
   leaveWaitApprove: any;
-  leaveShow: any;
+  leaveBoxShow: any;
   constructor(
     private mainService: MainService,
     private verifyService: VerifyService,
@@ -31,22 +31,22 @@ export class MainPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getLeaveTotal();
+   // this.getLeaveTotal();
     this.getLeaveApprove();
     this.getLeaveNotApprove();
     this.getLeaveWaitApprove();
-    this.getLeaveShow();
+    this.getLeaveBoxShow();
 
   }
-  async getLeaveTotal() {
-    const result: any = await this.leaveService.getLeaveTotal(this.userList['cid']);
-    console.log('leaveTotal', this.userList['cid']);
-    if (result.statusCode === 200 && result.rows.length) {
-      console.log(result.rows);
-      this.leaveTotal = result.rows[0];
-      // console.log('g', this.aboutUser);
-    }
-  }
+  // async getLeaveTotal() {
+  //   const result: any = await this.leaveService.getLeaveTotal(this.userList['cid']);
+  //   console.log('leaveTotal', this.userList['cid']);
+  //   if (result.statusCode === 200 && result.rows.length) {
+  //     console.log(result.rows);
+  //     this.leaveTotal = result.rows[0];
+  //     // console.log('g', this.aboutUser);
+  //   }
+  // }
   async getLeaveApprove() {
     const result: any = await this.leaveService.getLeaveApprove(this.userList['cid']);
     console.log('leaveApprove', this.userList['cid']);
@@ -77,16 +77,14 @@ export class MainPageComponent implements OnInit {
     }
   }
 
-  async getLeaveShow() {
-    const result: any = await this.leaveService.getLeaveShow(this.userList['cid']);
-    console.log('getLeaveShow', this.userList['cid']);
+  async getLeaveBoxShow() {
+    const result: any = await this.leaveService.getLeaveBoxShow(this.userList['cid']);
+    console.log('getLeaveBoxShow', this.userList['cid']);
     if (result.statusCode === 200 && result.rows.length) {
       console.log(result.rows);
-      this.leaveShow = result.rows;
+      this.leaveBoxShow = result.rows;
       // console.log('g', this.aboutUser);
     }
   }
 
-
-
-}
+ }
