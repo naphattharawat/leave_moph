@@ -1,6 +1,4 @@
-import { VerifyService } from './../../../services/verify.service';
 import { Component, OnInit } from '@angular/core';
-import { MainService } from './../../../services/main.service';
 import { LeaveService } from './../../../services/leave.service';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
@@ -15,9 +13,11 @@ export class HistoryComponent implements OnInit {
   userList: any;
   date = new Date();
   leaveShow: any;
+  modalEdit = false;
+  currentRow: any;
+  editRow: any;
+
   constructor(
-    private mainService: MainService,
-    private verifyService: VerifyService,
     private leaveService: LeaveService,
     private router: Router
   ) {
@@ -30,15 +30,24 @@ export class HistoryComponent implements OnInit {
      this.getLeaveShow();
 
   }
-  
+
   async getLeaveShow() {
     const result: any = await this.leaveService.getLeaveShow(this.userList['cid']);
     console.log('getLeaveShow', this.userList['cid']);
     if (result.statusCode === 200 && result.rows.length) {
-      console.log(result.rows);
+      console.log('rows:', result.rows);
       this.leaveShow = result.rows;
+      console.log('test', this.leaveShow);
       // console.log('g', this.aboutUser);
     }
+  }
+
+  async onEdit(row) {
+    // this.currentRow = Object.assign(this.leaveShow, this.currentRow);
+    this.currentRow = Object.assign({}, row);
+    console.log('current', this.currentRow);
+    this.currentRow.mode = 'edit';
+    this.modalEdit = true;
   }
 
 }

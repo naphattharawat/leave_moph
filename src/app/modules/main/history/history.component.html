@@ -1,5 +1,4 @@
-<div *ngIf="leaveShow">
-    <clr-datagrid>
+    <clr-datagrid *ngIf="leaveShow">
         <clr-dg-column>วันที่ลา</clr-dg-column>
         <clr-dg-column>ถึงวันที่</clr-dg-column>
         <clr-dg-column>จำนวนวัน</clr-dg-column>
@@ -7,7 +6,6 @@
         <clr-dg-column>ครึ่งวัน/เต็มวัน</clr-dg-column>
         <clr-dg-column>สถานะการลา</clr-dg-column>
         <clr-dg-column>#</clr-dg-column>
-
         <clr-dg-row *ngFor="let item of leaveShow">
             <clr-dg-cell>{{ item.dateStart }}</clr-dg-cell>
             <clr-dg-cell>{{ item.dateEnd }}</clr-dg-cell>
@@ -23,7 +21,20 @@
             <clr-dg-cell *ngIf=" item.statusHr==3 && item.statusBoss==1 && item.statusCeo==1">ลาไม่สำเร็จ</clr-dg-cell>
             <clr-dg-cell *ngIf=" item.statusHr==2 && item.statusBoss==3 && item.statusCeo==1">ลาไม่สำเร็จ</clr-dg-cell>
             <clr-dg-cell *ngIf=" item.statusHr==2 && item.statusBoss==2 && item.statusCeo==3">ลาไม่สำเร็จ</clr-dg-cell>
-            <clr-dg-cell></clr-dg-cell>
+            <clr-dg-cell>
+                <button class="btn btn-primary" (click)="onEdit(item)" 
+                [disabled]="(item.statusHr==3 && item.statusBoss==1 && item.statusCeo==1)
+                || (item.statusHr==2 && item.statusBoss==3 && item.statusCeo==1)
+                || (item.statusHr==2 && item.statusBoss==2 && item.statusCeo==3)
+                || (item.statusHr==2 && item.statusBoss==2 && item.statusCeo==2)">
+                แก้ไข</button>
+                <button class="btn btn-danger" (click)="onCancel(item)"
+                [disabled]="(item.statusHr==3 && item.statusBoss==1 && item.statusCeo==1)
+                || (item.statusHr==2 && item.statusBoss==3 && item.statusCeo==1)
+                || (item.statusHr==2 && item.statusBoss==2 && item.statusCeo==3)
+                || (item.statusHr==2 && item.statusBoss==2 && item.statusCeo==2)">ยกเลิก</button>
+                <button class="btn btn-success" disabled>ออกหนังสือ</button>
+            </clr-dg-cell>
         </clr-dg-row>
         <clr-dg-footer>
             <b>ลาทั้งหมด {{leaveShow.length}} ครั้ง </b>&nbsp;&nbsp;
@@ -34,4 +45,29 @@
             </clr-dg-pagination>
         </clr-dg-footer>
     </clr-datagrid>
-</div>
+  
+    <clr-modal *ngIf="currentRow" [(clrModalOpen)]="modalEdit">
+        <h3 class="modal-title">แก้ไขการลา</h3>
+        <div class="modal-body">
+        <clr-input-container>
+            <label>วันที่ลา</label>
+            <input clrInput type="text" [(ngModel)]="currentRow.dateStart" name="dateStart" />
+        </clr-input-container>
+        <clr-input-container>
+            <label>ถึงวันที่</label>
+            <input clrInput type="text" [(ngModel)]="currentRow.dateEnd" name="dateEnd" />
+        </clr-input-container>
+        <clr-input-container>
+            <label>ประเภทการลา</label>
+            <input clrInput type="text" [(ngModel)]="currentRow.lTypeName" name="dateStart" />
+          </clr-input-container>
+          <clr-input-container>
+            <label>เวลา</label>
+            <input clrInput type="text" [(ngModel)]="currentRow.lSelect" name="dateStart" />
+          </clr-input-container>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline" (click)="modalEdit = false">Cancel</button>
+            <button type="button" class="btn btn-primary" (click)="onSave()">Ok</button>
+        </div>
+    </clr-modal>

@@ -53,6 +53,10 @@ export class AboutComponent implements OnInit {
 
     async onSave() {
       try {
+        let regexpEmail = new RegExp('^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$');
+        regexpEmail.test('marco@expertcodebolg.com'); 
+        console.log(regexpEmail);
+        // expected output: true
         const result: any = await this.userService
           .updateUser(this.editRow.tel, this.editRow.email, this.editRow.personId);
         if (result.ok) {
