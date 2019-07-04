@@ -48,13 +48,15 @@ Or load a specific version -->
         </clr-input-container>
         
         <clr-input-container>
+            <!-- <div class="alert-email"> -->
             <label>E-mail</label>
-            <input clrInput type="email"  class="form-control" [(ngModel)]="editRow.email" name="email" />
+            <input clrInput type="text"  class="form-control" [(ngModel)]="editRow.email" name="email" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"/>
+          <!-- </div> -->
           </clr-input-container>
       </form>
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-outline" (click)="modalEdit = false">Cancel</button>
-      <button type="button" class="btn btn-success" (click)="onSave()" [disabled]="!editRow.tel || !editRow.email || editRow.tel.length != 10">Save</button>
+      <button type="button" class="btn btn-success" (click)="onSave()" [disabled]="!editRow.tel || !editRow.email || editRow.tel.length != 10 ">Save</button>
     </div>
   </clr-modal>
