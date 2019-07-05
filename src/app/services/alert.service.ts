@@ -4,8 +4,7 @@ import Swal from 'sweetalert2';
   providedIn: 'root'
 })
 export class AlertService {
-
-  constructor() { }
+  constructor() {}
 
   error(text = 'เกิดข้อผิดพลาด', title = 'Error!') {
     return Swal.fire({

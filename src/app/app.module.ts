@@ -1,5 +1,6 @@
 import { AlertService } from './services/alert.service';
 import { FormsModule } from '@angular/forms';
+import { registerLocaleData } from '@angular/common';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';

@@ -1,4 +1,3 @@
-
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { AlertService } from './../../services/alert.service';
 import { DepService } from './../../services/dep.service';
@@ -44,7 +43,6 @@ export class RegisterComponent implements OnInit {
     this.tel = decoded.telephone;
     this.position = decoded.job_position;
     // console.log(this.personId);
-
   }
 
   ngOnInit() {
@@ -61,9 +59,16 @@ export class RegisterComponent implements OnInit {
 
   async onSave() {
     try {
-      const result: any = await this.aboutService
-        .createUser(this.personId, this.hosId, this.email,
-          this.name, this.surname, this.tel, this.depId, this.position);
+      const result: any = await this.aboutService.createUser(
+        this.personId,
+        this.hosId,
+        this.email,
+        this.name,
+        this.surname,
+        this.tel,
+        this.depId,
+        this.position
+      );
 
       if (result.ok) {
         await this.alertService.success();
@@ -73,7 +78,6 @@ export class RegisterComponent implements OnInit {
       }
     } catch (error) {
       console.log(error);
-
     }
   }
 }

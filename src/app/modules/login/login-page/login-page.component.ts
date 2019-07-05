@@ -21,8 +21,7 @@ export class LoginPageComponent implements OnInit {
     private authGuardService: AuthGuardService,
     private userService: UserService,
     private alertService: AlertService
-  ) {
-  }
+  ) {}
 
   ngOnInit() {
     this.checkUser();
@@ -54,6 +53,6 @@ export class LoginPageComponent implements OnInit {
       console.log(err);
     }
   }
-  }
+}
 
 

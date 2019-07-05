@@ -6,13 +6,13 @@ import { HttpClient } from '@angular/common/http';
 })
 export class LeaveService {
   constructor(private http: HttpClient, @Inject('API_URL') private apiUrl) {}
-  getLeaveTotal(personId: string) {
-    return this.http
-      .post(`http://localhost:3001/leave/leave-total`, { personId })
-      .toPromise()
-      .then(result => result)
-      .catch(error => error);
-  }
+  // getLeaveTotal(personId: string) {
+  //   return this.http
+  //     .post(`http://localhost:3001/leave/leave-total`, { personId })
+  //     .toPromise()
+  //     .then(result => result)
+  //     .catch(error => error);
+  // }
   getLeaveApprove(personId: string) {
     return this.http.post(`http://localhost:3001/leave/leave-approve`, {personId})
       .toPromise()
@@ -20,12 +20,44 @@ export class LeaveService {
       .catch(error => error);
   }
 
+  reqLeave(
+    dateStart,
+    dateEnd,
+    totalLeave,
+    statusHr,
+    statusBoss,
+    statusCeo,
+    personId,
+    lTypeId,
+    status
+  ) {
+    return this.http
+      .post(`http://localhost:3001/reqLeave`, {
+        dateStart,
+        dateEnd,
+        totalLeave,
+        statusHr,
+        statusBoss,
+        statusCeo,
+        personId,
+        lTypeId,
+        status
+      });
+    }
+
   getLeaveNotApprove(personId: string) {
     return this.http.post(`http://localhost:3001/leave/leave-not-approve`, {personId})
+
       .toPromise()
       .then(result => result)
       .catch(error => error);
   }
+
+  leaveType() {
+    return this.http
+      .get(`http://localhost:3001/reqLeave`, {});
+  }
+
 
   getLeaveWaitApprove(personId: string) {
     return this.http.post(`http://localhost:3001/leave/leave-wait-approve`, {personId})
@@ -33,6 +65,7 @@ export class LeaveService {
       .then(result => result)
       .catch(error => error);
   }
+
 
   getLeaveShow(personId: string) {
     return this.http.post(`http://localhost:3001/leave/leave-show`, {personId})
@@ -57,4 +90,20 @@ export class LeaveService {
     .catch(err => err);
   }
 
+  getLeaveBoxShow(personId: string) {
+    return this.http.post(`http://localhost:3001/leave/leave-box-show`, {personId})
+      .toPromise()
+      .then(result => result)
+      .catch(error => error);
+  }
+
+  // getLeaveBoxShowOnly(personId: string) {
+  //   return this.http.post(`http://localhost:3001/leave/leave-box-show-only`, {personId})
+  //     .toPromise()
+  //     .then(result => result)
+  //     .catch(error => error);
+  // }
+
+ 
 }
+  }
