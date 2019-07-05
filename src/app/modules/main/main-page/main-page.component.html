@@ -3,7 +3,8 @@
   <li><a href="javascript://">Home</a></li>
 </ol>
 
-<h1>สวัสดี {{ userList.name }} {{ userList.last_name }}</h1>
+<h1>สวัสดี {{ userList.name }} {{ userList.last_name }} {{sumBox}}</h1>
+
 
 <div class="clr-row">
 
@@ -87,8 +88,8 @@
         <div class="card-title">
           ประจำปี 2562
         </div>
-        <div class="card-text">
-          ทั้งหมด {{ item.totalLeave }} ครั้ง
+        <div class="card-text" >
+          เหลือ {{ item.totalDay }} ครั้ง
         </div>
       </div>
     </div>

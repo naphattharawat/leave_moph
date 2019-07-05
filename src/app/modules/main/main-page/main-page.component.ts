@@ -19,6 +19,9 @@ export class MainPageComponent implements OnInit {
   leaveNotApprove: any;
   leaveWaitApprove: any;
   leaveBoxShow: any;
+  leaveBoxShowOnly: any;
+  leaveBoxShowTotalType: any;
+  sumBox: any;
   constructor(
     private mainService: MainService,
     private verifyService: VerifyService,
@@ -31,11 +34,12 @@ export class MainPageComponent implements OnInit {
   }
 
   ngOnInit() {
-   // this.getLeaveTotal();
+    // this.getLeaveTotal();
     this.getLeaveApprove();
     this.getLeaveNotApprove();
     this.getLeaveWaitApprove();
     this.getLeaveBoxShow();
+    // this.getLeaveBoxShowOnly();
 
   }
   // async getLeaveTotal() {
@@ -79,12 +83,20 @@ export class MainPageComponent implements OnInit {
 
   async getLeaveBoxShow() {
     const result: any = await this.leaveService.getLeaveBoxShow(this.userList['cid']);
-    console.log('getLeaveBoxShow', this.userList['cid']);
+
     if (result.statusCode === 200 && result.rows.length) {
-      console.log(result.rows);
+
       this.leaveBoxShow = result.rows;
       // console.log('g', this.aboutUser);
     }
   }
+  // async getLeaveBoxShowOnly() {
+  //   const result: any = await this.leaveService.getLeaveBoxShowOnly(this.userList['cid']);
 
- }
+  //   if (result.statusCode === 200 && result.rows.length) {
+
+  //     this.leaveBoxShowOnly = result.rows;
+  //     // console.log('g', this.aboutUser);
+  //   }
+
+  }
