@@ -48,12 +48,4 @@ export class LeaveService {
       .catch(error => error);
   }
 
-  // getLeaveBoxShowOnly(personId: string) {
-  //   return this.http.post(`http://localhost:3001/leave/leave-box-show-only`, {personId})
-  //     .toPromise()
-  //     .then(result => result)
-  //     .catch(error => error);
-  // }
-
- 
 }
