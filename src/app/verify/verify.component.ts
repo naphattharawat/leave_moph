@@ -5,6 +5,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { JwtModule, JwtHelperService } from '@auth0/angular-jwt';
 
+
+
 @Component({
   selector: 'app-verify',
   templateUrl: './verify.component.html',
@@ -40,13 +42,13 @@ export class VerifyComponent implements OnInit {
       this.token = result.rows;
 
       if (this.token) {
+
         const rs: any = await this.verifyService.getUser(this.token);
         if (rs.users) {
           sessionStorage.setItem('token', rs.token);
           const token = rs.token;
           const decoded = this.jwtHelper.decodeToken(token);
           console.log(decoded);
-          // this.userList = JSON.parse(sessionStorage.getItem('user'));
           this.checkUser(decoded.cid);
         }
       } else {
@@ -74,19 +76,4 @@ export class VerifyComponent implements OnInit {
     }
   }
 
-  // checkId (id: string) {
-  //   return new Promise((resolve: any, reject: any)=> {
-  //     console.log('check', id);
-  //     const result: any = this.userService.getpersonId(id);
-  //     console.log(result);
-  //     this.cid = result.rows[0].personId;
-  //     console.log(this.cid);
-  //     if (result.statusCode === 200) {
-  //       console.log('found');
-  //       resolve(this.router.navigate(['main']));
-  //     } else {
-  //       reject(this.router.navigate(['register']));
-  //     }
-  //   });
-  // }
 }

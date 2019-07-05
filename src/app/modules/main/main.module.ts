@@ -11,6 +11,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { UserComponent } from './user/user.component';
 import { PreferenceComponent } from './preference/preference.component';
 import { HelperModule } from 'src/app/pipes/helpers.module';
+import { HistoryComponent } from './history/history.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { HelperModule } from 'src/app/pipes/helpers.module';
     AboutComponent,
     LayoutComponent,
     UserComponent,
-    PreferenceComponent
+    PreferenceComponent,
+    HistoryComponent
   ],
   imports: [
     CommonModule,

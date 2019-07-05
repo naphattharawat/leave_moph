@@ -1,4 +1,3 @@
-
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
@@ -12,7 +11,6 @@ export function tokenGetter() {
 @NgModule({
   declarations: [],
   imports: [
-
     CommonModule,
     HttpClientModule,
     JwtModule.forRoot({
@@ -25,4 +23,5 @@ export function tokenGetter() {
   ]
 })
 export class AuthModule {}
+
 

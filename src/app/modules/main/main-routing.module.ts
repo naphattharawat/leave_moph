@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-// import { AuthGuardService } from './../../services/auth-guard.service';
-
 import { MainPageComponent } from './main-page/main-page.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AboutComponent } from './about/about.component';
@@ -14,6 +12,7 @@ import { VerifyComponent } from 'src/app/verify/verify.component';
 import { RegisterComponent } from '../register/register.component';
 import { AuthGuardService } from 'src/app/services/auth-guard.service';
 import { ReqLeaveComponent } from 'src/app/req-leave/req-leave.component';
+import { HistoryComponent } from './history/history.component';
 
 const routes: Routes = [
   {
@@ -30,6 +29,7 @@ const routes: Routes = [
       { path: 'preference', component: PreferenceComponent },
       { path: 'about', component: AboutComponent },
       { path: 'reqLeave', component: ReqLeaveComponent },
+      { path: 'history', component: HistoryComponent },
       { path: '**', component: PageNotFoundComponent }
     ]
   }

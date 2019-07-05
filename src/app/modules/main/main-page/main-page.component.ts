@@ -15,6 +15,13 @@ export class MainPageComponent implements OnInit {
   userList: any;
   date = new Date();
   leaveTotal: any;
+  leaveApprove: any;
+  leaveNotApprove: any;
+  leaveWaitApprove: any;
+  leaveBoxShow: any;
+  leaveBoxShowOnly: any;
+  leaveBoxShowTotalType: any;
+  sumBox: any;
   constructor(
     private mainService: MainService,
     private verifyService: VerifyService,
@@ -27,18 +34,69 @@ export class MainPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getLeaveTotal();
+    // this.getLeaveTotal();
+    this.getLeaveApprove();
+    this.getLeaveNotApprove();
+    this.getLeaveWaitApprove();
+    this.getLeaveBoxShow();
+    // this.getLeaveBoxShowOnly();
 
   }
-  async getLeaveTotal() {
-    const result: any = await this.leaveService.getLeaveTotal(this.userList['cid']);
-    console.log('leaveTotal', this.userList['cid']);
+  // async getLeaveTotal() {
+  //   const result: any = await this.leaveService.getLeaveTotal(this.userList['cid']);
+  //   console.log('leaveTotal', this.userList['cid']);
+  //   if (result.statusCode === 200 && result.rows.length) {
+  //     console.log(result.rows);
+  //     this.leaveTotal = result.rows[0];
+  //     // console.log('g', this.aboutUser);
+  //   }
+  // }
+  async getLeaveApprove() {
+    const result: any = await this.leaveService.getLeaveApprove(this.userList['cid']);
+    console.log('leaveApprove', this.userList['cid']);
     if (result.statusCode === 200 && result.rows.length) {
       console.log(result.rows);
-      this.leaveTotal = result.rows[0];
+      this.leaveApprove = result.rows[0];
       // console.log('g', this.aboutUser);
     }
   }
 
+  async getLeaveNotApprove() {
+    const result: any = await this.leaveService.getLeaveNotApprove(this.userList['cid']);
+    console.log('leaveNotApprove', this.userList['cid']);
+    if (result.statusCode === 200 && result.rows.length) {
+      console.log(result.rows);
+      this.leaveNotApprove = result.rows[0];
+      // console.log('g', this.aboutUser);
+    }
+  }
 
-}
+  async getLeaveWaitApprove() {
+    const result: any = await this.leaveService.getLeaveWaitApprove(this.userList['cid']);
+    console.log('getLeaveWaitApprove', this.userList['cid']);
+    if (result.statusCode === 200 && result.rows.length) {
+      console.log(result.rows);
+      this.leaveWaitApprove = result.rows[0];
+      // console.log('g', this.aboutUser);
+    }
+  }
+
+  async getLeaveBoxShow() {
+    const result: any = await this.leaveService.getLeaveBoxShow(this.userList['cid']);
+
+    if (result.statusCode === 200 && result.rows.length) {
+
+      this.leaveBoxShow = result.rows;
+      // console.log('g', this.aboutUser);
+    }
+  }
+  // async getLeaveBoxShowOnly() {
+  //   const result: any = await this.leaveService.getLeaveBoxShowOnly(this.userList['cid']);
+
+  //   if (result.statusCode === 200 && result.rows.length) {
+
+  //     this.leaveBoxShowOnly = result.rows;
+  //     // console.log('g', this.aboutUser);
+  //   }
+
+  }

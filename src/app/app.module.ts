@@ -1,4 +1,3 @@
-import { AuthModule } from './auth/auth.module';
 import { AlertService } from './services/alert.service';
 import { FormsModule } from '@angular/forms';
 import { registerLocaleData } from '@angular/common';
@@ -21,7 +20,10 @@ import { MainService } from './services/main.service';
 import { HelperModule } from './pipes/helpers.module';
 import { VerifyComponent } from './verify/verify.component';
 import { RegisterComponent } from './modules/register/register.component';
+import { AuthModule } from './auth/auth.module';
 import { ReqLeaveComponent } from './req-leave/req-leave.component';
+
+
 
 @NgModule({
   declarations: [
@@ -49,6 +51,7 @@ import { ReqLeaveComponent } from './req-leave/req-leave.component';
     { provide: 'APPNAME', useValue: environment.appName },
     { provide: 'VERSION', useValue: environment.version },
     { provide: 'SUBVERSION', useValue: environment.subVersion }
+
     // { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   bootstrap: [AppComponent]

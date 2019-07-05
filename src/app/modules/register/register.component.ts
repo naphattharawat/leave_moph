@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
+
   jwtHelper = new JwtHelperService();
   userList: any;
   depList: any[];
@@ -30,6 +31,7 @@ export class RegisterComponent implements OnInit {
     private router: Router,
     private alertService: AlertService
   ) {
+
     // this.userList = JSON.parse(sessionStorage.getItem('user'));
     const token = sessionStorage.getItem('token');
     const decoded = this.jwtHelper.decodeToken(token);
