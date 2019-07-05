@@ -14,7 +14,8 @@ export class LeaveService {
   //     .catch(error => error);
   // }
   getLeaveApprove(personId: string) {
-    return this.http.post(`http://localhost:3001/leave/leave-approve`, {personId})
+    return this.http
+      .post(`http://localhost:3001/leave/leave-approve`, { personId })
       .toPromise()
       .then(result => result)
       .catch(error => error);
@@ -31,22 +32,22 @@ export class LeaveService {
     lTypeId,
     status
   ) {
-    return this.http
-      .post(`http://localhost:3001/reqLeave`, {
-        dateStart,
-        dateEnd,
-        totalLeave,
-        statusHr,
-        statusBoss,
-        statusCeo,
-        personId,
-        lTypeId,
-        status
-      });
-    }
+    return this.http.post(`http://localhost:3001/reqLeave`, {
+      dateStart,
+      dateEnd,
+      totalLeave,
+      statusHr,
+      statusBoss,
+      statusCeo,
+      personId,
+      lTypeId,
+      status
+    });
+  }
 
   getLeaveNotApprove(personId: string) {
-    return this.http.post(`http://localhost:3001/leave/leave-not-approve`, {personId})
+    return this.http
+      .post(`http://localhost:3001/leave/leave-not-approve`, { personId })
 
       .toPromise()
       .then(result => result)
@@ -55,43 +56,54 @@ export class LeaveService {
 
   leaveType() {
     return this.http
-      .get(`http://localhost:3001/reqLeave`, {});
+      .get(`http://localhost:3001/reqLeave`, {})
+      .toPromise()
+      .then(result => result)
+      .catch(error => error);
   }
-
 
   getLeaveWaitApprove(personId: string) {
-    return this.http.post(`http://localhost:3001/leave/leave-wait-approve`, {personId})
+    return this.http
+      .post(`http://localhost:3001/leave/leave-wait-approve`, { personId })
       .toPromise()
       .then(result => result)
       .catch(error => error);
   }
-
 
   getLeaveShow(personId: string) {
-    return this.http.post(`http://localhost:3001/leave/leave-show`, {personId})
+    return this.http
+      .post(`http://localhost:3001/leave/leave-show`, { personId })
       .toPromise()
       .then(result => result)
       .catch(error => error);
   }
 
-  updateLeave( dateStart, dateEnd, totalLeave,
-    lTypeId, lSelect, lId) {
-    return this.http.post(`http://localhost:3001/leave/updateLeave`, {dateStart, dateEnd,
-    totalLeave, lTypeId, lSelect, lId})
-    .toPromise()
-    .then(result => result)
-    .catch(err => err);
+  updateLeave(dateStart, dateEnd, totalLeave, lTypeId, lSelect, lId) {
+    return this.http
+      .post(`http://localhost:3001/leave/updateLeave`, {
+        dateStart,
+        dateEnd,
+        totalLeave,
+        lTypeId,
+        lSelect,
+        lId
+      })
+      .toPromise()
+      .then(result => result)
+      .catch(err => err);
   }
 
   cancelLeave(lId) {
-    return this.http.post(`http://localhost:3001/leave/cancelLeave`, {lId})
-    .toPromise()
-    .then(result => result)
-    .catch(err => err);
+    return this.http
+      .post(`http://localhost:3001/leave/cancelLeave`, { lId })
+      .toPromise()
+      .then(result => result)
+      .catch(err => err);
   }
 
   getLeaveBoxShow(personId: string) {
-    return this.http.post(`http://localhost:3001/leave/leave-box-show`, {personId})
+    return this.http
+      .post(`http://localhost:3001/leave/leave-box-show`, { personId })
       .toPromise()
       .then(result => result)
       .catch(error => error);
@@ -103,7 +115,4 @@ export class LeaveService {
   //     .then(result => result)
   //     .catch(error => error);
   // }
-
- 
 }
-  
