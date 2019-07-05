@@ -4,8 +4,7 @@ import Swal from 'sweetalert2';
   providedIn: 'root'
 })
 export class AlertService {
-
-  constructor() { }
+  constructor() {}
 
   error(text = 'เกิดข้อผิดพลาด', title = 'Error!') {
     return Swal.fire({
@@ -18,7 +17,7 @@ export class AlertService {
 
   success(text = 'Success', title = 'congrate') {
     return Swal.fire({
-      position: 'top-end',
+      // position: 'top-end',
       type: 'success',
       title: 'Your work has been saved',
       showConfirmButton: false,
@@ -29,5 +28,4 @@ export class AlertService {
   notFoundUser(text = 'not found user', title = ':-(') {
     return Swal.fire('Not found user!');
   }
-
 }

@@ -22,6 +22,8 @@ export class ReqLeaveComponent implements OnInit {
   lTypeId: any;
   status: any;
   leaveType: any[];
+  // toDay: any;
+  lastDay: any;
 
   constructor(
     private leave: LeaveService,
@@ -30,6 +32,10 @@ export class ReqLeaveComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    // this.toDay = moment().format('MM/DD/YYYY');
+    // console.log('toDay', this.toDay);
+
+    // this.lastDay = moment().format('YYYY-MM-DD');
     const token = sessionStorage.getItem('token');
     const decoded = this.jwtHelper.decodeToken(token);
     this.personId = decoded.cid;
@@ -37,11 +43,27 @@ export class ReqLeaveComponent implements OnInit {
   }
 
   async onSave() {
+    console.log('test');
+
     try {
+      const startY = moment(this.dateStart).get('year');
+      const startM = moment(this.dateStart).get('month');
+      const startD = moment(this.dateStart).get('date');
+
+      const endY = moment(this.dateEnd).get('year');
+      const endM = moment(this.dateEnd).get('month');
+      const endD = moment(this.dateEnd).get('date');
+
+      const s = moment([startY, startM, startD]);
+      const e = moment([endY, endM, endD]);
+
+      this.totalLeave = e.diff(s, 'days');
+      console.log('total ', this.totalLeave);
+
       const result: any = await this.leave.reqLeave(
         moment(this.dateStart).format('YYYY-MM-DD'),
         moment(this.dateEnd).format('YYYY-MM-DD'),
-        this.totalLeave,
+        this.totalLeave + 1,
         this.statusHr,
         this.statusBoss,
         this.statusCeo,
@@ -55,8 +77,13 @@ export class ReqLeaveComponent implements OnInit {
 
       if (result.ok) {
         console.log('ok', result);
-        await this.alertService.success();
-        //this.router.navigate(['main']);
+        await this.alertService.success().then(value => {
+          console.log('value', value);
+          if (value.dismiss) {
+            document.location.href = '/history';
+          }
+        });
+        // this.router.navigate(['main']);
       } else {
         console.log(result.rows);
         this.alertService.error();

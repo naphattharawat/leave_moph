@@ -7,7 +7,11 @@
       </a>
     </div>
     <div class="header-nav" [clr-nav-level]="1">
-      <a href="javascript://" class="active nav-link nav-icon" routerLink="/main">
+      <a
+        href="javascript://"
+        class="active nav-link nav-icon"
+        routerLink="/main"
+      >
         <clr-icon shape="home"></clr-icon>
       </a>
       <a href="javascript://" class="nav-link nav-icon">
@@ -16,7 +20,11 @@
     </div>
     <form class="search">
       <label for="search_input">
-        <input id="search_input" type="text" placeholder="Search for keywords...">
+        <input
+          id="search_input"
+          type="text"
+          placeholder="Search for keywords..."
+        />
       </label>
     </form>
     <div class="header-actions">
@@ -27,8 +35,12 @@
         </button>
         <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
           <a href="javascript://" clrDropdownItem routerLink="/about">About</a>
-          <a href="javascript://" clrDropdownItem routerLink="/preference">Preferences</a>
-          <a href="javascript://" clrDropdownItem (click)="onLogout()">Log out</a>
+          <a href="javascript://" clrDropdownItem routerLink="/preference"
+            >Preferences</a
+          >
+          <a href="javascript://" clrDropdownItem (click)="onLogout()"
+            >Log out</a
+          >
         </clr-dropdown-menu>
       </clr-dropdown>
     </div>
@@ -39,22 +51,31 @@
       <router-outlet></router-outlet>
     </main>
 
-    <clr-vertical-nav [clrVerticalNavCollapsible]="true" [(clrVerticalNavCollapsed)]="collapsed" [clr-nav-level]="2">
+    <clr-vertical-nav
+      [clrVerticalNavCollapsible]="true"
+      [(clrVerticalNavCollapsed)]="collapsed"
+      [clr-nav-level]="2"
+    >
       <clr-vertical-nav-group routerLinkActive="active">
         <clr-icon shape="user" clrVerticalNavIcon></clr-icon>
         Users
         <clr-vertical-nav-group-children>
-          <a clrVerticalNavLink routerLink="./user" routerLinkActive="active">
+          <a
+            clrVerticalNavLink
+            href="../../../reqLeave"
+            routerLinkActive="active"
+          >
             ทำเรื่องลา
           </a>
-          <a clrVerticalNavLink routerLink="./normal/snorlax" routerLinkActive="active">
+          <a
+            clrVerticalNavLink
+            routerLink="./normal/snorlax"
+            routerLinkActive="active"
+          >
             report
           </a>
         </clr-vertical-nav-group-children>
       </clr-vertical-nav-group>
-      
-      
     </clr-vertical-nav>
   </div>
-
 </clr-main-container>
