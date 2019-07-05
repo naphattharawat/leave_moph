@@ -32,17 +32,19 @@ export class LeaveService {
     lTypeId,
     status
   ) {
-    return this.http.post(`http://localhost:3001/reqLeave`, {
-      dateStart,
-      dateEnd,
-      totalLeave,
-      statusHr,
-      statusBoss,
-      statusCeo,
-      personId,
-      lTypeId,
-      status
-    });
+    return this.http
+      .post(`http://localhost:3001/reqLeave`, {
+        dateStart,
+        dateEnd,
+        totalLeave,
+        statusHr,
+        statusBoss,
+        statusCeo,
+        personId,
+        lTypeId,
+        status
+      })
+      .toPromise();
   }
 
   getLeaveNotApprove(personId: string) {
@@ -59,7 +61,7 @@ export class LeaveService {
       .get(`http://localhost:3001/reqLeave`, {})
       .toPromise()
       .then(result => result)
-      .catch(error => error);
+      .catch(err => err);
   }
 
   getLeaveWaitApprove(personId: string) {
@@ -109,10 +111,11 @@ export class LeaveService {
       .catch(error => error);
   }
 
-  // getLeaveBoxShowOnly(personId: string) {
-  //   return this.http.post(`http://localhost:3001/leave/leave-box-show-only`, {personId})
-  //     .toPromise()
-  //     .then(result => result)
-  //     .catch(error => error);
-  // }
+  getLeaveBoxShowOnly(personId: string) {
+    return this.http
+      .post(`http://localhost:3001/leave/leave-box-show-only`, { personId })
+      .toPromise()
+      .then(result => result)
+      .catch(error => error);
+  }
 }
