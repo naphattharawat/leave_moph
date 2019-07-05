@@ -19,6 +19,7 @@ export class VerifyComponent implements OnInit {
   token: any;
   userList: any[];
   cid: any;
+  genre: any;
 
   constructor(
     private verifyService: VerifyService,
@@ -64,8 +65,10 @@ export class VerifyComponent implements OnInit {
       console.log(result.rows);
       if (result.rows.length) {
         // console.log('n', result.rows.personId);
-        this.cid = result.rows.length;
-        console.log('found : ', this.cid);
+        this.cid = result.rows[0].personId;
+        this.genre = result.rows[0].genre;
+        console.log('genre : ', this.genre);
+        sessionStorage.setItem('genre', this.genre);
         this.router.navigate(['main']);
       } else {
         console.log('not');

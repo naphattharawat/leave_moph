@@ -21,6 +21,7 @@ import { VerifyComponent } from './verify/verify.component';
 import { RegisterComponent } from './modules/register/register.component';
 import { AuthModule } from './auth/auth.module';
 import { ReqLeaveComponent } from './req-leave/req-leave.component';
+import { MainAdComponent } from './main-ad/main-ad.component';
 
 
 
@@ -29,7 +30,8 @@ import { ReqLeaveComponent } from './req-leave/req-leave.component';
     AppComponent,
     VerifyComponent,
     RegisterComponent,
-    ReqLeaveComponent
+    ReqLeaveComponent,
+    MainAdComponent
   ],
   imports: [
     BrowserModule,

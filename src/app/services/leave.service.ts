@@ -41,4 +41,20 @@ export class LeaveService {
       .catch(error => error);
   }
 
+  updateLeave( dateStart, dateEnd, totalLeave,
+    lTypeId, lSelect, lId) {
+    return this.http.post(`http://localhost:3001/leave/updateLeave`, {dateStart, dateEnd,
+    totalLeave, lTypeId, lSelect, lId})
+    .toPromise()
+    .then(result => result)
+    .catch(err => err);
+  }
+
+  cancelLeave(lId) {
+    return this.http.post(`http://localhost:3001/leave/cancelLeave`, {lId})
+    .toPromise()
+    .then(result => result)
+    .catch(err => err);
+  }
+
 }
