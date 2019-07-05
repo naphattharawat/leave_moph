@@ -21,28 +21,10 @@ export class LeaveService {
       .catch(error => error);
   }
 
-  reqLeave(
-    dateStart,
-    dateEnd,
-    totalLeave,
-    statusHr,
-    statusBoss,
-    statusCeo,
-    personId,
-    lTypeId,
-    status
-  ) {
+  reqLeave(data) {
     return this.http
       .post(`http://localhost:3001/reqLeave`, {
-        dateStart,
-        dateEnd,
-        totalLeave,
-        statusHr,
-        statusBoss,
-        statusCeo,
-        personId,
-        lTypeId,
-        status
+        data: data
       })
       .toPromise();
   }
