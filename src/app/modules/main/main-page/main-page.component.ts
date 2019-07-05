@@ -14,13 +14,11 @@ export class MainPageComponent implements OnInit {
   jwtHelper = new JwtHelperService();
   userList: any;
   date = new Date();
-  leaveTotal: any;
   leaveApprove: any;
   leaveNotApprove: any;
   leaveWaitApprove: any;
   leaveBoxShow: any;
-  leaveBoxShowOnly: any;
-  leaveBoxShowTotalType: any;
+
   sumBox: any;
   constructor(
     private mainService: MainService,
@@ -34,30 +32,20 @@ export class MainPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.getLeaveTotal();
     this.getLeaveApprove();
     this.getLeaveNotApprove();
     this.getLeaveWaitApprove();
-    // this.getLeaveBoxShow();
-    // this.getLeaveBoxShowOnly();
+    this.getLeaveBoxShow();
+
 
   }
-  // async getLeaveTotal() {
-  //   const result: any = await this.leaveService.getLeaveTotal(this.userList['cid']);
-  //   console.log('leaveTotal', this.userList['cid']);
-  //   if (result.statusCode === 200 && result.rows.length) {
-  //     console.log(result.rows);
-  //     this.leaveTotal = result.rows[0];
-  //     // console.log('g', this.aboutUser);
-  //   }
-  // }
+
   async getLeaveApprove() {
     const result: any = await this.leaveService.getLeaveApprove(this.userList['cid']);
     console.log('leaveApprove', this.userList['cid']);
     if (result.statusCode === 200 && result.rows.length) {
       console.log(result.rows);
       this.leaveApprove = result.rows[0];
-      // console.log('g', this.aboutUser);
     }
   }
 
@@ -67,7 +55,7 @@ export class MainPageComponent implements OnInit {
     if (result.statusCode === 200 && result.rows.length) {
       console.log(result.rows);
       this.leaveNotApprove = result.rows[0];
-      // console.log('g', this.aboutUser);
+      
     }
   }
 
@@ -81,22 +69,13 @@ export class MainPageComponent implements OnInit {
     }
   }
 
-  // async getLeaveBoxShow() {
-  //   const result: any = await this.leaveService.getLeaveBoxShow(this.userList['cid']);
+  async getLeaveBoxShow() {
+    const result: any = await this.leaveService.getLeaveBoxShow(this.userList['cid']);
 
-  //   if (result.statusCode === 200 && result.rows.length) {
+    if (result.statusCode === 200 && result.rows.length) {
 
-  //     this.leaveBoxShow = result.rows;
-  //     // console.log('g', this.aboutUser);
-  //   }
-  // }
-  // async getLeaveBoxShowOnly() {
-  //   const result: any = await this.leaveService.getLeaveBoxShowOnly(this.userList['cid']);
-
-  //   if (result.statusCode === 200 && result.rows.length) {
-
-  //     this.leaveBoxShowOnly = result.rows;
-  //     // console.log('g', this.aboutUser);
-  //   }
-
+      this.leaveBoxShow = result.rows;
+    }
   }
+
+}

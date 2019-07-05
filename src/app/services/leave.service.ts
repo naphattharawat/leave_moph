@@ -94,20 +94,12 @@ export class LeaveService {
     .catch(err => err);
   }
 
-  // getLeaveBoxShow(personId: string) {
-  //   return this.http.post(`http://localhost:3001/leave/leave-box-show`, {personId})
-  //     .toPromise()
-  //     .then(result => result)
-  //     .catch(error => error);
-  // }
+  getLeaveBoxShow(personId: string) {
+    return this.http.post(`http://localhost:3001/leave/leave-box-show`, {personId})
+      .toPromise()
+      .then(result => result)
+      .catch(error => error);
+  }
 
-  // getLeaveBoxShowOnly(personId: string) {
-  //   return this.http.post(`http://localhost:3001/leave/leave-box-show-only`, {personId})
-  //     .toPromise()
-  //     .then(result => result)
-  //     .catch(error => error);
-  // }
-
- 
 }
   
