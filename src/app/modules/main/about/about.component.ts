@@ -36,10 +36,9 @@ export class AboutComponent implements OnInit {
     async getAbout() {
       const result: any = await this.aboutService.getUserInfo(this.userList.cid);
       console.log('user', this.userList.cid);
-      if (result.statusCode === 200 && result.user.length) {
-        console.log(result.user);
-        this.aboutUser = result.user[0];
-        // console.log('g', this.aboutUser);
+      if (result.statusCode === 200 && result.rows.length) {
+        console.log(result.rows);
+        this.aboutUser = result.rows[0];
       }
     }
 
@@ -53,19 +52,22 @@ export class AboutComponent implements OnInit {
 
     async onSave() {
       try {
-        let regexpEmail = new RegExp('^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$');
-        regexpEmail.test('marco@expertcodebolg.com'); 
-        console.log(regexpEmail);
-        // expected output: true
-        const result: any = await this.userService
-          .updateUser(this.editRow.tel, this.editRow.email, this.editRow.personId);
-        if (result.ok) {
-          await this.alertService.success();
-          this.getAbout();
-          this.modalEdit = false;
-          this.router.navigate(['about']);
+        const regexpEmail = new RegExp('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$');
+        regexpEmail.test(this.editRow.email);
+        console.log('reg', regexpEmail.test(this.editRow.email));
+        if (regexpEmail.test(this.editRow.email) === true) {
+          const result: any = await this.userService
+            .updateUser(this.editRow.tel, this.editRow.email, this.editRow.personId);
+          if (result.ok) {
+            await this.alertService.success();
+            this.getAbout();
+            this.modalEdit = false;
+            this.router.navigate(['about']);
+          } else {
+            this.alertService.error();
+          }
         } else {
-          this.alertService.error();
+          this.alertService.error(' กรุณากรอก email ให้ถูกต้อง');
         }
       } catch (error) {
         console.log(error);

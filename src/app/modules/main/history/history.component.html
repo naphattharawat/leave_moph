@@ -45,29 +45,38 @@
             </clr-dg-pagination>
         </clr-dg-footer>
     </clr-datagrid>
-  
+    
     <clr-modal *ngIf="currentRow" [(clrModalOpen)]="modalEdit">
         <h3 class="modal-title">แก้ไขการลา</h3>
         <div class="modal-body">
-        <clr-input-container>
-            <label>วันที่ลา</label>
-            <input clrInput type="text" [(ngModel)]="currentRow.dateStart" name="dateStart" />
+            <label><b>เวลา</b></label> <br>
+            <div class="clr-select-wrapper">
+            <select id="lSelect" [(ngModel)]="currentRow.lSelect" class="clr-select" name="lSelect">
+                <option value="1">เช้า</option>
+                <option value="2">บ่าย</option>
+                <option value="3">เต็มวัน</option>
+            </select>
+            </div>
+            <clr-input-container>
+                <label>วันที่ลา (เดือน/วัน/ปี)</label>
+            <input clrInput type="date" [(ngModel)]="currentRow.dateStart" name="dateStart" clrDate />
         </clr-input-container>
-        <clr-input-container>
-            <label>ถึงวันที่</label>
-            <input clrInput type="text" [(ngModel)]="currentRow.dateEnd" name="dateEnd" />
+        <clr-input-container *ngIf="currentRow.lSelect == 3">
+            <label>ถึงวันที่ (เดือน/วัน/ปี)</label>
+            <input clrInput type="date" [(ngModel)]="currentRow.dateEnd" name="dateEnd" clrDate />
         </clr-input-container>
-        <clr-input-container>
-            <label>ประเภทการลา</label>
-            <input clrInput type="text" [(ngModel)]="currentRow.lTypeName" name="dateStart" />
-          </clr-input-container>
-          <clr-input-container>
-            <label>เวลา</label>
-            <input clrInput type="text" [(ngModel)]="currentRow.lSelect" name="dateStart" />
-          </clr-input-container>
+        <br><label><b>ประเภทการลา</b></label><br>
+        <div class="clr-select-wrapper">
+        <select id="lTypeId" [(ngModel)]="currentRow.lTypeId" class="clr-select"  name="lTypeId">
+            <option *ngFor="let leave of leaveType" [value]="leave.lTypeId">
+                {{ leave.lTypeName }}
+            </option>
+        </select>
+        </div>
+        <br><br>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-outline" (click)="modalEdit = false">Cancel</button>
-            <button type="button" class="btn btn-primary" (click)="onSave()">Ok</button>
+            <button type="button" class="btn btn-primary" (click)="onSave()" [disabled]="(( currentRow.dateEnd < currentRow.dateStart || !currentRow.dateEnd ) && currentRow.lSelect == 3) || !currentRow.dateStart || !currentRow.lTypeId || !currentRow.lSelect">Ok</button>
         </div>
     </clr-modal>

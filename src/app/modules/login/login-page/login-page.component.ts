@@ -14,14 +14,14 @@ export class LoginPageComponent implements OnInit {
   jwtHelper = new JwtHelperService();
   isError = false;
   cid: string;
+  genre: number;
 
   constructor(
     private router: Router,
     private authGuardService: AuthGuardService,
     private userService: UserService,
     private alertService: AlertService
-  ) {
-  }
+  ) {}
 
   ngOnInit() {
     this.checkUser();
@@ -34,13 +34,15 @@ export class LoginPageComponent implements OnInit {
     console.log('cid ', this.cid);
 
     try {
-      console.log('check ', this.cid);
+      console.log('login check ', this.cid);
       const result: any = await this.userService.getpersonId(this.cid);
-      console.log(result.rows);
+      // console.log(result.user);
       if (result.rows.length) {
         // console.log('n', result.rows.personId);
-        this.cid = result.rows.length;
-        console.log('found : ', this.cid);
+        // this.cid = result.rows[0].personId;
+        this.genre = result.rows.genre;
+        // console.log('found : ', result.rows);
+        console.log('genre : ', this.genre);
         this.router.navigate(['main']);
       } else {
         console.log('not');
@@ -51,12 +53,6 @@ export class LoginPageComponent implements OnInit {
       console.log(err);
     }
   }
-  }
+}
 
-  // onLogin() {
-  //   // tslint:disable-next-line:max-line-length
-// tslint:disable-next-line: max-line-length
-  //   sessionStorage.setItem('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsIm5hbWUiOiJKb2huIERvZSIsImxldmVsIjoyLCJpYXQiOjE1MzYyMzkwMjJ9.DEY5VNuDqMBcoNdis1asgHwHV5opwqF0C1sPXsB0DeY');
-  //   this.router.navigate(['main']);
-  // }
 

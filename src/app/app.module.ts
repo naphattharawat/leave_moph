@@ -1,5 +1,6 @@
 import { AlertService } from './services/alert.service';
 import { FormsModule } from '@angular/forms';
+import { registerLocaleData } from '@angular/common';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -21,6 +22,7 @@ import { VerifyComponent } from './verify/verify.component';
 import { RegisterComponent } from './modules/register/register.component';
 import { AuthModule } from './auth/auth.module';
 import { ReqLeaveComponent } from './req-leave/req-leave.component';
+import { MainAdComponent } from './main-ad/main-ad.component';
 
 
 
@@ -29,7 +31,8 @@ import { ReqLeaveComponent } from './req-leave/req-leave.component';
     AppComponent,
     VerifyComponent,
     RegisterComponent,
-    ReqLeaveComponent
+    ReqLeaveComponent,
+    MainAdComponent
   ],
   imports: [
     BrowserModule,
