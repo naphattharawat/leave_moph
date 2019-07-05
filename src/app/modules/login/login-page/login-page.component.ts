@@ -20,8 +20,7 @@ export class LoginPageComponent implements OnInit {
     private authGuardService: AuthGuardService,
     private userService: UserService,
     private alertService: AlertService
-  ) {
-  }
+  ) {}
 
   ngOnInit() {
     this.checkUser();
@@ -51,12 +50,11 @@ export class LoginPageComponent implements OnInit {
       console.log(err);
     }
   }
-  }
+}
 
-  // onLogin() {
-  //   // tslint:disable-next-line:max-line-length
+// onLogin() {
+//   // tslint:disable-next-line:max-line-length
 // tslint:disable-next-line: max-line-length
-  //   sessionStorage.setItem('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsIm5hbWUiOiJKb2huIERvZSIsImxldmVsIjoyLCJpYXQiOjE1MzYyMzkwMjJ9.DEY5VNuDqMBcoNdis1asgHwHV5opwqF0C1sPXsB0DeY');
-  //   this.router.navigate(['main']);
-  // }
-
+//   sessionStorage.setItem('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsIm5hbWUiOiJKb2huIERvZSIsImxldmVsIjoyLCJpYXQiOjE1MzYyMzkwMjJ9.DEY5VNuDqMBcoNdis1asgHwHV5opwqF0C1sPXsB0DeY');
+//   this.router.navigate(['main']);
+// }
