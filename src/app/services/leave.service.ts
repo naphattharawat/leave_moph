@@ -42,7 +42,8 @@ export class LeaveService {
         personId,
         lTypeId,
         status
-      });
+      })
+      .toPromise();
     }
 
   getLeaveNotApprove(personId: string) {
@@ -55,7 +56,10 @@ export class LeaveService {
 
   leaveType() {
     return this.http
-      .get(`http://localhost:3001/reqLeave`, {});
+      .get(`http://localhost:3001/reqLeave`, {})
+      .toPromise()
+      .then(result => result)
+      .catch( err => err);
   }
 
 
@@ -90,12 +94,12 @@ export class LeaveService {
     .catch(err => err);
   }
 
-  getLeaveBoxShow(personId: string) {
-    return this.http.post(`http://localhost:3001/leave/leave-box-show`, {personId})
-      .toPromise()
-      .then(result => result)
-      .catch(error => error);
-  }
+  // getLeaveBoxShow(personId: string) {
+  //   return this.http.post(`http://localhost:3001/leave/leave-box-show`, {personId})
+  //     .toPromise()
+  //     .then(result => result)
+  //     .catch(error => error);
+  // }
 
   // getLeaveBoxShowOnly(personId: string) {
   //   return this.http.post(`http://localhost:3001/leave/leave-box-show-only`, {personId})

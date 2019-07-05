@@ -38,7 +38,7 @@ export class MainPageComponent implements OnInit {
     this.getLeaveApprove();
     this.getLeaveNotApprove();
     this.getLeaveWaitApprove();
-    this.getLeaveBoxShow();
+    // this.getLeaveBoxShow();
     // this.getLeaveBoxShowOnly();
 
   }
@@ -81,15 +81,15 @@ export class MainPageComponent implements OnInit {
     }
   }
 
-  async getLeaveBoxShow() {
-    const result: any = await this.leaveService.getLeaveBoxShow(this.userList['cid']);
+  // async getLeaveBoxShow() {
+  //   const result: any = await this.leaveService.getLeaveBoxShow(this.userList['cid']);
 
-    if (result.statusCode === 200 && result.rows.length) {
+  //   if (result.statusCode === 200 && result.rows.length) {
 
-      this.leaveBoxShow = result.rows;
-      // console.log('g', this.aboutUser);
-    }
-  }
+  //     this.leaveBoxShow = result.rows;
+  //     // console.log('g', this.aboutUser);
+  //   }
+  // }
   // async getLeaveBoxShowOnly() {
   //   const result: any = await this.leaveService.getLeaveBoxShowOnly(this.userList['cid']);
 
