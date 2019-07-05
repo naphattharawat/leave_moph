@@ -93,11 +93,10 @@ export class HistoryComponent implements OnInit {
     const a = moment([startYear, startMonth, startDate]);
     const b = moment([endYear, endMonth, endDate]);
     // console.log(b.diff(a, 'days'));
-
+    this.currentRow.totalLeave = 0.0;
     this.currentRow.totalLeave = b.diff(a, 'days');
-
     if (this.currentRow.lSelect === '3') {
-      this.currentRow.totalLeave = this.currentRow.totalLeave + 1;
+      this.currentRow.totalLeave = this.currentRow.totalLeave + 1.0;
       console.log('3', this.currentRow.totalLeave);
     } else if (this.currentRow.lSelect === '1' || this.currentRow.lSelect === '2') {
       this.currentRow.totalLeave = 0.5;
