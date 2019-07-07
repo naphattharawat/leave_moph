@@ -30,7 +30,7 @@ export class ReqLeaveComponent implements OnInit {
     private leave: LeaveService,
     private alertService: AlertService,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit() {
     // this.toDay = moment().format('MM/DD/YYYY');
@@ -63,43 +63,40 @@ export class ReqLeaveComponent implements OnInit {
     if (this.dateEnd) {
       this.totalLeave = e.diff(s, 'days');
       console.log('total ', this.totalLeave);
+      if (this.lSelect === '3') {
+        this.totalLeave = this.totalLeave + 1;
+        console.log('tlll', this.totalLeave);
+      } else if (this.lSelect === '1' || this.lSelect === '2') {
+        this.totalLeave = 0.5;
+        console.log('0.5', this.totalLeave);
+      }
     } else if (!this.dateEnd) {
       this.dateEnd = this.dateStart;
-      this.totalLeave = 1;
-    }
-    if (this.lSelect === '3') {
-      this.totalLeave = this.totalLeave + 1;
-      console.log('tlll', this.totalLeave);
-
-    } else if (this.lSelect === '1' || this.lSelect === '2') {
-      this.totalLeave = 0.5;
-      console.log('0.5', this.totalLeave);
-
+      // this.totalLeave = 1;
     }
     try {
       console.log('finally', this.totalLeave);
-
-      const result: any = await this.leave.reqLeave(
-        this.dateStart,
-        this.dateEnd,
-        this.totalLeave,
-        this.statusHr,
-        this.statusBoss,
-        this.statusCeo,
-        this.personId,
-        this.lTypeId,
-        this.status
-      );
+      const obj = {
+        dateStart: this.dateStart,
+        dateEnd: this.dateEnd,
+        totalLeave: this.totalLeave,
+        personId: this.personId,
+        lTypeId: this.lTypeId,
+        status: this.status
+      };
+      const result: any = await this.leave.reqLeave(obj);
 
       // console.log('ds', moment(this.dateStart).format('YYYY-MM-DD'));
       // console.log('dateEnd', moment(this.dateEnd).format('YYYY-MM-DD'));
 
       if (result.ok) {
-        console.log('ok', result);
+        console.log('ok', result.rows);
+        console.log('tttt', this.totalLeave);
+
         await this.alertService.success().then(value => {
           console.log('value', value);
           if (value.dismiss) {
-            document.location.href = '/history';
+            // document.location.href = '/history';
           }
         });
         // this.router.navigate(['main']);
