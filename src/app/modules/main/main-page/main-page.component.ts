@@ -55,7 +55,7 @@ export class MainPageComponent implements OnInit {
     if (result.statusCode === 200 && result.rows.length) {
       console.log(result.rows);
       this.leaveNotApprove = result.rows[0];
-      
+
     }
   }
 

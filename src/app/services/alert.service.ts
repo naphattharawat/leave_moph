@@ -36,7 +36,8 @@ export class AlertService {
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'yes'
+      cancelButtonText: 'ยกเลิก',
+      confirmButtonText: 'ยืนยัน'
     });
   }
 
