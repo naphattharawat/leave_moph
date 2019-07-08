@@ -17,4 +17,25 @@ export class LeaveTypeService {
     .then(result => result)
     .catch(err => err);
   }
+
+  insertLeaveType(data) {
+    return this.http.post(`http://localhost:3001/leaveType`, {data})
+    .toPromise()
+    .then(result => result)
+    .catch(err => err);
+  }
+
+  updateLeaveType(lTypeName, is_total, lTypeId) {
+    return this.http.post(`http://localhost:3001/leaveType/update`, {lTypeName, is_total, lTypeId})
+    .toPromise()
+    .then(result => result)
+    .catch(err => err);
+  }
+
+  delLeaveType(lTypeId) {
+    return this.http.post(`http://localhost:3001/leaveType/del`, {lTypeId})
+    .toPromise()
+    .then(result => result)
+    .catch(err => err);
+  }
 }
