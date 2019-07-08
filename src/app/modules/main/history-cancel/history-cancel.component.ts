@@ -34,9 +34,6 @@ export class HistoryCancelComponent implements OnInit {
 
   ngOnInit() {
     this.getleaveHistoryCancel();
-    // this.getLeaveType();
-    // this.dateNow = moment().format('MM-DD-YYYY');
-    // console.log('moment', this.dateNow);
   }
 
   async getleaveHistoryCancel() {
@@ -45,9 +42,6 @@ export class HistoryCancelComponent implements OnInit {
     if (result.statusCode === 200 && result.rows.length) {
       console.log('rows:', result.rows);
       this.leaveHistoryCancel = result.rows;
-      // console.log('test', this.leaveShow);
-      // console.log('date', this.leaveShow[0].dateStart);
-      // console.log('g', this.aboutUser);
     }
   }
 
@@ -62,7 +56,7 @@ export class HistoryCancelComponent implements OnInit {
           if (result) {
             this.getleaveHistoryCancel();
             this.router.navigate(['history-cancel']);
-            console.log('fffef',result);
+            console.log('history-cancel', result);
           }
         } else if (value.dismiss) {
           console.log('false');

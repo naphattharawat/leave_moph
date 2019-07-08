@@ -1,43 +1,44 @@
 <div class="main-container">
-    <header class="header header-6">
-        <div class="branding">
-            <a href="/main" class="nav-link">
-              <clr-icon shape="book"></clr-icon>
-              <span class="title">LMS</span>
-            </a>
-          </div>
-          <div class="header-actions">
-              <clr-dropdown>
-                  <button class="nav-text" clrDropdownTrigger>
-                      {{userList.name}} {{userList.last_name}}
-                      <clr-icon shape="caret down"></clr-icon>
-                  </button>
-        
-                <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
-                  <a href="javascript://" clrDropdownItem routerLink="/about">ข้อมูลส่วนตัว</a>
-                  <a href="javascript://" clrDropdownItem (click)="onLogout()"
-                  >ออกจากระบบ</a
-                  >
-                </clr-dropdown-menu>
-              </clr-dropdown>
-            </div>
-
-    </header>
-    <div class="content-container">
-        <div class="content-area">
-      <router-outlet></router-outlet>
-        </div>
-        <nav class="sidenav">
-            <section class="sidenav-content">
-                <a href="../main" class="nav-link">
-                  หน้าแรก
-              </a>
-                <a href="../history" class="nav-link">
-                    การลา
-                </a>
-            </section>
-        </nav>
+  <header class="header header-6">
+    <div class="branding">
+      <a href="/main" class="nav-link">
+        <clr-icon shape="book"></clr-icon>
+        <span class="title">LMS</span>
+      </a>
     </div>
+    <div class="header-actions">
+      <clr-dropdown>
+        <button class="nav-text" clrDropdownTrigger>
+          {{userList.name}} {{userList.last_name}}
+          <clr-icon shape="caret down"></clr-icon>
+        </button>
+
+        <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
+          <a href="javascript://" clrDropdownItem routerLink="/about">ข้อมูลส่วนตัว</a>
+          <a href="javascript://" clrDropdownItem (click)="onLogout()">ออกจากระบบ</a>
+        </clr-dropdown-menu>
+      </clr-dropdown>
+    </div>
+
+  </header>
+  <div class="content-container">
+    <div class="content-area">
+      <router-outlet></router-outlet>
+    </div>
+    <nav class="sidenav">
+      <section class="sidenav-content">
+        <a href="../main" class="nav-link">
+          หน้าแรก
+        </a>
+        <a href="../history" class="nav-link">
+          การลา
+        </a>
+        <a href="../history-cancel" class="nav-link">
+          ประวัติยกเลิกการลา
+        </a>
+      </section>
+    </nav>
+  </div>
 </div>
 
 <!-- <clr-main-container>
@@ -48,7 +49,7 @@
         <span class="title">LMS</span>
       </a>
     </div> -->
-    <!-- <div class="header-nav" [clr-nav-level]="1">
+<!-- <div class="header-nav" [clr-nav-level]="1">
       <a
         href="javascript://"
         class="active nav-link nav-icon"
@@ -60,7 +61,7 @@
         <clr-icon shape="folder"></clr-icon>
       </a>
     </div> -->
-    <!-- <div class="header-actions">
+<!-- <div class="header-actions">
       <clr-dropdown>
           <button class="nav-text" clrDropdownTrigger>
               {{userList.name}} {{userList.last_name}}
@@ -89,7 +90,7 @@
     >
       <clr-vertical-nav routerLinkActive="active">
         <a clrVerticalNavLink href="../history" routerLinkActive="active">การลา</a> -->
-        <!-- <clr-vertical-nav-group-children>
+<!-- <clr-vertical-nav-group-children>
           <a
             clrVerticalNavLink
             href="../../../reqLeave"
@@ -111,7 +112,7 @@
             report
           </a>
         </clr-vertical-nav-group-children> -->
-      <!-- </clr-vertical-nav>
+<!-- </clr-vertical-nav>
     </clr-vertical-nav>
   </div>
 </clr-main-container> -->

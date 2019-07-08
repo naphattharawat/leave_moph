@@ -7,7 +7,7 @@ import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 import * as moment from 'moment';
 import { AlertService } from 'src/app/services/alert.service';
-import {IMyDpOptions} from 'mydatepicker';
+
 
 registerLocaleData(localeFr);
 @Component({
@@ -16,10 +16,7 @@ registerLocaleData(localeFr);
   styleUrls: ['./history.component.css']
 })
 export class HistoryComponent implements OnInit {
-  public myDatePickerOptions: IMyDpOptions = {
-    // other options...
-    dateFormat: 'dd.mm.yyyy',
-};
+
 public model: any = { date: { year: 2018, month: 10, day: 9 } };
   jwtHelper = new JwtHelperService();
   userList: any;
