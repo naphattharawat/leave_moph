@@ -1,4 +1,15 @@
-    <clr-datagrid *ngIf="leaveShow">
+<ol class="breadcrumb breadcrumb-arrow font-trirong">
+        <li><a href="javascript://">History</a></li>
+      </ol>
+<h1>
+    ประวัติการลาทั้งหมด
+</h1> 
+<div style="text-align: right">
+<button type="button" (click)="onAdd()" class="btn btn-success">
+    + ยื่นเรื่องการลา
+</button>
+</div>
+<clr-datagrid *ngIf="leaveShow" >
         <clr-dg-column>วันที่ลา</clr-dg-column>
         <clr-dg-column>ถึงวันที่</clr-dg-column>
         <clr-dg-column>จำนวนวัน</clr-dg-column>
@@ -6,7 +17,7 @@
         <clr-dg-column>ครึ่งวัน/เต็มวัน</clr-dg-column>
         <clr-dg-column>สถานะการลา</clr-dg-column>
         <clr-dg-column>#</clr-dg-column>
-        <clr-dg-row *ngFor="let item of leaveShow">
+        <clr-dg-row *ngFor="let item of leaveShow" [ngClass]="{pass: item.conclude==2 , wait: item.conclude==1 , noPass: item.conclude==3}">
             <clr-dg-cell>{{ item.dateStart }}</clr-dg-cell>
             <clr-dg-cell>{{ item.dateEnd }}</clr-dg-cell>
             <clr-dg-cell>{{ item.totalLeave }}</clr-dg-cell>
@@ -14,25 +25,28 @@
             <clr-dg-cell *ngIf=" item.lSelect==1 ">เช้า</clr-dg-cell>
             <clr-dg-cell *ngIf=" item.lSelect==2 ">บ่าย</clr-dg-cell>
             <clr-dg-cell *ngIf=" item.lSelect==3 ">เต็มวัน</clr-dg-cell>
-            <clr-dg-cell *ngIf=" item.statusHr==2 && item.statusBoss==2 && item.statusCeo==2">ลาสำเร็จ</clr-dg-cell>
+            <clr-dg-cell *ngIf=" item.conclude==2 " >ผ่านการอนุมัติ</clr-dg-cell>
+            <clr-dg-cell *ngIf=" item.conclude==1 " >รอการอนุมัติ</clr-dg-cell>
+            <clr-dg-cell *ngIf=" item.conclude==3 " >ไม่ผ่านการอนุมัติ</clr-dg-cell>
+            <!-- <clr-dg-cell *ngIf=" item.statusHr==2 && item.statusBoss==2 && item.statusCeo==2">ลาสำเร็จ</clr-dg-cell>
             <clr-dg-cell *ngIf=" item.statusHr==1 && item.statusBoss==1 && item.statusCeo==1">รออนุมัติ</clr-dg-cell>
             <clr-dg-cell *ngIf=" item.statusHr==2 && item.statusBoss==1 && item.statusCeo==1">รออนุมัติ</clr-dg-cell>
             <clr-dg-cell *ngIf=" item.statusHr==2 && item.statusBoss==2 && item.statusCeo==1">รออนุมัติ</clr-dg-cell>
             <clr-dg-cell *ngIf=" item.statusHr==3 && item.statusBoss==1 && item.statusCeo==1">ลาไม่สำเร็จ</clr-dg-cell>
             <clr-dg-cell *ngIf=" item.statusHr==2 && item.statusBoss==3 && item.statusCeo==1">ลาไม่สำเร็จ</clr-dg-cell>
-            <clr-dg-cell *ngIf=" item.statusHr==2 && item.statusBoss==2 && item.statusCeo==3">ลาไม่สำเร็จ</clr-dg-cell>
+            <clr-dg-cell *ngIf=" item.statusHr==2 && item.statusBoss==2 && item.statusCeo==3">ลาไม่สำเร็จ</clr-dg-cell> -->
             <clr-dg-cell>
                 <button class="btn btn-primary" (click)="onEdit(item)" 
                 [disabled]="(item.statusHr==3 && item.statusBoss==1 && item.statusCeo==1)
                 || (item.statusHr==2 && item.statusBoss==3 && item.statusCeo==1)
                 || (item.statusHr==2 && item.statusBoss==2 && item.statusCeo==3)
                 || (item.statusHr==2 && item.statusBoss==2 && item.statusCeo==2)">
-                แก้ไข</button>
+                แก้ไข</button><br>
                 <button class="btn btn-danger" (click)="onCancel(item)"
                 [disabled]="(item.statusHr==3 && item.statusBoss==1 && item.statusCeo==1)
                 || (item.statusHr==2 && item.statusBoss==3 && item.statusCeo==1)
                 || (item.statusHr==2 && item.statusBoss==2 && item.statusCeo==3)
-                || (item.statusHr==2 && item.statusBoss==2 && item.statusCeo==2)">ยกเลิก</button>
+                || (item.statusHr==2 && item.statusBoss==2 && item.statusCeo==2)">ยกเลิก</button><br>
                 <button class="btn btn-success" disabled>ออกหนังสือ</button>
             </clr-dg-cell>
         </clr-dg-row>
@@ -47,16 +61,45 @@
     </clr-datagrid>
     
     <clr-modal *ngIf="currentRow" [(clrModalOpen)]="modalEdit">
-        <h3 class="modal-title">แก้ไขการลา</h3>
+        <h3 class="modal-title" *ngIf="currentRow.mode== 'edit'">แก้ไขการลา</h3>
+        <h3 class="modal-title" *ngIf="currentRow.mode== 'add'">ยื่นเรื่องการลา</h3>
         <div class="modal-body">
-            <label><b>เวลา</b></label> <br>
-            <div class="clr-select-wrapper">
-            <select id="lSelect" [(ngModel)]="currentRow.lSelect" class="clr-select" name="lSelect">
-                <option value="1">เช้า</option>
-                <option value="2">บ่าย</option>
-                <option value="3">เต็มวัน</option>
-            </select>
-            </div>
+                <clr-radio-container clrInline>
+                        <label>กรุณาเลือกช่วงเวลาของการลา</label>
+                        <clr-radio-wrapper>
+                          <input
+                            type="radio"
+                            clrRadio
+                            name="lSelect"
+                            required
+                            value="3"
+                            [(ngModel)]="currentRow.lSelect"
+                          />
+                          <label>ลาเต็มวัน</label>
+                        </clr-radio-wrapper>
+                        <clr-radio-wrapper>
+                          <input
+                            type="radio"
+                            clrRadio
+                            name="lSelect"
+                            required
+                            value="1"
+                            [(ngModel)]="currentRow.lSelect"
+                          />
+                          <label>ลาครึ่งวันช่วงเช้า</label>
+                        </clr-radio-wrapper>
+                        <clr-radio-wrapper>
+                          <input
+                            type="radio"
+                            clrRadio
+                            name="lSelect"
+                            required
+                            value="2"
+                            [(ngModel)]="currentRow.lSelect"
+                          />
+                          <label>ลาครึ่งวันช่วงบ่าย</label>
+                        </clr-radio-wrapper>
+                      </clr-radio-container>
             <clr-input-container>
                 <label>วันที่ลา (เดือน/วัน/ปี)</label>
             <input clrInput type="date" [(ngModel)]="currentRow.dateStart" name="dateStart" clrDate />

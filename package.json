@@ -32,6 +32,7 @@
     "core-js": "^2.6.9",
     "lodash": "^4.17.11",
     "moment": "^2.24.0",
+    "mydatepicker": "^2.6.6",
     "numeral": "^2.0.6",
     "rxjs": "~6.5.2",
     "simple-oauth2": "^2.2.1",
