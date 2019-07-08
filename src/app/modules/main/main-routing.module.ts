@@ -14,11 +14,8 @@ import { AuthGuardService } from 'src/app/services/auth-guard.service';
 import { ReqLeaveComponent } from 'src/app/req-leave/req-leave.component';
 import { HistoryComponent } from './history/history.component';
 import { HistoryCancelComponent } from './history-cancel/history-cancel.component';
-<<<<<<< HEAD
 import { InsertUserComponent } from 'src/app/insert-user/insert-user.component';
-=======
 import { LeaveTypeComponent } from 'src/app/leave-type/leave-type.component';
->>>>>>> 73fcd99a5a7649795351b1fcb6081f5a2018380d
 
 const routes: Routes = [
   {

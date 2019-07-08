@@ -14,12 +14,8 @@ import { HelperModule } from 'src/app/pipes/helpers.module';
 import { HistoryComponent } from './history/history.component';
 import { MyDatePickerModule } from 'mydatepicker';
 import { HistoryCancelComponent } from './history-cancel/history-cancel.component';
-<<<<<<< HEAD
 import { InsertUserComponent } from 'src/app/insert-user/insert-user.component';
-=======
 import { LeaveTypeComponent } from 'src/app/leave-type/leave-type.component';
-
->>>>>>> 73fcd99a5a7649795351b1fcb6081f5a2018380d
 
 @NgModule({
   declarations: [
@@ -31,11 +27,8 @@ import { LeaveTypeComponent } from 'src/app/leave-type/leave-type.component';
     PreferenceComponent,
     HistoryComponent,
     HistoryCancelComponent,
-<<<<<<< HEAD
-    InsertUserComponent
-=======
+    InsertUserComponent,
     LeaveTypeComponent
->>>>>>> 73fcd99a5a7649795351b1fcb6081f5a2018380d
   ],
   imports: [
     CommonModule,
