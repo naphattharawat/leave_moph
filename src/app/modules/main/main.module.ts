@@ -12,11 +12,10 @@ import { UserComponent } from './user/user.component';
 import { PreferenceComponent } from './preference/preference.component';
 import { HelperModule } from 'src/app/pipes/helpers.module';
 import { HistoryComponent } from './history/history.component';
-import { MyDatePickerModule } from 'mydatepicker';
 import { HistoryCancelComponent } from './history-cancel/history-cancel.component';
+import { InsertUserComponent } from 'src/app/insert-user/insert-user.component';
 import { LeaveTypeComponent } from 'src/app/leave-type/leave-type.component';
 import { MyDatePickerTHModule } from 'mydatepicker-th';
-
 
 @NgModule({
   declarations: [
@@ -28,6 +27,7 @@ import { MyDatePickerTHModule } from 'mydatepicker-th';
     PreferenceComponent,
     HistoryComponent,
     HistoryCancelComponent,
+    InsertUserComponent,
     LeaveTypeComponent
   ],
   imports: [
@@ -36,7 +36,6 @@ import { MyDatePickerTHModule } from 'mydatepicker-th';
     ClarityModule,
     HelperModule,
     MainRoutingModule,
-    MyDatePickerModule,
     MyDatePickerTHModule
   ]
 })

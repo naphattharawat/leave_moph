@@ -1,4 +1,3 @@
-
 <ol class="breadcrumb breadcrumb-arrow font-trirong">
   <li><a href="javascript://">Home</a></li>
 </ol>
@@ -8,41 +7,41 @@
 
 <div class="clr-row">
 
-<div class="clr-col-md-4" *ngIf="leaveApprove">
-  <div class="card" style="background-color: #b9dd9b">
-    <div class="card-header">
-      <clr-icon shape="check"></clr-icon> วันลาที่อนุมัติ
-    </div>
-    <div class="card-block">
-      <div class="card-title">
-        ประจำปี 2562
+  <div class="clr-col-md-4" *ngIf="leaveApprove">
+    <div class="card" style="background-color: #b9dd9b">
+      <div class="card-header">
+        <clr-icon shape="check"></clr-icon> วันลาที่อนุมัติ
       </div>
+      <div class="card-block">
+        <div class="card-title">
+          ประจำปี 2562
+        </div>
 
-      <div class="card-text">
-        ทั้งหมด {{ leaveApprove.countApprove }} ครั้ง
+        <div class="card-text">
+          ทั้งหมด {{ leaveApprove.countApprove }} ครั้ง
+        </div>
+
       </div>
-
-    </div>
-  </div>
-</div>
-
-<div class="clr-col-md-4" *ngIf="leaveWaitApprove">
-  <div class="card" style="background-color: #dddc8f">
-    <div class="card-header">
-      <clr-icon shape="clock"></clr-icon> วันลาที่รออนุมัติ
-    </div>
-    <div class="card-block">
-      <div class="card-title">
-        ประจำปี 2562
-      </div>
-      <div class="card-text">
-        ทั้งหมด {{ leaveWaitApprove.countWaitApprove }}
-      </div>
-
     </div>
   </div>
-</div>
-<div class="clr-col-md-4" *ngIf="leaveNotApprove">
+
+  <div class="clr-col-md-4" *ngIf="leaveWaitApprove">
+    <div class="card" style="background-color: #dddc8f">
+      <div class="card-header">
+        <clr-icon shape="clock"></clr-icon> วันลาที่รออนุมัติ
+      </div>
+      <div class="card-block">
+        <div class="card-title">
+          ประจำปี 2562
+        </div>
+        <div class="card-text">
+          ทั้งหมด {{ leaveWaitApprove.countWaitApprove }}
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="clr-col-md-4" *ngIf="leaveNotApprove">
     <div class="card" style="background-color: #da9393">
       <div class="card-header">
         <clr-icon shape="times"></clr-icon> วันลาที่ไม่อนุมัติ
@@ -60,7 +59,7 @@
 </div>
 
 
-  <!-- <div class="clr-col-lg-3 clr-col-md-8 clr-col-12" *ngIf="leaveTotal">
+<!-- <div class="clr-col-lg-3 clr-col-md-8 clr-col-12" *ngIf="leaveTotal">
     <div class="card" style="background-color: #b9d6f8">
       <div class="card-header">
         <clr-icon shape="happy-face"></clr-icon> วันลาคงเหลือ
@@ -79,18 +78,18 @@
 
 <div class="clr-row">
   <div class=" clr-col-md-4" *ngFor="let item of leaveBoxShow" >
-    <div class="card">
+    <div class="card" [ngStyle]="{'background-color': getRandomColor()}">
       <div class="card-header">
         <clr-icon shape=""></clr-icon> วัน{{ item.lTypeName }}
       </div>
-      <div class="card-block">
+      <div class="card-block" >
         <div class="card-title">
           ประจำปี 2562
         </div>
-        <div class="card-text"  *ngIf="item.is_total == 'Y'">
-          ทั้งหมด {{item.totalDay}} วัน ใช้ไปแล้ว  {{ item.totalLeave }}  วัน เหลือ {{ item.balance_leave }} วัน
+        <div class="card-text" *ngIf="item.is_total == 'Y'" style="color: black">
+          ทั้งหมด {{item.totalDay}} วัน ใช้ไปแล้ว {{ item.totalLeave }} วัน เหลือ {{ item.balance_leave }} วัน
         </div>
-        <div class="card-text" *ngIf="item.is_total == 'N'">
+        <div class="card-text" *ngIf="item.is_total == 'N'" style="color: black">
           ใช้ไปแล้ว {{ item.totalLeave }} วัน
         </div>
       </div>

@@ -9,6 +9,26 @@
     + ยื่นเรื่องการลา
   </button>
 </div>
+<clr-datagrid *ngIf="leaveShow" >
+        <clr-dg-column>วันที่ลา</clr-dg-column>
+        <clr-dg-column>ถึงวันที่</clr-dg-column>
+        <clr-dg-column>จำนวนวัน</clr-dg-column>
+        <clr-dg-column [clrDgField]="'leaveShow.lTypeName'">ประเภทการลา</clr-dg-column>
+        <clr-dg-column>ครึ่งวัน/เต็มวัน</clr-dg-column>
+        <clr-dg-column>สถานะการลา</clr-dg-column>
+        <clr-dg-column>#</clr-dg-column>
+        <clr-dg-row *ngFor="let item of leaveShow" [ngClass]="{pass: item.conclude==2 , wait: item.conclude==1 , noPass: item.conclude==3}">
+            <clr-dg-cell>{{ item.dateStart }}</clr-dg-cell>
+            <clr-dg-cell>{{ item.dateEnd }}</clr-dg-cell>
+            <clr-dg-cell>{{ item.totalLeave }}</clr-dg-cell>
+            <clr-dg-cell>{{ item.lTypeName }}</clr-dg-cell>
+            <clr-dg-cell *ngIf=" item.lSelect==1 ">เช้า</clr-dg-cell>
+            <clr-dg-cell *ngIf=" item.lSelect==2 ">บ่าย</clr-dg-cell>
+            <clr-dg-cell *ngIf=" item.lSelect==3 ">เต็มวัน</clr-dg-cell>
+            <clr-dg-cell *ngIf=" item.conclude==1 " >รอการอนุมัติ</clr-dg-cell>
+            <clr-dg-cell *ngIf=" item.conclude==2 " >ผ่านการอนุมัติ</clr-dg-cell>
+            <clr-dg-cell *ngIf=" item.conclude==3 " >ไม่ผ่านการอนุมัติ</clr-dg-cell>
+            <!-- <clr-dg-cell *ngIf=" item.statusHr==2 && item.statusBoss==2 && item.statusCeo==2">ลาสำเร็จ</clr-dg-cell>
 <clr-datagrid *ngIf="leaveShow">
   <clr-dg-column>วันที่ลา</clr-dg-column>
   <clr-dg-column>ถึงวันที่</clr-dg-column>
@@ -29,7 +49,7 @@
     <clr-dg-cell *ngIf=" item.conclude==2 ">ผ่านการอนุมัติ</clr-dg-cell>
     <clr-dg-cell *ngIf=" item.conclude==1 ">รอการอนุมัติ</clr-dg-cell>
     <clr-dg-cell *ngIf=" item.conclude==3 ">ไม่ผ่านการอนุมัติ</clr-dg-cell>
-    <!-- <clr-dg-cell *ngIf=" item.statusHr==2 && item.statusBoss==2 && item.statusCeo==2">ลาสำเร็จ</clr-dg-cell>
+     <clr-dg-cell *ngIf=" item.statusHr==2 && item.statusBoss==2 && item.statusCeo==2">ลาสำเร็จ</clr-dg-cell>
             <clr-dg-cell *ngIf=" item.statusHr==1 && item.statusBoss==1 && item.statusCeo==1">รออนุมัติ</clr-dg-cell>
             <clr-dg-cell *ngIf=" item.statusHr==2 && item.statusBoss==1 && item.statusCeo==1">รออนุมัติ</clr-dg-cell>
             <clr-dg-cell *ngIf=" item.statusHr==2 && item.statusBoss==2 && item.statusCeo==1">รออนุมัติ</clr-dg-cell>
