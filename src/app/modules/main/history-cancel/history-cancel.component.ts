@@ -19,6 +19,7 @@ export class HistoryCancelComponent implements OnInit {
   userList: any;
   leaveHistoryCancel: any;
   leaveType: any[];
+  currentRow: any;
 
   constructor(
     private leaveService: LeaveService,
@@ -50,4 +51,28 @@ export class HistoryCancelComponent implements OnInit {
     }
   }
 
- }
+  async onRestore(row) {
+    this.currentRow = Object.assign({}, row);
+    console.log('Restore', row);
+    this.alertService.restore()
+      .then(async (value) => {
+        if (value.value === true) {
+          console.log('true');
+          const result: any = await this.leaveService.restoreLeave(this.currentRow.lId);
+          if (result) {
+            this.getleaveHistoryCancel();
+            this.router.navigate(['history-cancel']);
+            console.log('fffef',result);
+          }
+        } else if (value.dismiss) {
+          console.log('false');
+        }
+        console.log('k', value);
+      })
+      .catch((err) => {
+        console.log('false', err);
+      });
+
+
+  }
+}

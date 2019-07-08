@@ -24,7 +24,7 @@
             <clr-dg-cell *ngIf=" item.statusHr==2 && item.statusBoss==3 && item.statusCeo==1">ลาไม่สำเร็จ</clr-dg-cell>
             <clr-dg-cell *ngIf=" item.statusHr==2 && item.statusBoss==2 && item.statusCeo==3">ลาไม่สำเร็จ</clr-dg-cell>
             <clr-dg-cell>
-                <button class="btn btn-primary" (click)="onEdit(item)" [disabled]="">กลับสถานะเดิม</button>
+                <button class="btn btn-primary" (click)="onRestore(item)" [disabled]="">กลับสถานะเดิม</button>
             </clr-dg-cell>
             
         </clr-dg-row>

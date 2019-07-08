@@ -37,6 +37,7 @@ export class ReqLeaveComponent implements OnInit {
     // console.log('toDay', this.toDay);
 
     // this.lastDay = moment().format('YYYY-MM-DD');
+
     const token = sessionStorage.getItem('token');
     const decoded = this.jwtHelper.decodeToken(token);
     this.personId = decoded.cid;
@@ -44,8 +45,9 @@ export class ReqLeaveComponent implements OnInit {
   }
 
   async onSave() {
-    console.log('test');
-    console.log('ds', this.dateStart);
+    // console.log('test');
+    // console.log('ds', this.dateStart);
+
     this.dateStart = moment(this.dateStart).format('YYYY-MM-DD');
     this.dateEnd = moment(this.dateEnd).format('YYYY-MM-DD');
 
@@ -75,7 +77,8 @@ export class ReqLeaveComponent implements OnInit {
       // this.totalLeave = 1;
     }
     try {
-      console.log('finally', this.totalLeave);
+      // console.log('finally', this.totalLeave);
+
       const obj = {
         dateStart: this.dateStart,
         dateEnd: this.dateEnd,
@@ -90,8 +93,8 @@ export class ReqLeaveComponent implements OnInit {
       // console.log('dateEnd', moment(this.dateEnd).format('YYYY-MM-DD'));
 
       if (result.ok) {
-        console.log('ok', result.rows);
-        console.log('tttt', this.totalLeave);
+        // console.log('ok', result.rows);
+        // console.log('tttt', this.totalLeave);
 
         await this.alertService.success().then(value => {
           console.log('value', value);
