@@ -78,4 +78,24 @@ export class MainPageComponent implements OnInit {
     }
   }
 
+  bgColor() {
+
+  }
+
+  getRandomColor2() {
+    let length = 6;
+    const chars = '0123456789ABCDEF';
+    let hex = '#';
+// tslint:disable-next-line: no-bitwise
+    while (length--) { hex += chars[(Math.random() * 16) | 0]; }
+    return hex;
+  }
+
+  getRandomColor() {
+    const color = Math.floor(0x1000000 * Math.random()).toString(16);
+    return '#' + ('000000' + color).slice(-6);
+  }
 }
+
+
+

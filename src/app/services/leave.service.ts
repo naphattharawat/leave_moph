@@ -95,7 +95,7 @@ export class LeaveService {
   }
 
   leaveHistoryCancel(personId: string) {
-    return this.http.post(`http://localhost:3001/leave/leave-history-cancel`, { personId })
+    return this.http.post(`http://localhost:3001/leave/history-cancel`, { personId })
       .toPromise()
       .then(result => result)
       .catch(error => error);
