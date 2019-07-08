@@ -22,7 +22,7 @@ export class HistoryComponent implements OnInit {
     dateFormat: 'dd-mm-yyyy',
     disableWeekends: true,
     markCurrentDay: true,
-    disableDays: [{ year: 2019, month: 7, day: 12 }],
+    disableDays: [{ year: 2019, month: 7, day: 12 }]
   };
 
   // Initialized to specific date (09.10.2018).
@@ -61,8 +61,6 @@ export class HistoryComponent implements OnInit {
     // console.log('moment', this.dateNow);
   }
 
-
-
   async getLeaveShow() {
     const result: any = await this.leaveService.getLeaveShow(
       this.userList['cid']
@@ -94,18 +92,13 @@ export class HistoryComponent implements OnInit {
     this.currentRow = Object.assign({}, row);
     console.log('row', row.dateStart);
     // this.newDate = moment(row.dateStart).format('MM-DD-YYYY');
-<<<<<<< HEAD
     this.currentRow['dateStart'] = moment(this.currentRow['dateStart']).format(
-      'MM-DD-YYYY'
+      'DD-MM-YYYY'
     );
-    this.currentRow['dateEnd'] = moment(this.currentRow['dateEnd']).format(
-      'MM-DD-YYYY'
-    );
-=======
-    this.currentRow['dateStart'] = moment(this.currentRow['dateStart']).format('DD-MM-YYYY');
     console.log('edit', this.currentRow['dateStart']);
-    this.currentRow['dateEnd'] = moment(this.currentRow['dateEnd']).format('DD-MM-YYYY');
->>>>>>> 13377b8494b3535db24ccc342abf144846d7bf9b
+    this.currentRow['dateEnd'] = moment(this.currentRow['dateEnd']).format(
+      'DD-MM-YYYY'
+    );
 
     this.currentRow.mode = 'edit';
     this.modalEdit = true;
@@ -195,7 +188,6 @@ export class HistoryComponent implements OnInit {
         const result = await this.leaveService.reqLeave(obj);
         if (result['statusCode'] === 200) {
           console.log('result', result['rows']);
-<<<<<<< HEAD
           this.alertService.success('สำเร็จ').then(value => {
             console.log('value', value);
             if (value.dismiss) {
@@ -205,18 +197,6 @@ export class HistoryComponent implements OnInit {
               // document.location.href = '/history';
             }
           });
-=======
-          this.alertService.success('สำเร็จ')
-            .then((value) => {
-              console.log('value', value);
-              if (value.dismiss) {
-                this.getLeaveShow();
-                this.modalEdit = false;
-                this.router.navigate(['history']);
-                // document.location.href = '/history';
-              }
-            });
->>>>>>> 13377b8494b3535db24ccc342abf144846d7bf9b
         } else {
           this.alertService.error();
         }
