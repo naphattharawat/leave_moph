@@ -24,25 +24,28 @@
   <div class="content-container">
     <div class="content-area">
       <router-outlet></router-outlet>
+
     </div>
     <nav class="sidenav">
       <section class="sidenav-content">
-        <a href="../main" class="nav-link">
+        <a routerLink="/main" class="nav-link">
           หน้าแรก
         </a>
-        <a href="../about" class="nav-link">
-          ประวัติส่วนตัว
-        </a>
-        <a href="../history" class="nav-link">
+        <a routerLink="/history" class="nav-link">
           การลา
         </a>
-        <a href="../history-cancel" class="nav-link">
+        <a routerLink="/history-cancel" class="nav-link">
           ประวัติยกเลิกการลา
+        </a>
+        <a routerLink="/leaveType" class="nav-link">
+          เพิ่ม / แก้ไขประเภทการลา
         </a>
       </section>
     </nav>
   </div>
 </div>
+
+
 
 <!-- <clr-main-container>
   <clr-header class="header-5" style="background-color: #2e3142">

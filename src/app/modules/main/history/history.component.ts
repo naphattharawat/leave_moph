@@ -8,7 +8,6 @@ import localeFr from '@angular/common/locales/fr';
 import * as moment from 'moment';
 import { AlertService } from 'src/app/services/alert.service';
 
-
 registerLocaleData(localeFr);
 @Component({
   selector: 'app-history',
@@ -18,10 +17,12 @@ registerLocaleData(localeFr);
 export class HistoryComponent implements OnInit {
 
 public model: any = { date: { year: 2018, month: 10, day: 9 } };
+
+
   jwtHelper = new JwtHelperService();
   userList: any;
   date = new Date();
-  leaveShow: any;
+  leaveShow: any ='';
   modalEdit = false;
   currentRow: any;
   editRow: any;
@@ -52,19 +53,10 @@ public model: any = { date: { year: 2018, month: 10, day: 9 } };
     // console.log('moment', this.dateNow);
   }
 
-  getColor(conclude) {
-    if (conclude === '2') {
-      // console.log(conclude);
-      return 'pass';
-    } else if (conclude === '3') {
-      return 'noPass';
-    } else {
-      return 'wait';
-    }
-  }
-
   async getLeaveShow() {
-    const result: any = await this.leaveService.getLeaveShow(this.userList['cid']);
+    const result: any = await this.leaveService.getLeaveShow(
+      this.userList['cid']
+    );
     console.log('getLeaveShow', this.userList['cid']);
     if (result.statusCode === 200 && result.rows.length) {
       console.log('rows:', result.rows);
@@ -92,15 +84,16 @@ public model: any = { date: { year: 2018, month: 10, day: 9 } };
     this.currentRow = Object.assign({}, row);
     console.log('row', row.dateStart);
     // this.newDate = moment(row.dateStart).format('MM-DD-YYYY');
-    this.currentRow['dateStart'] = moment(this.currentRow['dateStart']).format('MM-DD-YYYY');
-    this.currentRow['dateEnd'] = moment(this.currentRow['dateEnd']).format('MM-DD-YYYY');
+    this.currentRow['dateStart'] = moment(this.currentRow['dateStart']).format('YYYY-MM-DD');
+    console.log('edit', this.currentRow['dateStart']);
+    this.currentRow['dateEnd'] = moment(this.currentRow['dateEnd']).format('YYYY-MM-DD');
 
     this.currentRow.mode = 'edit';
     this.modalEdit = true;
   }
   onAdd() {
     this.currentRow = {
-      lSelect : '',
+      lSelect: '',
       dateStart: '',
       dateEnd: '',
       lTypeId: '',
@@ -129,7 +122,10 @@ public model: any = { date: { year: 2018, month: 10, day: 9 } };
     if (this.currentRow.lSelect === '3') {
       this.currentRow.totalLeave = this.currentRow.totalLeave + 1.0;
       console.log('3', this.currentRow.totalLeave);
-    } else if (this.currentRow.lSelect === '1' || this.currentRow.lSelect === '2') {
+    } else if (
+      this.currentRow.lSelect === '1' ||
+      this.currentRow.lSelect === '2'
+    ) {
       this.currentRow.totalLeave = 0.5;
       this.currentRow.dateEnd = this.currentRow.dateStart;
       console.log('0.5', this.currentRow.totalLeave);
@@ -137,10 +133,11 @@ public model: any = { date: { year: 2018, month: 10, day: 9 } };
 
     try {
       if (this.currentRow.dateEnd === null) {
-        this.alertService.error('กรุณาใส่ที่ถึง');
+        this.alertService.error('กรุณาใส่วันที่ถึง');
       }
       this.currentRow.dateStart = moment(this.currentRow['dateStart']).format('YYYY-MM-DD');
       this.currentRow.dateEnd = moment(this.currentRow['dateEnd']).format('YYYY-MM-DD');
+      console.log('date save', this.currentRow.dateStart);
       const obj = {
         lSelect: this.currentRow.lSelect,
         dateStart: this.currentRow.dateStart,
@@ -151,55 +148,60 @@ public model: any = { date: { year: 2018, month: 10, day: 9 } };
       };
       if (this.currentRow.mode === 'edit') {
         const result = await this.leaveService.updateLeave(
-          this.currentRow.dateStart, this.currentRow.dateEnd, this.currentRow.totalLeave,
-          this.currentRow.lTypeId, this.currentRow.lSelect, this.currentRow.lId
+          this.currentRow.dateStart,
+          this.currentRow.dateEnd,
+          this.currentRow.totalLeave,
+          this.currentRow.lTypeId,
+          this.currentRow.lSelect,
+          this.currentRow.lId
         );
         if (result['statusCode'] === 200) {
           console.log('result', result['rows']);
-          this.alertService.success('สำเร็จ')
-            .then((value) => {
-              console.log('value', value);
-              if (value.dismiss) {
-                this.getLeaveShow();
-                this.modalEdit = false;
-                this.router.navigate(['history']);
-                // document.location.href = '/history';
-              }
-            });
+          this.alertService.success('สำเร็จ').then(value => {
+            console.log('value', value);
+            if (value.dismiss) {
+              this.getLeaveShow();
+              this.modalEdit = false;
+              this.router.navigate(['history']);
+              // document.location.href = '/history';
+            }
+          });
         } else {
           this.alertService.error();
         }
       } else if (this.currentRow.mode === 'add') {
         const result = await this.leaveService.reqLeave(obj);
         if (result['statusCode'] === 200) {
-              console.log('result', result['rows']);
-              this.alertService.success('สำเร็จ')
-                .then((value) => {
-                  console.log('value', value);
-                  if (value.dismiss) {
-                    this.getLeaveShow();
-                    this.modalEdit = false;
-                    this.router.navigate(['history']);
-                    // document.location.href = '/history';
-                  }
-                });
-            } else {
-              this.alertService.error();
+          console.log('result', result['rows']);
+          this.alertService.success('สำเร็จ').then(value => {
+            console.log('value', value);
+            if (value.dismiss) {
+              this.getLeaveShow();
+              this.modalEdit = false;
+              this.router.navigate(['history']);
+              // document.location.href = '/history';
             }
+          });
+        } else {
+          this.alertService.error();
+        }
       }
-      } catch (err) {
-        console.log(err);
-      }
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   async onCancel(row) {
     this.currentRow = Object.assign({}, row);
     console.log('cancel', row);
-    this.alertService.confirm()
-      .then(async (value) => {
+    this.alertService
+      .confirm()
+      .then(async value => {
         if (value.value === true) {
           console.log('true');
-          const result: any = await this.leaveService.cancelLeave(this.currentRow.lId);
+          const result: any = await this.leaveService.cancelLeave(
+            this.currentRow.lId
+          );
           if (result) {
             console.log(result);
           }
@@ -208,13 +210,11 @@ public model: any = { date: { year: 2018, month: 10, day: 9 } };
         }
         console.log('k', value);
       })
-      .catch((err) => {
+      .catch(err => {
         console.log('false', err);
       });
     // if (this.alertService.confirm()) {
     // }
     // console.log(this.alertService.confirm().then(this.currentRow));
-
   }
-
 }

@@ -13,6 +13,7 @@ import { PreferenceComponent } from './preference/preference.component';
 import { HelperModule } from 'src/app/pipes/helpers.module';
 import { HistoryComponent } from './history/history.component';
 import { HistoryCancelComponent } from './history-cancel/history-cancel.component';
+import { LeaveTypeComponent } from 'src/app/leave-type/leave-type.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { HistoryCancelComponent } from './history-cancel/history-cancel.componen
     UserComponent,
     PreferenceComponent,
     HistoryComponent,
-    HistoryCancelComponent
+    HistoryCancelComponent,
+    LeaveTypeComponent
   ],
   imports: [
     CommonModule,
