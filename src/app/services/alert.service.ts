@@ -41,4 +41,16 @@ export class AlertService {
     });
   }
 
+  Restore() {
+    return Swal.fire({
+      title: 'คืนสถานะการลา',
+      text: 'คุณแน่ใจหรือไม่ ?',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'yes'
+    });
+  }
+
 }
