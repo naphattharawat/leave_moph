@@ -8,10 +8,6 @@ import localeFr from '@angular/common/locales/fr';
 import * as moment from 'moment';
 import { AlertService } from 'src/app/services/alert.service';
 import { IMyDpOptions } from 'mydatepicker';
-<<<<<<< HEAD
-=======
-
->>>>>>> 13377b8494b3535db24ccc342abf144846d7bf9b
 
 registerLocaleData(localeFr);
 @Component({
@@ -22,11 +18,6 @@ registerLocaleData(localeFr);
 export class HistoryComponent implements OnInit {
   public myDatePickerOptions: IMyDpOptions = {
     // other options...
-<<<<<<< HEAD
-    dateFormat: 'dd.mm.yyyy'
-  };
-  public model: any = { date: { year: 2018, month: 10, day: 9 } };
-=======
 
     dateFormat: 'dd-mm-yyyy',
     disableWeekends: true,
@@ -36,7 +27,6 @@ export class HistoryComponent implements OnInit {
 
   // Initialized to specific date (09.10.2018).
   // public model: any = { date: { year: 2018, month: 10, day: 9 } };
->>>>>>> 13377b8494b3535db24ccc342abf144846d7bf9b
   jwtHelper = new JwtHelperService();
   userList: any;
   date = new Date();
