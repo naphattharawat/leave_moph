@@ -17,7 +17,6 @@ export class AlertService {
 
   success(text = 'Success', title = 'congrate') {
     return Swal.fire({
-      // position: 'top-end',
       type: 'success',
       title: 'Your work has been saved',
       showConfirmButton: false,

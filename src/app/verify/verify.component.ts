@@ -62,7 +62,7 @@ export class VerifyComponent implements OnInit {
     try {
       console.log('check ', personId);
       const result: any = await this.userService.getpersonId(personId);
-      console.log(result.rows);
+      console.log('result',result.rows);
       if (result.rows.length) {
         // console.log('n', result.rows.personId);
         this.cid = result.rows[0].personId;

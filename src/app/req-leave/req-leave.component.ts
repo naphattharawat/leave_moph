@@ -20,6 +20,7 @@ export class ReqLeaveComponent implements OnInit {
   statusCeo: any;
   personId: any;
   lTypeId: any;
+  lSelect: any;
   status: any;
   leaveType: any[];
   // toDay: any;
@@ -44,58 +45,80 @@ export class ReqLeaveComponent implements OnInit {
 
   async onSave() {
     console.log('test');
+    console.log('ds', this.dateStart);
+    this.dateStart = moment(this.dateStart).format('YYYY-MM-DD');
+    this.dateEnd = moment(this.dateEnd).format('YYYY-MM-DD');
 
-    try {
-      const startY = moment(this.dateStart).get('year');
-      const startM = moment(this.dateStart).get('month');
-      const startD = moment(this.dateStart).get('date');
+    const startY = moment(this.dateStart).get('year');
+    const startM = moment(this.dateStart).get('month');
+    const startD = moment(this.dateStart).get('date');
 
-      const endY = moment(this.dateEnd).get('year');
-      const endM = moment(this.dateEnd).get('month');
-      const endD = moment(this.dateEnd).get('date');
+    const endY = moment(this.dateEnd).get('year');
+    const endM = moment(this.dateEnd).get('month');
+    const endD = moment(this.dateEnd).get('date');
 
-      const s = moment([startY, startM, startD]);
-      const e = moment([endY, endM, endD]);
+    const s = moment([startY, startM, startD]);
+    const e = moment([endY, endM, endD]);
 
+    if (this.dateEnd) {
       this.totalLeave = e.diff(s, 'days');
       console.log('total ', this.totalLeave);
-
-      const result: any = await this.leave.reqLeave(
-        moment(this.dateStart).format('YYYY-MM-DD'),
-        moment(this.dateEnd).format('YYYY-MM-DD'),
-        this.totalLeave + 1,
-        this.statusHr,
-        this.statusBoss,
-        this.statusCeo,
-        this.personId,
-        this.lTypeId,
-        this.status
-      );
+      if (this.lSelect === '3') {
+        this.totalLeave = this.totalLeave + 1;
+        console.log('tlll', this.totalLeave);
+      } else if (this.lSelect === '1' || this.lSelect === '2') {
+        this.totalLeave = 0.5;
+        console.log('0.5', this.totalLeave);
+      }
+    } else if (!this.dateEnd) {
+      this.dateEnd = this.dateStart;
+      // this.totalLeave = 1;
+    }
+    try {
+      console.log('finally', this.totalLeave);
+      const obj = {
+        dateStart: this.dateStart,
+        dateEnd: this.dateEnd,
+        totalLeave: this.totalLeave,
+        personId: this.personId,
+        lTypeId: this.lTypeId,
+        status: this.status
+      };
+      const result: any = await this.leave.reqLeave(obj);
 
       // console.log('ds', moment(this.dateStart).format('YYYY-MM-DD'));
       // console.log('dateEnd', moment(this.dateEnd).format('YYYY-MM-DD'));
 
       if (result.ok) {
-        console.log('ok', result);
+        console.log('ok', result.rows);
+        console.log('tttt', this.totalLeave);
+
         await this.alertService.success().then(value => {
           console.log('value', value);
           if (value.dismiss) {
-            document.location.href = '/history';
+            // document.location.href = '/history';
           }
         });
         // this.router.navigate(['main']);
       } else {
-        console.log(result.rows);
+        console.log('err ', result.message);
         this.alertService.error();
       }
     } catch (error) {
       console.log(error);
     }
   }
+
   async leave_Type() {
-    const result: any = await this.leave.leaveType();
-    if (result.rows) {
-      this.leaveType = result.rows;
+    try {
+      const result: any = await this.leave.leaveType();
+      console.log('te', result);
+      if (result.rows) {
+        this.leaveType = result.rows;
+        console.log('lt', this.leaveType);
+      }
+    } catch (err) {
+      console.log(err);
     }
   }
 }
