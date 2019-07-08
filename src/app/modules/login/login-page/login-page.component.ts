@@ -21,7 +21,7 @@ export class LoginPageComponent implements OnInit {
     private authGuardService: AuthGuardService,
     private userService: UserService,
     private alertService: AlertService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.checkUser();
@@ -29,28 +29,27 @@ export class LoginPageComponent implements OnInit {
 
   async checkUser() {
     const token = sessionStorage.getItem('token');
-    const decoded = this.jwtHelper.decodeToken(token);
-    this.cid = decoded.cid;
-    console.log('cid ', this.cid);
-
-    try {
-      console.log('login check ', this.cid);
-      const result: any = await this.userService.getpersonId(this.cid);
-      // console.log(result.user);
-      if (result.rows.length) {
-        // console.log('n', result.rows.personId);
-        // this.cid = result.rows[0].personId;
-        this.genre = result.rows.genre;
-        // console.log('found : ', result.rows);
-        console.log('genre : ', this.genre);
-        this.router.navigate(['main']);
-      } else {
-        console.log('not');
-        this.alertService.notFoundUser();
-        this.router.navigate(['login']);
+    if (token) {
+      const decoded = this.jwtHelper.decodeToken(token);
+      this.cid = decoded.cid;
+      try {
+        const result: any = await this.userService.getpersonId(this.cid);
+        // console.log(result.user);
+        if (result.rows.length) {
+          // console.log('n', result.rows.personId);
+          // this.cid = result.rows[0].personId;
+          this.genre = result.rows.genre;
+          // console.log('found : ', result.rows);
+          console.log('genre : ', this.genre);
+          this.router.navigate(['main']);
+        } else {
+          console.log('not');
+          this.alertService.notFoundUser();
+          this.router.navigate(['login']);
+        }
+      } catch (err) {
+        console.log(err);
       }
-    } catch (err) {
-      console.log(err);
     }
   }
 }

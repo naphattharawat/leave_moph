@@ -13,7 +13,7 @@ import { PreferenceComponent } from './preference/preference.component';
 import { HelperModule } from 'src/app/pipes/helpers.module';
 import { HistoryComponent } from './history/history.component';
 import { HistoryCancelComponent } from './history-cancel/history-cancel.component';
-import { InsertUserComponent } from 'src/app/insert-user/insert-user.component';
+import { InsertUserComponent } from './insert-user/insert-user.component';
 import { LeaveTypeComponent } from 'src/app/leave-type/leave-type.component';
 import { MyDatePickerTHModule } from 'mydatepicker-th';
 
@@ -39,4 +39,4 @@ import { MyDatePickerTHModule } from 'mydatepicker-th';
     MyDatePickerTHModule
   ]
 })
-export class MainModule {}
+export class MainModule { }

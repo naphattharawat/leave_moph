@@ -63,15 +63,10 @@ export class LeaveService {
       .catch(error => error);
   }
 
-  updateLeave(dateStart, dateEnd, totalLeave, lTypeId, lSelect, lId) {
+  updateLeave(data) {
     return this.http
       .post(`http://localhost:3001/leave/updateLeave`, {
-        dateStart,
-        dateEnd,
-        totalLeave,
-        lTypeId,
-        lSelect,
-        lId
+        data: data
       })
       .toPromise()
       .then(result => result)

@@ -121,81 +121,28 @@ export class HistoryComponent implements OnInit {
   }
 
   async onSave() {
-    
-    this.currentRow.dateStart = {
-      date: {
-        year: moment(this.currentRow.dateStart).get('year'),
-        month: moment(this.currentRow.dateStart).get('month') + 1,
-        day: moment(this.currentRow.dateStart).get('date')
-      }
-    };
-    this.currentRow.dateEnd = {
-      date: {
-        year: moment(this.currentRow.dateEnd).get('year'),
-        month: moment(this.currentRow.dateEnd).get('month') + 1,
-        day: moment(this.currentRow.dateEnd).get('date')
-      }
-    };
-    
-        const sd = this.currentRow.dateStart;
-        const se = this.currentRow.dateEnd;
+
+    const sd = moment(`${this.currentRow.dateStart.date.year}-${this.currentRow.dateStart.date.month}-${this.currentRow.dateStart.date.day}`, 'YYYY-MM-DD');
+    const se = moment(`${this.currentRow.dateEnd.date.year}-${this.currentRow.dateEnd.date.month}-${this.currentRow.dateEnd.date.day}`, 'YYYY-MM-DD');
+
     console.log('sd', sd);
     console.log('se', se);
-    
-    const startYear = moment(sd).get('year');
-    const startMonth = moment(sd).get('month');
-    const startDate = moment(sd).get('date');
-    const endYear = moment(se).get('year');
-    const endMonth = moment(se).get('month');
-    const endDate = moment(se).get('date');
 
-    const a = moment([startYear, startMonth, startDate]);
-    const b = moment([endYear, endMonth, endDate]);
-    console.log('a', a);
-    console.log('b', b);
-    
+
+
     this.currentRow.totalLeave = 0.0;
-    this.currentRow.totalLeave = b.diff(a, 'days');
+    this.currentRow.totalLeave = se.diff(sd, 'days');
 
     // console.log(b.diff(a, 'days'));
 
     if (this.currentRow.lSelect === '3') {
       this.currentRow.totalLeave = this.currentRow.totalLeave + 1.0;
       console.log('3', this.currentRow.totalLeave);
-      this.currentRow.dateStart = {
-        date: {
-          year: startYear,
-          month: startMonth + 1,
-          day: startDate
-        }
-      };
-      this.currentRow.dateEnd = {
-        date: {
-          year: endYear,
-          month: endMonth + 1,
-          day: endDate
-        }
-      };
     } else if (
       this.currentRow.lSelect === '1' ||
       this.currentRow.lSelect === '2'
     ) {
       this.currentRow.totalLeave = 0.5;
-      this.currentRow.dateStart = {
-        date: {
-          year: startYear,
-          month: startMonth + 1,
-          day: startDate
-        }
-      };
-      this.currentRow.dateEnd = {
-        date: {
-          year: startYear,
-          month: startMonth + 1,
-          day: startDate
-        }
-      };
-
       console.log('0.5', this.currentRow.totalLeave);
     }
 
@@ -204,35 +151,16 @@ export class HistoryComponent implements OnInit {
       if (se === null) {
         this.alertService.error('กรุณาใส่วันที่ถึง');
       }
-      this.dateStart = moment([sd.date.year,
-      sd.date.month - 1, sd.date.day])
-        .format('YYYY-MM-DD');
-
-      this.dateEnd = moment([se.date.year,
-      se.date.month - 1, se.date.day])
-        .format('YYYY-MM-DD');
-      // this.currentRow.dateStart = moment(this.dateStart).format('YYYY-MM-DD');
-      // this.currentRow.dateEnd = moment(this.currentRow['dateEnd']).format('YYYY-MM-DD');
-      console.log('date save', this.dateStart, this.dateEnd);
-      // console.log(`${this.dateStart.date.year}-${this.dateStart.date.month}-${this.dateStart.date.day}` );
-
       const obj = {
-        lSelect: this.currentRow.lSelect,
-        dateStart: this.dateStart,
-        dateEnd: this.dateEnd,
+        dateStart: moment(sd).format('YYYY-MM-DD'),
+        dateEnd: moment(se).format('YYYY-MM-DD'),
         lTypeId: this.currentRow.lTypeId,
         totalLeave: this.currentRow.totalLeave,
-        personId: this.userList.cid
+        lSelect: this.currentRow.lSelect,
+        lId: this.currentRow.lId
       };
       if (this.currentRow.mode === 'edit') {
-        const result = await this.leaveService.updateLeave(
-          this.dateStart,
-          this.dateEnd,
-          this.currentRow.totalLeave,
-          this.currentRow.lTypeId,
-          this.currentRow.lSelect,
-          this.currentRow.lId
-        );
+        const result = await this.leaveService.updateLeave(obj);
         if (result['statusCode'] === 200) {
           console.log('result', result['rows']);
           this.alertService.success('สำเร็จ').then(value => {
@@ -241,14 +169,21 @@ export class HistoryComponent implements OnInit {
               this.getLeaveShow();
               this.modalEdit = false;
               this.router.navigate(['history']);
-              // document.location.href = '/history';
             }
           });
         } else {
           this.alertService.error();
         }
       } else if (this.currentRow.mode === 'add') {
-        const result = await this.leaveService.reqLeave(obj);
+        const req = {
+          dateStart: moment(sd).format('YYYY-MM-DD'),
+          dateEnd: moment(se).format('YYYY-MM-DD'),
+          lTypeId: this.currentRow.lTypeId,
+          totalLeave: this.currentRow.totalLeave,
+          lSelect: this.currentRow.lSelect,
+          personId: this.userList.cid
+        };
+        const result = await this.leaveService.reqLeave(req);
         if (result['statusCode'] === 200) {
           console.log('result', result['rows']);
           this.alertService.success('สำเร็จ').then(value => {

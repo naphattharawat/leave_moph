@@ -14,8 +14,8 @@ import { AuthGuardService } from 'src/app/services/auth-guard.service';
 import { ReqLeaveComponent } from 'src/app/req-leave/req-leave.component';
 import { HistoryComponent } from './history/history.component';
 import { HistoryCancelComponent } from './history-cancel/history-cancel.component';
-import { InsertUserComponent } from 'src/app/insert-user/insert-user.component';
 import { LeaveTypeComponent } from 'src/app/leave-type/leave-type.component';
+import { InsertUserComponent } from './insert-user/insert-user.component';
 
 const routes: Routes = [
   {
@@ -45,4 +45,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class MainRoutingModule {}
+export class MainRoutingModule { }
