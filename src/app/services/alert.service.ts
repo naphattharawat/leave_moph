@@ -40,7 +40,7 @@ export class AlertService {
     });
   }
 
-  Restore() {
+  restore() {
     return Swal.fire({
       title: 'คืนสถานะการลา',
       text: 'คุณแน่ใจหรือไม่ ?',
