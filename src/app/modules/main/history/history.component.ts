@@ -9,7 +9,6 @@ import * as moment from 'moment';
 import { AlertService } from 'src/app/services/alert.service';
 import { IMyDpOptions } from 'mydatepicker';
 
-
 registerLocaleData(localeFr);
 @Component({
   selector: 'app-history',
@@ -58,7 +57,9 @@ export class HistoryComponent implements OnInit {
   }
 
   async getLeaveShow() {
-    const result: any = await this.leaveService.getLeaveShow(this.userList['cid']);
+    const result: any = await this.leaveService.getLeaveShow(
+      this.userList['cid']
+    );
     console.log('getLeaveShow', this.userList['cid']);
     if (result.statusCode === 200 && result.rows.length) {
       console.log('rows:', result.rows);
@@ -124,7 +125,10 @@ export class HistoryComponent implements OnInit {
     if (this.currentRow.lSelect === '3') {
       this.currentRow.totalLeave = this.currentRow.totalLeave + 1.0;
       console.log('3', this.currentRow.totalLeave);
-    } else if (this.currentRow.lSelect === '1' || this.currentRow.lSelect === '2') {
+    } else if (
+      this.currentRow.lSelect === '1' ||
+      this.currentRow.lSelect === '2'
+    ) {
       this.currentRow.totalLeave = 0.5;
       this.currentRow.dateEnd = this.currentRow.dateStart;
       console.log('0.5', this.currentRow.totalLeave);
@@ -147,21 +151,24 @@ export class HistoryComponent implements OnInit {
       };
       if (this.currentRow.mode === 'edit') {
         const result = await this.leaveService.updateLeave(
-          this.currentRow.dateStart, this.currentRow.dateEnd, this.currentRow.totalLeave,
-          this.currentRow.lTypeId, this.currentRow.lSelect, this.currentRow.lId
+          this.currentRow.dateStart,
+          this.currentRow.dateEnd,
+          this.currentRow.totalLeave,
+          this.currentRow.lTypeId,
+          this.currentRow.lSelect,
+          this.currentRow.lId
         );
         if (result['statusCode'] === 200) {
           console.log('result', result['rows']);
-          this.alertService.success('สำเร็จ')
-            .then((value) => {
-              console.log('value', value);
-              if (value.dismiss) {
-                this.getLeaveShow();
-                this.modalEdit = false;
-                this.router.navigate(['history']);
-                // document.location.href = '/history';
-              }
-            });
+          this.alertService.success('สำเร็จ').then(value => {
+            console.log('value', value);
+            if (value.dismiss) {
+              this.getLeaveShow();
+              this.modalEdit = false;
+              this.router.navigate(['history']);
+              // document.location.href = '/history';
+            }
+          });
         } else {
           this.alertService.error();
         }
@@ -169,16 +176,15 @@ export class HistoryComponent implements OnInit {
         const result = await this.leaveService.reqLeave(obj);
         if (result['statusCode'] === 200) {
           console.log('result', result['rows']);
-          this.alertService.success('สำเร็จ')
-            .then((value) => {
-              console.log('value', value);
-              if (value.dismiss) {
-                this.getLeaveShow();
-                this.modalEdit = false;
-                this.router.navigate(['history']);
-                // document.location.href = '/history';
-              }
-            });
+          this.alertService.success('สำเร็จ').then(value => {
+            console.log('value', value);
+            if (value.dismiss) {
+              this.getLeaveShow();
+              this.modalEdit = false;
+              this.router.navigate(['history']);
+              // document.location.href = '/history';
+            }
+          });
         } else {
           this.alertService.error();
         }
@@ -191,11 +197,14 @@ export class HistoryComponent implements OnInit {
   async onCancel(row) {
     this.currentRow = Object.assign({}, row);
     console.log('cancel', row);
-    this.alertService.confirm()
-      .then(async (value) => {
+    this.alertService
+      .confirm()
+      .then(async value => {
         if (value.value === true) {
           console.log('true');
-          const result: any = await this.leaveService.cancelLeave(this.currentRow.lId);
+          const result: any = await this.leaveService.cancelLeave(
+            this.currentRow.lId
+          );
           if (result) {
             console.log(result);
           }
@@ -204,13 +213,11 @@ export class HistoryComponent implements OnInit {
         }
         console.log('k', value);
       })
-      .catch((err) => {
+      .catch(err => {
         console.log('false', err);
       });
     // if (this.alertService.confirm()) {
     // }
     // console.log(this.alertService.confirm().then(this.currentRow));
-
   }
-
 }
