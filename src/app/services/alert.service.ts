@@ -30,7 +30,7 @@ export class AlertService {
 
   confirm() {
     return Swal.fire({
-      title: 'ยกเลิกการลา',
+      title: 'ยกเลิกรายการนี้',
       text: 'คุณแน่ใจหรือไม่ ?',
       type: 'warning',
       showCancelButton: true,

@@ -83,7 +83,7 @@
       <div class="clr-col-4">
         วันที่
         <my-date-picker name="dateStart" [options]="myDatePickerOptions" [(ngModel)]="currentRow.dateStart"
-          value="currentRow.dateStart" required></my-date-picker>
+         required></my-date-picker>
       </div>
     </div>
     <br>
@@ -91,7 +91,7 @@
       <div class="clr-col-4">
         ถึงวันที่
         <my-date-picker name="dateEnd" [options]="myDatePickerOptions" [(ngModel)]="currentRow.dateEnd"
-          value="currentRow.dateEnd" required></my-date-picker>
+          required></my-date-picker>
       </div>
     </div>
     <!-- <clr-input-container *ngIf="currentRow.lSelect == 3">
@@ -109,8 +109,8 @@
     <br><br>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline" (click)="modalEdit = false">Cancel</button>
+    <button type="button" class="btn btn-outline" (click)="modalEdit = false">ยกเลิก</button>
     <button type="button" class="btn btn-primary" (click)="onSave()"
-      [disabled]="(( currentRow.dateEnd < currentRow.dateStart || !currentRow.dateEnd ) && currentRow.lSelect == 3) || !currentRow.dateStart || !currentRow.lTypeId || !currentRow.lSelect">Ok</button>
+      [disabled]="(( currentRow.dateEnd < currentRow.dateStart || !currentRow.dateEnd ) && currentRow.lSelect == 3) || !currentRow.dateStart || !currentRow.lTypeId || !currentRow.lSelect">บันทึก</button>
   </div>
 </clr-modal>

@@ -17,20 +17,15 @@ registerLocaleData(localeFr);
 })
 export class HistoryComponent implements OnInit {
   public myDatePickerOptions: IMyDpOptions = {
-    // other options...
-
-    dateFormat: 'dd-mm-yyyy',
+    dateFormat: 'yyyy-mm-dd',
     disableWeekends: true,
     markCurrentDay: true,
-    disableDays: [{ year: 2019, month: 7, day: 12 }]
+    // disableDays: [{ year: 2019, month: 7, day: 12 }],
   };
-
-  // Initialized to specific date (09.10.2018).
-  // public model: any = { date: { year: 2018, month: 10, day: 9 } };
   jwtHelper = new JwtHelperService();
   userList: any;
   date = new Date();
-  leaveShow: any;
+  leaveShow: any ='';
   modalEdit = false;
   currentRow: any;
   editRow: any;
@@ -92,13 +87,9 @@ export class HistoryComponent implements OnInit {
     this.currentRow = Object.assign({}, row);
     console.log('row', row.dateStart);
     // this.newDate = moment(row.dateStart).format('MM-DD-YYYY');
-    this.currentRow['dateStart'] = moment(this.currentRow['dateStart']).format(
-      'DD-MM-YYYY'
-    );
+    this.currentRow['dateStart'] = moment(this.currentRow['dateStart']).format('YYYY-MM-DD');
     console.log('edit', this.currentRow['dateStart']);
-    this.currentRow['dateEnd'] = moment(this.currentRow['dateEnd']).format(
-      'DD-MM-YYYY'
-    );
+    this.currentRow['dateEnd'] = moment(this.currentRow['dateEnd']).format('YYYY-MM-DD');
 
     this.currentRow.mode = 'edit';
     this.modalEdit = true;
@@ -145,14 +136,11 @@ export class HistoryComponent implements OnInit {
 
     try {
       if (this.currentRow.dateEnd === null) {
-        this.alertService.error('กรุณาใส่ที่ถึง');
+        this.alertService.error('กรุณาใส่วันที่ถึง');
       }
-      this.currentRow.dateStart = moment(this.currentRow['dateStart']).format(
-        'YYYY-MM-DD'
-      );
-      this.currentRow.dateEnd = moment(this.currentRow['dateEnd']).format(
-        'YYYY-MM-DD'
-      );
+      this.currentRow.dateStart = moment(this.currentRow['dateStart']).format('YYYY-MM-DD');
+      this.currentRow.dateEnd = moment(this.currentRow['dateEnd']).format('YYYY-MM-DD');
+      console.log('date save', this.currentRow.dateStart);
       const obj = {
         lSelect: this.currentRow.lSelect,
         dateStart: this.currentRow.dateStart,
