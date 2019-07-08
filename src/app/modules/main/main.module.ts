@@ -15,6 +15,7 @@ import { HistoryComponent } from './history/history.component';
 import { MyDatePickerModule } from 'mydatepicker';
 import { HistoryCancelComponent } from './history-cancel/history-cancel.component';
 import { LeaveTypeComponent } from 'src/app/leave-type/leave-type.component';
+import { MyDatePickerTHModule } from 'mydatepicker-th';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { LeaveTypeComponent } from 'src/app/leave-type/leave-type.component';
     ClarityModule,
     HelperModule,
     MainRoutingModule,
-    MyDatePickerModule
+    MyDatePickerModule,
+    MyDatePickerTHModule
   ]
 })
 export class MainModule {}

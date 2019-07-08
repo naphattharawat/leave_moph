@@ -82,16 +82,16 @@
     <div class="clr-row">
       <div class="clr-col-4">
         วันที่
-        <my-date-picker name="dateStart" [options]="myDatePickerOptions" [(ngModel)]="currentRow.dateStart"
-         required></my-date-picker>
+        <my-date-picker-th name="dateStart" [options]="myDatePickerOptions" [(ngModel)]="currentRow.dateStart"
+         required></my-date-picker-th>
       </div>
     </div>
     <br>
     <div class="clr-row" *ngIf="currentRow.lSelect == 3">
       <div class="clr-col-4">
         ถึงวันที่
-        <my-date-picker name="dateEnd" [options]="myDatePickerOptions" [(ngModel)]="currentRow.dateEnd"
-          required></my-date-picker>
+        <my-date-picker-th name="dateEnd" [options]="myDatePickerOptions" [(ngModel)]="currentRow.dateEnd"
+          required></my-date-picker-th>
       </div>
     </div>
     <!-- <clr-input-container *ngIf="currentRow.lSelect == 3">

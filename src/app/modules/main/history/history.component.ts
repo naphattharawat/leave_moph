@@ -7,7 +7,7 @@ import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 import * as moment from 'moment';
 import { AlertService } from 'src/app/services/alert.service';
-import { IMyDpOptions } from 'mydatepicker';
+import { IMyOptions } from 'mydatepicker-th';
 
 registerLocaleData(localeFr);
 @Component({
@@ -16,8 +16,8 @@ registerLocaleData(localeFr);
   styleUrls: ['./history.component.css']
 })
 export class HistoryComponent implements OnInit {
-  public myDatePickerOptions: IMyDpOptions = {
-    dateFormat: 'yyyy-mm-dd',
+  public myDatePickerOptions: IMyOptions = {
+    dateFormat: 'dd mmm yyyy',
     disableWeekends: true,
     markCurrentDay: true,
     // disableDays: [{ year: 2019, month: 7, day: 12 }],
@@ -25,7 +25,7 @@ export class HistoryComponent implements OnInit {
   jwtHelper = new JwtHelperService();
   userList: any;
   date = new Date();
-  leaveShow: any ='';
+  leaveShow: any = '';
   modalEdit = false;
   currentRow: any;
   editRow: any;
@@ -87,9 +87,23 @@ export class HistoryComponent implements OnInit {
     this.currentRow = Object.assign({}, row);
     console.log('row', row.dateStart);
     // this.newDate = moment(row.dateStart).format('MM-DD-YYYY');
-    this.currentRow['dateStart'] = moment(this.currentRow['dateStart']).format('YYYY-MM-DD');
+    // this.currentRow['dateStart'] = moment(this.currentRow['dateStart']).format('YYYY-MM-DD');
+    this.currentRow.dateStart = {
+      date: {
+        year: moment(this.currentRow['dateStart']).get('year'),
+        month: moment(this.currentRow['dateStart']).get('month') + 1,
+        day: moment(this.currentRow['dateStart']).get('date')
+      }
+    };
+    this.currentRow.dateEnd = {
+      date: {
+        year: moment(this.currentRow['dateEnd']).get('year'),
+        month: moment(this.currentRow['dateEnd']).get('month') + 1,
+        day: moment(this.currentRow['dateEnd']).get('date')
+      }
+    };
     console.log('edit', this.currentRow['dateStart']);
-    this.currentRow['dateEnd'] = moment(this.currentRow['dateEnd']).format('YYYY-MM-DD');
+    // this.currentRow['dateEnd'] = moment(this.currentRow['dateEnd']).format('YYYY-MM-DD');
 
     this.currentRow.mode = 'edit';
     this.modalEdit = true;
@@ -107,52 +121,113 @@ export class HistoryComponent implements OnInit {
   }
 
   async onSave() {
-    const sd = this.currentRow['dateStart'];
-
+    
+    this.currentRow.dateStart = {
+      date: {
+        year: moment(this.currentRow.dateStart).get('year'),
+        month: moment(this.currentRow.dateStart).get('month') + 1,
+        day: moment(this.currentRow.dateStart).get('date')
+      }
+    };
+    this.currentRow.dateEnd = {
+      date: {
+        year: moment(this.currentRow.dateEnd).get('year'),
+        month: moment(this.currentRow.dateEnd).get('month') + 1,
+        day: moment(this.currentRow.dateEnd).get('date')
+      }
+    };
+    
+        const sd = this.currentRow.dateStart;
+        const se = this.currentRow.dateEnd;
+    console.log('sd', sd);
+    console.log('se', se);
+    
     const startYear = moment(sd).get('year');
     const startMonth = moment(sd).get('month');
     const startDate = moment(sd).get('date');
-    const se = this.currentRow['dateEnd'];
     const endYear = moment(se).get('year');
     const endMonth = moment(se).get('month');
     const endDate = moment(se).get('date');
 
     const a = moment([startYear, startMonth, startDate]);
     const b = moment([endYear, endMonth, endDate]);
-    // console.log(b.diff(a, 'days'));
+    console.log('a', a);
+    console.log('b', b);
+    
     this.currentRow.totalLeave = 0.0;
     this.currentRow.totalLeave = b.diff(a, 'days');
+
+    // console.log(b.diff(a, 'days'));
+
     if (this.currentRow.lSelect === '3') {
       this.currentRow.totalLeave = this.currentRow.totalLeave + 1.0;
       console.log('3', this.currentRow.totalLeave);
+      this.currentRow.dateStart = {
+        date: {
+          year: startYear,
+          month: startMonth + 1,
+          day: startDate
+        }
+      };
+      this.currentRow.dateEnd = {
+        date: {
+          year: endYear,
+          month: endMonth + 1,
+          day: endDate
+        }
+      };
     } else if (
       this.currentRow.lSelect === '1' ||
       this.currentRow.lSelect === '2'
     ) {
       this.currentRow.totalLeave = 0.5;
-      this.currentRow.dateEnd = this.currentRow.dateStart;
+      this.currentRow.dateStart = {
+        date: {
+          year: startYear,
+          month: startMonth + 1,
+          day: startDate
+        }
+      };
+      this.currentRow.dateEnd = {
+        date: {
+          year: startYear,
+          month: startMonth + 1,
+          day: startDate
+        }
+      };
+
       console.log('0.5', this.currentRow.totalLeave);
     }
 
+
     try {
-      if (this.currentRow.dateEnd === null) {
+      if (se === null) {
         this.alertService.error('กรุณาใส่วันที่ถึง');
       }
-      this.currentRow.dateStart = moment(this.currentRow['dateStart']).format('YYYY-MM-DD');
-      this.currentRow.dateEnd = moment(this.currentRow['dateEnd']).format('YYYY-MM-DD');
-      console.log('date save', this.currentRow.dateStart);
+      this.dateStart = moment([sd.date.year,
+      sd.date.month - 1, sd.date.day])
+        .format('YYYY-MM-DD');
+
+      this.dateEnd = moment([se.date.year,
+      se.date.month - 1, se.date.day])
+        .format('YYYY-MM-DD');
+      // this.currentRow.dateStart = moment(this.dateStart).format('YYYY-MM-DD');
+      // this.currentRow.dateEnd = moment(this.currentRow['dateEnd']).format('YYYY-MM-DD');
+      console.log('date save', this.dateStart, this.dateEnd);
+      // console.log(`${this.dateStart.date.year}-${this.dateStart.date.month}-${this.dateStart.date.day}` );
+
       const obj = {
         lSelect: this.currentRow.lSelect,
-        dateStart: this.currentRow.dateStart,
-        dateEnd: this.currentRow.dateEnd,
+        dateStart: this.dateStart,
+        dateEnd: this.dateEnd,
         lTypeId: this.currentRow.lTypeId,
         totalLeave: this.currentRow.totalLeave,
         personId: this.userList.cid
       };
       if (this.currentRow.mode === 'edit') {
         const result = await this.leaveService.updateLeave(
-          this.currentRow.dateStart,
-          this.currentRow.dateEnd,
+          this.dateStart,
+          this.dateEnd,
           this.currentRow.totalLeave,
           this.currentRow.lTypeId,
           this.currentRow.lSelect,
