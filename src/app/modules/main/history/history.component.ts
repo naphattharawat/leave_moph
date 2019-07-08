@@ -7,14 +7,20 @@ import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 import * as moment from 'moment';
 import { AlertService } from 'src/app/services/alert.service';
+import {IMyDpOptions} from 'mydatepicker';
 
 registerLocaleData(localeFr);
 @Component({
   selector: 'app-history',
   templateUrl: './history.component.html',
-  styleUrls: ['./history.component.scss']
+  styleUrls: ['./history.component.css']
 })
 export class HistoryComponent implements OnInit {
+  public myDatePickerOptions: IMyDpOptions = {
+    // other options...
+    dateFormat: 'dd.mm.yyyy',
+};
+public model: any = { date: { year: 2018, month: 10, day: 9 } };
   jwtHelper = new JwtHelperService();
   userList: any;
   date = new Date();
@@ -24,6 +30,12 @@ export class HistoryComponent implements OnInit {
   editRow: any;
   leaveType: any[];
   newDate: any;
+
+  lSelect: any;
+  dateStart: any;
+  dateEnd: any;
+  lTypeId: any;
+  totalLeave: any;
 
   constructor(
     private leaveService: LeaveService,
@@ -41,6 +53,17 @@ export class HistoryComponent implements OnInit {
     this.getLeaveType();
     // this.dateNow = moment().format('MM-DD-YYYY');
     // console.log('moment', this.dateNow);
+  }
+
+  getColor(conclude) {
+    if (conclude === '2') {
+      // console.log(conclude);
+      return 'pass';
+    } else if (conclude === '3') {
+      return 'noPass';
+    } else {
+      return 'wait';
+    }
   }
 
   async getLeaveShow() {
@@ -78,6 +101,17 @@ export class HistoryComponent implements OnInit {
     this.currentRow.mode = 'edit';
     this.modalEdit = true;
   }
+  onAdd() {
+    this.currentRow = {
+      lSelect : '',
+      dateStart: '',
+      dateEnd: '',
+      lTypeId: '',
+      totalLeave: 0
+    };
+    this.currentRow.mode = 'add';
+    this.modalEdit = true;
+  }
 
   async onSave() {
     const sd = this.currentRow['dateStart'];
@@ -110,28 +144,55 @@ export class HistoryComponent implements OnInit {
       }
       this.currentRow.dateStart = moment(this.currentRow['dateStart']).format('YYYY-MM-DD');
       this.currentRow.dateEnd = moment(this.currentRow['dateEnd']).format('YYYY-MM-DD');
-      const result: any = await this.leaveService.updateLeave(
-        this.currentRow.dateStart, this.currentRow.dateEnd, this.currentRow.totalLeave,
-        this.currentRow.lTypeId, this.currentRow.lSelect, this.currentRow.lId
-      );
-      if (result.statusCode === 200) {
-        console.log('result', result.rows);
-        this.alertService.success('แก้ไขสำเร็จ')
-        .then((value) => {
-          console.log('value', value);
-          if (value.dismiss) {
-            this.getLeaveShow();
-            this.modalEdit = false;
-            this.router.navigate(['history']);
-            // document.location.href = '/history';
-          }
-        });
-      } else {
-        this.alertService.error();
+      const obj = {
+        lSelect: this.currentRow.lSelect,
+        dateStart: this.currentRow.dateStart,
+        dateEnd: this.currentRow.dateEnd,
+        lTypeId: this.currentRow.lTypeId,
+        totalLeave: this.currentRow.totalLeave,
+        personId: this.userList.cid
+      };
+      if (this.currentRow.mode === 'edit') {
+        const result = await this.leaveService.updateLeave(
+          this.currentRow.dateStart, this.currentRow.dateEnd, this.currentRow.totalLeave,
+          this.currentRow.lTypeId, this.currentRow.lSelect, this.currentRow.lId
+        );
+        if (result['statusCode'] === 200) {
+          console.log('result', result['rows']);
+          this.alertService.success('สำเร็จ')
+            .then((value) => {
+              console.log('value', value);
+              if (value.dismiss) {
+                this.getLeaveShow();
+                this.modalEdit = false;
+                this.router.navigate(['history']);
+                // document.location.href = '/history';
+              }
+            });
+        } else {
+          this.alertService.error();
+        }
+      } else if (this.currentRow.mode === 'add') {
+        const result = await this.leaveService.reqLeave(obj);
+        if (result['statusCode'] === 200) {
+              console.log('result', result['rows']);
+              this.alertService.success('สำเร็จ')
+                .then((value) => {
+                  console.log('value', value);
+                  if (value.dismiss) {
+                    this.getLeaveShow();
+                    this.modalEdit = false;
+                    this.router.navigate(['history']);
+                    // document.location.href = '/history';
+                  }
+                });
+            } else {
+              this.alertService.error();
+            }
       }
-    } catch (err) {
-      console.log(err);
-    }
+      } catch (err) {
+        console.log(err);
+      }
   }
 
   async onCancel(row) {

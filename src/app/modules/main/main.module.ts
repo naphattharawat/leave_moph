@@ -12,6 +12,9 @@ import { UserComponent } from './user/user.component';
 import { PreferenceComponent } from './preference/preference.component';
 import { HelperModule } from 'src/app/pipes/helpers.module';
 import { HistoryComponent } from './history/history.component';
+import { MyDatePickerModule } from 'mydatepicker';
+import { HistoryCancelComponent } from './history-cancel/history-cancel.component';
+
 
 @NgModule({
   declarations: [
@@ -21,14 +24,16 @@ import { HistoryComponent } from './history/history.component';
     LayoutComponent,
     UserComponent,
     PreferenceComponent,
-    HistoryComponent
+    HistoryComponent,
+    HistoryCancelComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
     ClarityModule,
     HelperModule,
-    MainRoutingModule
+    MainRoutingModule,
+    MyDatePickerModule
   ]
 })
 export class MainModule {}

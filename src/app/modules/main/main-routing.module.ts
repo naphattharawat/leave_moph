@@ -13,6 +13,7 @@ import { RegisterComponent } from '../register/register.component';
 import { AuthGuardService } from 'src/app/services/auth-guard.service';
 import { ReqLeaveComponent } from 'src/app/req-leave/req-leave.component';
 import { HistoryComponent } from './history/history.component';
+import { HistoryCancelComponent } from './history-cancel/history-cancel.component';
 
 const routes: Routes = [
   {
@@ -30,6 +31,7 @@ const routes: Routes = [
       { path: 'about', component: AboutComponent },
       { path: 'reqLeave', component: ReqLeaveComponent },
       { path: 'history', component: HistoryComponent },
+      { path: 'history-cancel', component: HistoryCancelComponent },
       { path: '**', component: PageNotFoundComponent }
     ]
   }

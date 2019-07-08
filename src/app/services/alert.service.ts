@@ -36,6 +36,19 @@ export class AlertService {
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
+      cancelButtonText: 'ยกเลิก',
+      confirmButtonText: 'ยืนยัน'
+    });
+  }
+
+  restore() {
+    return Swal.fire({
+      title: 'คืนสถานะการลา',
+      text: 'คุณแน่ใจหรือไม่ ?',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
       confirmButtonText: 'yes'
     });
   }

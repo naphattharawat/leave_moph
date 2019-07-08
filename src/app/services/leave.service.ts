@@ -5,7 +5,8 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class LeaveService {
-  constructor(private http: HttpClient, @Inject('API_URL') private apiUrl) {}
+
+  constructor(private http: HttpClient, @Inject('API_URL') private apiUrl) { }
   // getLeaveTotal(personId: string) {
   //   return this.http
   //     .post(`http://localhost:3001/leave/leave-total`, { personId })
@@ -93,11 +94,19 @@ export class LeaveService {
       .catch(error => error);
   }
 
-  getLeaveBoxShowOnly(personId: string) {
-    return this.http
-      .post(`http://localhost:3001/leave/leave-box-show-only`, { personId })
+  leaveHistoryCancel(personId: string) {
+    return this.http.post(`http://localhost:3001/leave/leave-history-cancel`, { personId })
       .toPromise()
       .then(result => result)
       .catch(error => error);
   }
+
+  restoreLeave(lId) {
+    return this.http.post(`http://localhost:3001/leave/restore-leave`, { lId })
+      .toPromise()
+      .then(result => result)
+      .catch(err => err);
+  }
+
 }
+

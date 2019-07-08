@@ -1,0 +1,9 @@
+.pass{
+    background-color: rgb(175, 228, 175)
+}
+.noPass{
+    background-color: rgb(255, 180, 180)
+}
+.wait{
+    background-color: white
+}

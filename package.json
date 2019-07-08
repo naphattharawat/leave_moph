@@ -32,8 +32,12 @@
     "core-js": "^2.6.9",
     "lodash": "^4.17.11",
     "moment": "^2.24.0",
+<<<<<<< HEAD
     "moment-business-days": "^1.1.3",
     "moment-holiday": "^1.5.1",
+=======
+    "mydatepicker": "^2.6.6",
+>>>>>>> d08cbd11e27d31fb251420424cb0b55e243b87e7
     "numeral": "^2.0.6",
     "rxjs": "~6.5.2",
     "simple-oauth2": "^2.2.1",
