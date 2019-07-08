@@ -14,6 +14,7 @@ import { AuthGuardService } from 'src/app/services/auth-guard.service';
 import { ReqLeaveComponent } from 'src/app/req-leave/req-leave.component';
 import { HistoryComponent } from './history/history.component';
 import { HistoryCancelComponent } from './history-cancel/history-cancel.component';
+import { InsertUserComponent } from 'src/app/insert-user/insert-user.component';
 
 const routes: Routes = [
   {
@@ -21,7 +22,7 @@ const routes: Routes = [
     component: LayoutComponent,
     canActivate: [AuthGuardService],
     children: [
-       { path: '', redirectTo: 'main', pathMatch: 'full' },
+      { path: '', redirectTo: 'main', pathMatch: 'full' },
       { path: 'main', component: MainPageComponent },
       // { path: 'login' , component: LoginPageComponent },
       { path: 'verify', component: VerifyComponent },
@@ -31,6 +32,7 @@ const routes: Routes = [
       { path: 'about', component: AboutComponent },
       { path: 'reqLeave', component: ReqLeaveComponent },
       { path: 'history', component: HistoryComponent },
+      { path: 'insert-user', component: InsertUserComponent },
       { path: 'history-cancel', component: HistoryCancelComponent },
       { path: '**', component: PageNotFoundComponent }
     ]

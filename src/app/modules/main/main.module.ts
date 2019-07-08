@@ -14,7 +14,7 @@ import { HelperModule } from 'src/app/pipes/helpers.module';
 import { HistoryComponent } from './history/history.component';
 import { MyDatePickerModule } from 'mydatepicker';
 import { HistoryCancelComponent } from './history-cancel/history-cancel.component';
-
+import { InsertUserComponent } from 'src/app/insert-user/insert-user.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +25,8 @@ import { HistoryCancelComponent } from './history-cancel/history-cancel.componen
     UserComponent,
     PreferenceComponent,
     HistoryComponent,
-    HistoryCancelComponent
+    HistoryCancelComponent,
+    InsertUserComponent
   ],
   imports: [
     CommonModule,

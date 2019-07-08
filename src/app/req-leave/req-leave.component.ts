@@ -23,7 +23,6 @@ export class ReqLeaveComponent implements OnInit {
   lSelect: any;
   status: any;
   leaveType: any[];
-  // toDay: any;
   lastDay: any;
 
   constructor(

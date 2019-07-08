@@ -24,8 +24,6 @@ import { AuthModule } from './auth/auth.module';
 import { ReqLeaveComponent } from './req-leave/req-leave.component';
 import { MainAdComponent } from './main-ad/main-ad.component';
 
-
-
 @NgModule({
   declarations: [
     AppComponent,
