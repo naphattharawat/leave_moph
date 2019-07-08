@@ -1,0 +1,41 @@
+    <clr-datagrid *ngIf="leaveHistoryCancel">
+        
+        <clr-dg-column>วันที่ลา</clr-dg-column>
+        <clr-dg-column>ถึงวันที่</clr-dg-column>
+        <clr-dg-column>จำนวนวัน</clr-dg-column>
+        <clr-dg-column [clrDgField]="'leaveHistoryCancel.lTypeName'">ประเภทการลา</clr-dg-column>
+        <clr-dg-column>ครึ่งวัน/เต็มวัน</clr-dg-column>
+        <clr-dg-column>สถานะการลา</clr-dg-column>
+        <clr-dg-column>#</clr-dg-column>
+        <clr-dg-row *ngFor="let item of leaveHistoryCancel">
+            
+            <clr-dg-cell>{{ item.dateStart }}</clr-dg-cell>
+            <clr-dg-cell>{{ item.dateEnd }}</clr-dg-cell>
+            <clr-dg-cell>{{ item.totalLeave }}</clr-dg-cell>
+            <clr-dg-cell>{{ item.lTypeName }}</clr-dg-cell>
+            <clr-dg-cell *ngIf=" item.lSelect==1 ">เช้า</clr-dg-cell>
+            <clr-dg-cell *ngIf=" item.lSelect==2 ">บ่าย</clr-dg-cell>
+            <clr-dg-cell *ngIf=" item.lSelect==3 ">เต็มวัน</clr-dg-cell>
+            <clr-dg-cell *ngIf=" item.statusHr==2 && item.statusBoss==2 && item.statusCeo==2">ลาสำเร็จ</clr-dg-cell>
+            <clr-dg-cell *ngIf=" item.statusHr==1 && item.statusBoss==1 && item.statusCeo==1">รออนุมัติ</clr-dg-cell>
+            <clr-dg-cell *ngIf=" item.statusHr==2 && item.statusBoss==1 && item.statusCeo==1">รออนุมัติ</clr-dg-cell>
+            <clr-dg-cell *ngIf=" item.statusHr==2 && item.statusBoss==2 && item.statusCeo==1">รออนุมัติ</clr-dg-cell>
+            <clr-dg-cell *ngIf=" item.statusHr==3 && item.statusBoss==1 && item.statusCeo==1">ลาไม่สำเร็จ</clr-dg-cell>
+            <clr-dg-cell *ngIf=" item.statusHr==2 && item.statusBoss==3 && item.statusCeo==1">ลาไม่สำเร็จ</clr-dg-cell>
+            <clr-dg-cell *ngIf=" item.statusHr==2 && item.statusBoss==2 && item.statusCeo==3">ลาไม่สำเร็จ</clr-dg-cell>
+            <clr-dg-cell>
+                <button class="btn btn-primary" (click)="onEdit(item)" [disabled]="">กลับสถานะเดิม</button>
+            </clr-dg-cell>
+            
+        </clr-dg-row>
+        <clr-dg-footer>
+            <b>ลาทั้งหมด {{leaveHistoryCancel.length}} ครั้ง </b>&nbsp;&nbsp;
+            <clr-dg-pagination #pagination [clrDgPageSize]="10">
+                <clr-dg-page-size [clrPageSizeOptions]="[10,15,20,25]">leave per page</clr-dg-page-size>
+                {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+                of {{pagination.totalItems}} leave
+            </clr-dg-pagination>
+        </clr-dg-footer>
+    </clr-datagrid>
+    
+    

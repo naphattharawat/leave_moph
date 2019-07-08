@@ -1,0 +1,53 @@
+import { LeaveTypeService } from './../../../services/leave-type.service';
+import { Component, OnInit } from '@angular/core';
+import { LeaveService } from './../../../services/leave.service';
+import { Router } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+import * as moment from 'moment';
+import { AlertService } from 'src/app/services/alert.service';
+
+registerLocaleData(localeFr);
+@Component({
+  selector: 'app-history-cancel',
+  templateUrl: './history-cancel.component.html',
+  styleUrls: ['./history-cancel.component.scss']
+})
+export class HistoryCancelComponent implements OnInit {
+  jwtHelper = new JwtHelperService();
+  userList: any;
+  leaveHistoryCancel: any;
+  leaveType: any[];
+
+  constructor(
+    private leaveService: LeaveService,
+    private leaveTypeService: LeaveTypeService,
+    private alertService: AlertService,
+    private router: Router
+  ) {
+    const token = sessionStorage.getItem('token');
+    const decoded = this.jwtHelper.decodeToken(token);
+    this.userList = decoded;
+  }
+
+  ngOnInit() {
+    this.getleaveHistoryCancel();
+    // this.getLeaveType();
+    // this.dateNow = moment().format('MM-DD-YYYY');
+    // console.log('moment', this.dateNow);
+  }
+
+  async getleaveHistoryCancel() {
+    const result: any = await this.leaveService.leaveHistoryCancel(this.userList['cid']);
+    console.log('getleaveAdminHistoryCancel', this.userList['cid']);
+    if (result.statusCode === 200 && result.rows.length) {
+      console.log('rows:', result.rows);
+      this.leaveHistoryCancel = result.rows;
+      // console.log('test', this.leaveShow);
+      // console.log('date', this.leaveShow[0].dateStart);
+      // console.log('g', this.aboutUser);
+    }
+  }
+
+ }
