@@ -1,0 +1,40 @@
+<ol class="breadcrumb breadcrumb-arrow font-trirong">
+    <li><a href="javascript://">test</a></li>
+</ol>
+
+<h1>
+    {{today}}
+</h1>
+<!-- <div class="clr-row">
+    <div class="clr-col-5">
+        ค้นหา
+      <my-date-picker-th name="dateSearch" [options]="myDatePickerOptions" [(ngModel)]="dateSearch"
+       required>
+    </my-date-picker-th>
+    </div>
+    <div class="clr-col-5">
+       <button type="button" class="btn btn-primary" (click)="onSearch(dateSearch)">ค้นหา</button>
+    </div>
+  </div> -->
+<br>
+รายชื่อคนที่ลา
+<clr-datagrid *ngIf="userList">
+    <clr-dg-column [clrDgField]="'name'">ชื่อ - สกุล</clr-dg-column>
+    <clr-dg-column>วันที่ลา</clr-dg-column>
+    <clr-dg-column>ถึงวันที่</clr-dg-column>
+    <clr-dg-column>ประเภทที่ลา</clr-dg-column>
+    <clr-dg-row *clrDgItems="let user of userList">
+        <clr-dg-cell>{{ user.name }} {{ user.surname }}</clr-dg-cell>
+        <clr-dg-cell>{{ user.dateStart }}</clr-dg-cell>
+        <clr-dg-cell>{{ user.dateEnd }}</clr-dg-cell>
+        <clr-dg-cell>{{ user.lTypeName}}</clr-dg-cell>
+    </clr-dg-row>
+    <clr-dg-footer>
+        <b style="color: red">คนลาทั้งหมด {{userList.length}} คน</b>&nbsp;&nbsp;
+        <clr-dg-pagination #pagination [clrDgPageSize]="10">
+            <clr-dg-page-size [clrPageSizeOptions]="[10,15,20,25]">leave per page</clr-dg-page-size>
+            {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+            of {{pagination.totalItems}} leave
+        </clr-dg-pagination>
+    </clr-dg-footer>
+</clr-datagrid>

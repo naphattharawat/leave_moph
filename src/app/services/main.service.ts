@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { HttpClient } from '@angular/common/http';
 
@@ -9,7 +9,8 @@ export class MainService {
   token = sessionStorage.getItem('token');
   jwtHelper: JwtHelperService = new JwtHelperService();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+    @Inject('API_URL') private apiUrl) { }
 
   getIP() {
     return this.http.get(`https://api.ipify.org?format=json`)
@@ -20,7 +21,7 @@ export class MainService {
 
   getUser() {
     // return this.http.get(`${this.url}/get-annouce/${month}/${year}`)
-    return this.http.get(`http://localhost:3000/user`)
+    return this.http.get(`${this.apiUrl}/user`)
       .toPromise()
       .then(result => result)
       .catch(error => error);

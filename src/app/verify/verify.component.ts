@@ -1,9 +1,10 @@
-import { AboutService } from './../services/about1.serivce';
+
 import { UserService } from './../services/user.service';
 import { VerifyService } from './../services/verify.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { JwtModule, JwtHelperService } from '@auth0/angular-jwt';
+import { AboutService } from '../services/about.service';
 
 
 
@@ -41,16 +42,18 @@ export class VerifyComponent implements OnInit {
     const result: any = await this.verifyService.sendCode(code);
     if (result.ok) {
       this.token = result.rows;
-
       if (this.token) {
-
         const rs: any = await this.verifyService.getUser(this.token);
+        console.log(rs);
+
         if (rs.users) {
           sessionStorage.setItem('token', rs.token);
           const token = rs.token;
           const decoded = this.jwtHelper.decodeToken(token);
           console.log(decoded);
-          this.checkUser(decoded.cid);
+          await this.checkUser(decoded.cid);
+        } else {
+          this.router.navigate(['login']);
         }
       } else {
         this.router.navigate(['login']);
@@ -60,19 +63,28 @@ export class VerifyComponent implements OnInit {
 
   async checkUser(personId: string) {
     try {
-      console.log('check ', personId);
       const result: any = await this.userService.getpersonId(personId);
-      console.log('result', result.rows);
-      if (result.rows.length) {
-        // console.log('n', result.rows.personId);
-        this.cid = result.rows[0].personId;
-        this.genre = result.rows[0].genre;
-        console.log('genre : ', this.genre);
-        sessionStorage.setItem('genre', this.genre);
-        this.router.navigate(['main']);
+      console.log(result);
+
+      if (result.ok) {
+        if (result.rows.length) {
+          this.cid = result.rows[0].personId;
+          this.genre = result.rows[0].genre;
+          console.log('genre : ', this.genre);
+          sessionStorage.setItem('genre', this.genre);
+          if (this.genre === 1) {
+            this.router.navigate(['/user']);
+          } else if (this.genre >= 2 && this.genre <= 4) {
+            this.router.navigate(['/admin']);
+          } else {
+            this.router.navigate(['/login']);
+          }
+        } else {
+          this.router.navigate(['/login']);
+        }
       } else {
-        console.log('not');
-        this.router.navigate(['login']);
+        console.log(result.error);
+        this.router.navigate(['/login']);
       }
     } catch (err) {
       console.log(err);

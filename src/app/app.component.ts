@@ -4,15 +4,15 @@ import { Router, NavigationStart } from '@angular/router';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styles: []
 })
 export class AppComponent {
   constructor(
     private router: Router
-  ) {}
+  ) { }
   title = 'a';
 
-// tslint:disable-next-line: use-life-cycle-interface
+  // tslint:disable-next-line: use-life-cycle-interface
   ngOnInit() {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationStart) {

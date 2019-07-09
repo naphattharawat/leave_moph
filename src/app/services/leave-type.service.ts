@@ -1,5 +1,5 @@
-import { Injectable , Inject } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import { Injectable, Inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -12,30 +12,30 @@ export class LeaveTypeService {
   ) { }
 
   getLeaveType() {
-    return this.http.get(`http://localhost:3001/leaveType`, {})
-    .toPromise()
-    .then(result => result)
-    .catch(err => err);
+    return this.http.get(`${this.apiUrl}/leaveType`, {})
+      .toPromise()
+      .then(result => result)
+      .catch(err => err);
   }
 
   insertLeaveType(data) {
-    return this.http.post(`http://localhost:3001/leaveType`, {data})
-    .toPromise()
-    .then(result => result)
-    .catch(err => err);
+    return this.http.post(`${this.apiUrl}/leaveType`, { data })
+      .toPromise()
+      .then(result => result)
+      .catch(err => err);
   }
 
   updateLeaveType(lTypeName, is_total, lTypeId) {
-    return this.http.post(`http://localhost:3001/leaveType/update`, {lTypeName, is_total, lTypeId})
-    .toPromise()
-    .then(result => result)
-    .catch(err => err);
+    return this.http.post(`${this.apiUrl}/leaveType/update`, { lTypeName, is_total, lTypeId })
+      .toPromise()
+      .then(result => result)
+      .catch(err => err);
   }
 
   delLeaveType(lTypeId) {
-    return this.http.post(`http://localhost:3001/leaveType/del`, {lTypeId})
-    .toPromise()
-    .then(result => result)
-    .catch(err => err);
+    return this.http.post(`${this.apiUrl}/leaveType/del`, { lTypeId })
+      .toPromise()
+      .then(result => result)
+      .catch(err => err);
   }
 }

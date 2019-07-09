@@ -12,17 +12,17 @@ export class UserService {
   ) { }
 
   getpersonId(personId: string) {
-    return this.http.get(`http://localhost:3001/user/personId?personId=${personId}`)
-    .toPromise()
-    .then(result => result)
-    .catch(err => err)
+    return this.http.get(`${this.apiUrl}/user/personId?personId=${personId}`)
+      .toPromise()
+      .then(result => result)
+      .catch(err => err);
   }
 
   updateUser(tel: string, email: string, personId: string) {
-    return this.http.post(`http://localhost:3001/user/update`, {tel, email, personId})
-    .toPromise()
-    .then(result => result)
-    .catch(error => error);
+    return this.http.post(`${this.apiUrl}/user/update`, { tel, email, personId })
+      .toPromise()
+      .then(result => result)
+      .catch(error => error);
   }
 
 }

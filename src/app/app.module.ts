@@ -1,3 +1,5 @@
+import { AdminModule } from './admin/admin.module';
+import { UserModule } from './user/user.module';
 import { AlertService } from './services/alert.service';
 import { FormsModule } from '@angular/forms';
 import { registerLocaleData } from '@angular/common';
@@ -14,30 +16,24 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 // my module and my service
-import { MainModule } from './modules/main/main.module';
-import { LoginModule } from './modules/login/login.module';
+import { LoginModule } from './login/login.module';
 import { MainService } from './services/main.service';
 import { HelperModule } from './pipes/helpers.module';
 import { VerifyComponent } from './verify/verify.component';
-import { RegisterComponent } from './modules/register/register.component';
 import { AuthModule } from './auth/auth.module';
-import { ReqLeaveComponent } from './req-leave/req-leave.component';
-import { MainAdComponent } from './main-ad/main-ad.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    VerifyComponent,
-    RegisterComponent,
-    ReqLeaveComponent,
-    MainAdComponent
+    VerifyComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ClarityModule,
-    MainModule,
+    UserModule,
+    AdminModule,
     LoginModule,
     BrowserAnimationsModule,
     FormsModule,
@@ -56,4 +52,4 @@ import { MainAdComponent } from './main-ad/main-ad.component';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

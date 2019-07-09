@@ -8,21 +8,22 @@ import { HttpClient } from '@angular/common/http';
 export class VerifyService {
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    @Inject('API_URL') private apiUrl
   ) { }
 
   sendCode(code) {
     // console.log('services : ', code);
-    return this.http.post(`http://localhost:3001/verify/getCode`, {
+    return this.http.post(`${this.apiUrl}/verify/getCode`, {
       code: code.toString('utf8')
     })
       .toPromise();
   }
 
   getUser(token) {
-    return this.http.get(`http://localhost:3001/verify/getUser?token=${token}`, {
+    return this.http.get(`${this.apiUrl}/verify/getUser?token=${token}`, {
     })
-    .toPromise();
+      .toPromise();
   }
 
 }

@@ -6,15 +6,38 @@ import { HttpClient } from '@angular/common/http';
 })
 export class HolidayService {
 
-    constructor(private http: HttpClient, @Inject('API_URL') private apiUrl) { }
+    constructor(
+        private http: HttpClient,
+        @Inject('API_URL') private apiUrl
+    ) { }
 
+    getHoliday() {
+        return this.http.post(`${this.apiUrl}/holiday`, {})
+            .toPromise()
+            .then(result => result)
+            .catch(err => err);
+    }
 
-    reqLeave(data) {
-        return this.http
-            .post(`http://localhost:3001/insert-holiday`, {
-                data: data
-            })
-            .toPromise();
+    insertHoliday(data) {
+        return this.http.post(`${this.apiUrl}/holiday/insert-holiday`, { data })
+            .toPromise()
+            .then(result => result)
+            .catch(err => err);
+    }
+
+    updateHoliday(data) {
+        return this.http.post(`${this.apiUrl}/holiday/update-holiday`, {
+            data: data
+        })
+            .toPromise()
+            .then(result => result)
+            .catch(err => err);
+    }
+
+    deleteHoliday(hId) {
+        return this.http.post(`${this.apiUrl}/holiday/delete-holiday`, { hId })
+            .toPromise()
+            .then(result => result)
+            .catch(err => err);
     }
 }
-

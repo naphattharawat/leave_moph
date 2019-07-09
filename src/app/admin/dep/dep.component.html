@@ -1,0 +1,49 @@
+<ol class="breadcrumb breadcrumb-arrow font-trirong">
+  <li><a href="javascript://">Department</a></li>
+</ol>
+
+<h1>
+  แผนก
+</h1>
+<div style="text-align: right">
+  <button type="button" (click)="onAdd()" class="btn btn-success">
+    + เพิ่มแผนก
+  </button>
+</div>
+<clr-datagrid *ngIf="depList">
+  <clr-dg-column>ID</clr-dg-column>
+  <clr-dg-column [clrDgField]="'depName'">ชื่อประเภท</clr-dg-column>
+  <clr-dg-column>#</clr-dg-column>
+  <clr-dg-row *clrDgItems="let dep of depList">
+    <clr-dg-cell>{{ dep.depId }}</clr-dg-cell>
+    <clr-dg-cell>{{ dep.depName }}</clr-dg-cell>
+    <clr-dg-cell>
+      <button class="btn btn-primary" (click)="onEdit(dep)">แก้ไข</button><br>
+      <button class="btn btn-danger" (click)="onDel(dep)">ยกเลิก</button><br>
+    </clr-dg-cell>
+  </clr-dg-row>
+  <clr-dg-footer>
+    <b>ประเภทการลาทั้งหมด {{depList.length}} ประเภท </b>&nbsp;&nbsp;
+    <clr-dg-pagination #pagination [clrDgPageSize]="10">
+      <clr-dg-page-size [clrPageSizeOptions]="[10,15,20,25]">leave per page</clr-dg-page-size>
+      {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+      of {{pagination.totalItems}} leave
+    </clr-dg-pagination>
+  </clr-dg-footer>
+</clr-datagrid>
+
+<clr-modal *ngIf="currentRow" [(clrModalOpen)]="modalEdit">
+  <h3 class="modal-title" *ngIf="currentRow.mode== 'edit'">แก้ไขแผนก</h3>
+  <h3 class="modal-title" *ngIf="currentRow.mode== 'add'">เพิ่มแผนก</h3>
+  <div class="modal-body">
+    <clr-input-container>
+      <label>ชื่อแผนก</label>
+      <input clrInput type="text" [(ngModel)]="currentRow.depName" name="depName" required />
+    </clr-input-container>
+  </div>
+  <br>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline" (click)="modalEdit = false">ยกเลิก</button>
+    <button type="button" class="btn btn-primary" (click)="onSave()" [disabled]="!currentRow.depName">บันทึก</button>
+  </div>
+</clr-modal>

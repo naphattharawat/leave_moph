@@ -1,0 +1,149 @@
+<ol class="breadcrumb breadcrumb-arrow font-trirong">
+  <li><a href="javascript://">History</a></li>
+</ol>
+<h1>
+  รายชื่อผู้ใช้งานในระบบ
+</h1>
+<div style="text-align: right">
+  <button type="button" (click)="onAdd()" class="btn btn-success">
+    + เพิ่มรายชื่อผู้ใช้งาน
+  </button>
+</div>
+
+<clr-datagrid>
+  <clr-dg-column>รหัสประชาชน</clr-dg-column>
+  <clr-dg-column>รหัสสถานพยาบาล</clr-dg-column>
+  <clr-dg-column>อีเมล์</clr-dg-column>
+  <clr-dg-column>ชื่อ</clr-dg-column>
+  <clr-dg-column>นามสกุล</clr-dg-column>
+  <clr-dg-column>เบอร์โทรศัพท์</clr-dg-column>
+  <clr-dg-column>แผนก</clr-dg-column>
+  <clr-dg-column>ตำแหน่ง</clr-dg-column>
+  <clr-dg-column>ประเภท</clr-dg-column>
+  <clr-dg-row *ngFor="let user of allUser">
+    <clr-dg-cell>{{user.personId}}</clr-dg-cell>
+    <clr-dg-cell>{{user.hosId}}</clr-dg-cell>
+    <clr-dg-cell>{{user.email}}</clr-dg-cell>
+    <clr-dg-cell>{{user.name}}</clr-dg-cell>
+    <clr-dg-cell>{{user.surname}}</clr-dg-cell>
+    <clr-dg-cell>{{user.tel}}</clr-dg-cell>
+    <clr-dg-cell>{{user.depId}}</clr-dg-cell>
+    <clr-dg-cell>{{user.position}}</clr-dg-cell>
+    <clr-dg-cell *ngIf="user.genre == '1' ">พนักงาน</clr-dg-cell>
+    <clr-dg-cell *ngIf="user.genre == '2' ">HR</clr-dg-cell>
+    <clr-dg-cell *ngIf="user.genre == '3' ">หัวหน้าแผนก</clr-dg-cell>
+    <clr-dg-cell *ngIf="user.genre == '4' ">ผู้อำนวยการ</clr-dg-cell>
+  </clr-dg-row>
+</clr-datagrid>
+
+<clr-modal *ngIf="currentRow" [(clrModalOpen)]="modalEdit">
+  <h3 class="modal-title" *ngIf="currentRow.mode == 'add'">เพิ่มรายชื่อ</h3>
+  <div class="modal-body">
+    <form class="clr-form clr-form-vertical">
+      <div class="clr-form-control clr-row">
+        <label for="personId" class="clr-control-label clr-col-12 clr-col-6">เลขประจำตัวบัตรประชาชน</label>
+        <div class="clr-control-container clr-col-12 clr-col-md-10">
+          <div class="clr-input-wrapper">
+            <input type="text" name="personId" id="personId" placeholder="รหัสประชาชน 13 หลัก"
+              [(ngModel)]="currentRow.personId" class="clr-input">
+            <clr-icon class="clr-validate-icon" shape="exclamation-circle"></clr-icon>
+          </div>
+        </div>
+      </div>
+      <div class="clr-form-control clr-row">
+        <label for="hosId" class="clr-control-label clr-col-12 clr-col-6">รหัสสถานพยาบาล</label>
+        <div class="clr-control-container clr-col-12 clr-col-md-10">
+          <div class="clr-input-wrapper">
+            <input type="text" name="hosId" id="hosId" placeholder="รหัสสถานพยาบาล" [(ngModel)]="currentRow.hosId"
+              class="clr-input">
+            <clr-icon class="clr-validate-icon" shape="exclamation-circle"></clr-icon>
+          </div>
+        </div>
+      </div>
+      <div class="clr-form-control clr-row">
+        <label for="email" class="clr-control-label clr-col-12 clr-col-6">อีเมล์</label>
+        <div class="clr-control-container clr-col-12 clr-col-md-10">
+          <div class="clr-input-wrapper">
+            <input type="text" name="email" id="email" placeholder="อีเมล์" [(ngModel)]="currentRow.email"
+              class="clr-input">
+            <clr-icon class="clr-validate-icon" shape="exclamation-circle"></clr-icon>
+          </div>
+        </div>
+      </div>
+      <div class="clr-form-control clr-row">
+        <label for="name" class="clr-control-label clr-col-12 clr-col-6">ชื่อ</label>
+        <div class="clr-control-container clr-col-12 clr-col-md-10">
+          <div class="clr-input-wrapper">
+            <input type="text" name="name" id="name" placeholder="ชื่อจริง" [(ngModel)]="currentRow.name"
+              class="clr-input">
+            <clr-icon class="clr-validate-icon" shape="exclamation-circle"></clr-icon>
+          </div>
+        </div>
+      </div>
+      <div class="clr-form-control clr-row">
+        <label for="surname" class="clr-control-label clr-col-12 clr-col-6">นามสกุล</label>
+        <div class="clr-control-container clr-col-12 clr-col-md-10">
+          <div class="clr-input-wrapper">
+            <input type="text" name="surname" id="surname" placeholder="นามกสุล" [(ngModel)]="currentRow.surname"
+              class="clr-input">
+            <clr-icon class="clr-validate-icon" shape="exclamation-circle"></clr-icon>
+          </div>
+        </div>
+      </div>
+      <div class="clr-form-control clr-row">
+        <label for="tel" class="clr-control-label clr-col-12 clr-col-6">เบอร์โทรศัพท์ (ไม่มีขีด)</label>
+        <div class="clr-control-container clr-col-12 clr-col-md-10">
+          <div class="clr-input-wrapper">
+            <input type="text" name="tel" id="tel" placeholder="เบอร์โทรศัพท์ 10 หลัก" [(ngModel)]="currentRow.tel"
+              class="clr-input">
+            <clr-icon class="clr-validate-icon" shape="exclamation-circle"></clr-icon>
+          </div>
+        </div>
+      </div>
+      <div class="clr-form-control clr-row">
+        <label for="depId" class="clr-control-label clr-col-12 clr-col-6">แผนก</label>
+        <div class="clr-control-container clr-col-12 clr-col-md-10">
+          <select id="depId" name="depId" [(ngModel)]="currentRow.depId" class="clr-select">
+            <option *ngFor="let dep of getDepList" [value]="dep.depId">
+              {{ dep.depName }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="clr-form-control clr-row">
+        <label for="position" class="clr-control-label clr-col-12 clr-col-6">ตำแหน่ง</label>
+        <div class="clr-control-container clr-col-12 clr-col-md-10">
+          <div class="clr-input-wrapper">
+            <input type="text" name="position" id="position" placeholder="ตำแหน่ง" [(ngModel)]="currentRow.position"
+              class="clr-input">
+            <clr-icon class="clr-validate-icon" shape="exclamation-circle"></clr-icon>
+          </div>
+        </div>
+      </div>
+      <clr-radio-container clrInline>
+        <label>ประเภท</label>
+        <clr-radio-wrapper>
+          <input type="radio" clrRadio name="genre" required value="1" [(ngModel)]="currentRow.genre" />
+          <label>พนักงาน</label>
+        </clr-radio-wrapper>
+        <clr-radio-wrapper>
+          <input type="radio" clrRadio name="genre" required value="2" [(ngModel)]="currentRow.genre" />
+          <label>HR</label>
+        </clr-radio-wrapper>
+        <clr-radio-wrapper>
+          <input type="radio" clrRadio name="genre" required value="3" [(ngModel)]="currentRow.genre" />
+          <label>หัวหน้าแผนก</label>
+        </clr-radio-wrapper>
+        <clr-radio-wrapper>
+          <input type="radio" clrRadio name="genre" required value="4" [(ngModel)]="currentRow.genre" />
+          <label>ผู้อำนวยการ</label>
+        </clr-radio-wrapper>
+      </clr-radio-container>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline" (click)="modalEdit = false">ยกเลิก</button>
+    <button type="button" class="btn btn-primary" (click)="onSave()"
+      [disabled]=" !currentRow.personId || !currentRow.hosId || !currentRow.email || !currentRow.name || !currentRow.surname || currentRow.tel.length != 10 || !currentRow.depId || !currentRow.position || !currentRow.genre">บันทึก</button>
+  </div>
+</clr-modal>
